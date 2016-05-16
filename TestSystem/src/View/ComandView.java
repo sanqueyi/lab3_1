@@ -452,11 +452,6 @@ public class ComandView {
 		control.createRankQuestion(prompt, items);
 	}
 	
-	public static void main(String[] args){
-		ComandView view = new ComandView();
-		while(true){
-			view.printFirstMenu();
-		}
-	}
+
 	
 }

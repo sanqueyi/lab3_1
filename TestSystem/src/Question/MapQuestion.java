@@ -26,6 +26,7 @@ public class MapQuestion extends Question {
 		}
 	}
 
+	@Override
 	public void setAnswer(String answer) {
 		// TODO Auto-generated method stub
 		this.answer = new MapAnswer();
@@ -33,6 +34,7 @@ public class MapQuestion extends Question {
 		this.answer.setAnswer(answer);
 	}
 
+	@Override
 	public Answer getAnswer() {
 		// TODO Auto-generated method stub
 		return answer;
@@ -47,6 +49,7 @@ public class MapQuestion extends Question {
 		this.side = side;
 	}
 	
+	@Override
 	public String getQuestion(){
 		String ret = "Map: "+prompt+"\n";
 		for(int i=0; i<side1.size(); i++){

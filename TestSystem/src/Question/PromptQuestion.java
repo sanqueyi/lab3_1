@@ -8,6 +8,8 @@ public abstract class PromptQuestion extends Question{
 		super(type);
 	}
 
+	@Override
 	public abstract Answer getAnswer();
+	@Override
 	public abstract void setAnswer(String answer);
 }

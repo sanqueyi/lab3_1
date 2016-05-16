@@ -14,16 +14,19 @@ public class ChoiceQuestion extends ItemQuestion {
 		super(1);
 	}
 	
+	@Override
 	public void setItem(String item) {
 		this.items.add(item);
 	}
 
+	@Override
 	public void setAnswer(String answer) {
 		this.answer = new ChoiceAnswer();
 		this.answer.setItem(items);
 		this.answer.setAnswer(answer);
 	}
 
+	@Override
 	public Answer getAnswer() {
 		return answer;
 	}
@@ -33,6 +36,7 @@ public class ChoiceQuestion extends ItemQuestion {
 		return this.answer.equals(answer);
 	}
 	
+	@Override
 	public String getQuestion(){
 		String ret = "ChoiceQuestion: "+prompt+"\n";
 		for(int i=0; i<items.size(); i++){
@@ -41,10 +45,12 @@ public class ChoiceQuestion extends ItemQuestion {
 		return ret;
 	}
 
+	@Override
 	public List<String> getItem() {
 		return items;
 	}
 
+	@Override
 	public boolean remove(int index) {
 		if(items.size() > index){
 			items.remove(index);
@@ -53,6 +59,7 @@ public class ChoiceQuestion extends ItemQuestion {
 		return false;
 	}
 
+	@Override
 	public boolean changeItem(int index, String item) {
 		if(items.size() > index){
 			items.remove(index);
@@ -62,6 +69,7 @@ public class ChoiceQuestion extends ItemQuestion {
 		return false;
 	}
 
+	@Override
 	public boolean changeItemNumber(int num) {
 		if(items.size() > num){
 			for(int i=num; i<items.size(); i++){

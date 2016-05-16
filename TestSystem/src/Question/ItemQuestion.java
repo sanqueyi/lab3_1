@@ -2,8 +2,6 @@ package Question;
 
 import java.util.List;
 
-import Anwser.Answer;
-
 public abstract class ItemQuestion extends Question{
 
 	public ItemQuestion(int type) {

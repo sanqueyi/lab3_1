@@ -6,11 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -221,13 +218,13 @@ public class IO {
 	public Question readMapQuestion(Element question){
 		MapQuestion map = new MapQuestion();
 		map.setPrompt(question.getChildText("prompt"));
-		Element side1 = (Element) question.getChild("side1");
+		Element side1 = question.getChild("side1");
 		List<Element> sideList1 = side1.getChildren();
 		map.setSide(1);
 		for(int j=0; j<sideList1.size(); j++){
 			map.setItem(sideList1.get(j).getText());
 		}
-		Element side2 = (Element) question.getChild("side2");
+		Element side2 = question.getChild("side2");
 		List<Element> sideList2 = side2.getChildren();
 		map.setSide(2);
 		for(int j=0; j<sideList2.size(); j++){

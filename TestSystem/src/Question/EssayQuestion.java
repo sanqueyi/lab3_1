@@ -7,6 +7,7 @@ public class EssayQuestion extends Question {
 		super(3);
 	}
 	
+	@Override
 	public String getQuestion(){
 		return "Essay: "+prompt;
 	}

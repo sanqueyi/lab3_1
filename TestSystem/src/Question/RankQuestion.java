@@ -15,16 +15,19 @@ public class RankQuestion extends ItemQuestion {
 		super(4);
 	}
 	
+	@Override
 	public void setItem(String item) {
 		items.add(item);		
 	}
 
+	@Override
 	public void setAnswer(String answer) {
 		this.answer = new RankAnswer();
 		this.answer.setQuestion(items);
 		this.answer.setAnswer(answer);
 	}
 
+	@Override
 	public Answer getAnswer() {
 		return this.answer;
 	}
@@ -34,6 +37,7 @@ public class RankQuestion extends ItemQuestion {
 		return this.answer.getAnswer().equals(answer);
 	}
 	
+	@Override
 	public String getQuestion(){
 		String ret = "Rank: "+prompt + "\n";
 		for(int i=0; i<items.size(); i++){
@@ -42,11 +46,13 @@ public class RankQuestion extends ItemQuestion {
 		return ret;
 	}
 
+	@Override
 	public List<String> getItem() {
 		// TODO Auto-generated method stub
 		return items;
 	}
 
+	@Override
 	public boolean remove(int index) {
 		// TODO Auto-generated method stub
 		if(items.size() > index){
@@ -56,6 +62,7 @@ public class RankQuestion extends ItemQuestion {
 		return false;
 	}
 
+	@Override
 	public boolean changeItem(int index, String item) {
 		// TODO Auto-generated method stub
 		if(items.size() > index){
@@ -66,6 +73,7 @@ public class RankQuestion extends ItemQuestion {
 		return false;
 	}
 
+	@Override
 	public boolean changeItemNumber(int num) {
 		if(items.size() > num){
 			for(int i=num; i < items.size(); i++){

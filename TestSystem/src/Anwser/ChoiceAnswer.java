@@ -17,6 +17,7 @@ public class ChoiceAnswer implements Answer{
 		return ret;
 	}
 	
+	@Override
 	public String writeAnswer(){
 		String ret = "";
 		for(int i=0; i<anwser.length; i++){

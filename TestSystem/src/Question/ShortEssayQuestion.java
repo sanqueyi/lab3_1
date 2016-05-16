@@ -12,10 +12,12 @@ public class ShortEssayQuestion extends PromptQuestion {
 		// TODO Auto-generated constructor stub
 	}	
 	
+	@Override
 	public String getQuestion(){
 		return "Text: "+prompt;
 	}
 	
+	@Override
 	public void setAnswer(String answer) {
 		// TODO Auto-generated method stub
 		
@@ -23,6 +25,7 @@ public class ShortEssayQuestion extends PromptQuestion {
 		this.answer.setAnswer(answer);
 	}
 
+	@Override
 	public Answer getAnswer() {
 		// TODO Auto-generated method stub
 		return answer;

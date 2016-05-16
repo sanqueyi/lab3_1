@@ -11,16 +11,19 @@ public class DecideQuestion extends PromptQuestion {
 	}
 
 	
+	@Override
 	public String getQuestion(){
 		String ret = "T/F: "+prompt+"\n"+"1. right\n2. false";
 		return ret;
 	}
 	
+	@Override
 	public void setAnswer(String anwser){
 		answer = new DecideAnswer();
 		answer.setAnswer(anwser);
 	}
 	
+	@Override
 	public Answer getAnswer(){
 		return answer;
 	}
