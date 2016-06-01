@@ -28,7 +28,7 @@ import Question.ShortEssayQuestion;
 public class Control {
 	
 	
-	List<String>[] pageNameList;
+	List<String>[] pageNameList;  //第0个对应servey,第1个对应test
 	Page page;
 	Question question;
 	int index;
@@ -41,7 +41,7 @@ public class Control {
 		pageNameList = io.readInfo();
 	}
 	
-	public void createPage(int type){
+	public void createPage(int type){  //创建一个page
 		if(type == 0){
 			page = new Survey();
 			page.setType("survey");
@@ -92,7 +92,7 @@ public class Control {
 		return pageNameList[type];
 	}
 	
-	public List<String> displayPage(int index, int type){
+	public List<String> displayPage(int index, int type){  //包括完整的问题和答案
 		List<String> ret = new LinkedList<String>();
 		if(pageNameList[type].size() <= index){
 			return ret;
@@ -121,7 +121,7 @@ public class Control {
 		io.writePage(page);
 	}
 	
-	public int modify(int index){
+	public int modify(int index){  //得到page中某个下标问题的类型
 		if(index >= page.getQuestionList().size()){
 			return -1;
 		}else{
@@ -255,7 +255,7 @@ public class Control {
 		return ((ItemQuestion)question).changeItemNumber(num);
 	}
 	
-	public void loadPage(int index, int type){
+	public void loadPage(int index, int type){  //新得到一个page，没有填答案的page
 		page = io.readPage(pageNameList[type].get(index));
 		record = new Record();
 	}
@@ -274,7 +274,7 @@ public class Control {
 		return iterator.hasNext();
 	}
 	
-	public void answerQuestion(String answer){
+	public void answerQuestion(String answer){  //把答案加到记录里面
 		switch(question.getType()){
 		case 0: DecideAnswer decide = new DecideAnswer();
 				decide.setAnswer(answer);
@@ -325,7 +325,7 @@ public class Control {
 		}
 	}
 	
-	public String getOutcome(int index, int type){
+	public String getOutcome(int index, int type){  //统计调查结果
 		this.loadPage(index, type);
 		recordName = io.readRecordInfo(page.getPageName());
 		List<Iterator<Answer>> recordList = new LinkedList<Iterator<Answer>>();

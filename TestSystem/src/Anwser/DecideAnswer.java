@@ -2,7 +2,7 @@ package Anwser;
 
 public class DecideAnswer implements Answer{
 	
-	int anwser;
+	int anwser;  //答案为1就是正确的，答案为2就是错误的
 	
 	@Override
 	public String getAnswer() {

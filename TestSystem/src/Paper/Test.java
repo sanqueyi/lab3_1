@@ -13,7 +13,7 @@ public class Test extends Page {
 		return totalScore;
 	}
 	
-	public void computeScore(){
+	public void computeScore(){  //得到试卷的总分
 		totalScore = 0;
 		for(int i=0; i<questionList.size(); i++){
 			Question question = questionList.get(i);

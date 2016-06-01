@@ -12,13 +12,13 @@ public class DecideQuestion extends PromptQuestion {
 
 	
 	@Override
-	public String getQuestion(){
+	public String getQuestion(){ //得到判断题的题目和tf选项
 		String ret = "T/F: "+prompt+"\n"+"1. right\n2. false";
 		return ret;
 	}
 	
 	@Override
-	public void setAnswer(String anwser){
+	public void setAnswer(String anwser){ 
 		answer = new DecideAnswer();
 		answer.setAnswer(anwser);
 	}

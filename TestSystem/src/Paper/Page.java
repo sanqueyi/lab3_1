@@ -5,12 +5,12 @@ import java.util.List;
 
 import Question.Question;
 
-public class Page {
+public class Page {  //一张试卷或问卷
 	
 	String pageName;
 	String type;
 	
-	List<Question> questionList = new LinkedList<Question>();
+	List<Question> questionList = new LinkedList<Question>();  //page中的所有问题
 	
 	public void setPageName(String pageName){
 		this.pageName = pageName;
@@ -24,7 +24,7 @@ public class Page {
 		questionList.add(question);
 	}
 	
-	public Question getQuestion(int index){
+	public Question getQuestion(int index){  //得到具体某个下标的问题
 		if(index >= questionList.size()){
 			return null;
 		}else{
@@ -48,7 +48,7 @@ public class Page {
 		this.type = type;
 	}
 	
-	public Iterator<Question> iterator(){
+	public Iterator<Question> iterator(){  //？
 		return new IteratorQuestion();
 	}
 	

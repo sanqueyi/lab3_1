@@ -43,7 +43,7 @@ public class ComandView {
 		}
 	}
 	
-	public void displayOutcome(int type){
+	public void displayOutcome(int type){  //得到某个具体page的统计结果
 		System.out.println("choose the page:");
 		Scanner scan = new Scanner(System.in);
 		List<String> pageNameList = control.getPageName(type);
@@ -56,7 +56,7 @@ public class ComandView {
 		scan.nextLine();
 	}
 	
-	public void answer(int type){
+	public void answer(int type){  //选择一个page作答
 		Scanner scan = new Scanner(System.in);
 		List<String> nameList = control.getPageName(type);
 		for(int i=0; i<nameList.size(); i++){
@@ -84,7 +84,7 @@ public class ComandView {
 		this.display(type);
 		System.out.println("Please choose which question that you want to modify: ");
 		int index = sc.nextInt();
-		int next  = control.modify(index);
+		int next  = control.modify(index);  //返回问题的type
 		switch(next){
 		case 0:this.modifyTFQuestion();break;
 		case 1:this.modifyChooicQuestion();break;
@@ -282,7 +282,7 @@ public class ComandView {
 	}
 	
 	
-	public void display(int type){
+	public void display(int type){  //选择一个page,并打印出这个page的所有问题
 		System.out.println("choose the page:");
 		List<String> pageNameList = control.getPageName(type);
 		for(int i=0; i<pageNameList.size(); i++){

@@ -4,11 +4,11 @@ import java.util.List;
 
 public class ChoiceAnswer implements Answer{
 	
-	int[] anwser;
-	List<String> item;
+	int[] anwser;  //数组的每一项记录着正确答案的下标
+	List<String> item;  //所有的选项
 	
 	@Override
-	public String getAnswer() {
+	public String getAnswer() { //得到选择题的答案
 		// TODO Auto-generated method stub
 		String ret = "";
 		for(int i=0; i<anwser.length; i++){
@@ -18,7 +18,7 @@ public class ChoiceAnswer implements Answer{
 	}
 	
 	@Override
-	public String writeAnswer(){
+	public String writeAnswer(){ //将答案下标合并成一个string
 		String ret = "";
 		for(int i=0; i<anwser.length; i++){
 			ret += anwser[i] + " ";
@@ -27,7 +27,7 @@ public class ChoiceAnswer implements Answer{
 	}
 	
 	@Override
-	public void setAnswer(String anwser) {
+	public void setAnswer(String anwser) {  //设置正确答案，输入的是正确答案的下标
 		// TODO Auto-generated method stub
 		String[] anwsers = anwser.split(" ");
 		this.anwser = new int[anwsers.length];

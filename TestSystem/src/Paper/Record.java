@@ -25,7 +25,7 @@ public class Record {
 		this.personName = personName;
 	}
 	
-	public void addAnwser(Answer answer){
+	public void addAnwser(Answer answer){  //添加答案
 		answerList.add(answer);
 	}
 	
@@ -36,7 +36,7 @@ public class Record {
 		return null;
 	}
 	
-	public Answer getAnswer(){
+	public Answer getAnswer(){  //？
 		return answerList.get(index++);
 	}
 	
