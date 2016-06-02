@@ -1,35 +1,17 @@
 package Anwser;
 
-public class TextAnswer implements Answer{
-	
-	String text;
-	
-	@Override
-	public String getAnswer() {
-		// TODO Auto-generated method stub
-		return text;
+public class TextAnswer extends Answer{
+	public TextAnswer(String ans){
+		answer=ans;
 	}
 
 	@Override
-	public void setAnswer(String anwser) {
-		// TODO Auto-generated method stub
-		text = anwser;
+	public void setAnswer(String ans) {
+		answer=ans;
 	}
 
 	@Override
-	public String writeAnswer() {
-		// TODO Auto-generated method stub
-		return text;
+	public boolean match(String ans) {
+		return ans.equals(answer);
 	}
-
-	@Override
-	public int getType() {
-		return 2;
-	}
-
-	@Override
-	public boolean match(Answer answer) {
-		return answer.writeAnswer().equals(this.writeAnswer());
-	}
-
 }

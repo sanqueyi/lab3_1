@@ -5,19 +5,34 @@ import java.util.List;
 
 import Question.Question;
 
-public class Page {  //一张试卷或问卷
+public abstract class Page {  //一张试卷或问卷
 	
-	String pageName;
-	String type;
+	protected String pageName;
+	protected PType type;
+	protected List<Question> questionList = new LinkedList<Question>();  //page中的所有问题
 	
-	List<Question> questionList = new LinkedList<Question>();  //page中的所有问题
+	public Page(String pn){
+		pageName=pn;
+	}
 	
-	public void setPageName(String pageName){
-		this.pageName = pageName;
+	public void setPageName(String pn){
+		pageName = pn;
 	}
 	
 	public String getPageName(){
-		return this.pageName;
+		return pageName;
+	}
+	
+	public String getTypeIndex(){  //只有io要用到
+		return type.getTypeIndex();
+	}
+	
+	public PType getType(){  //提供方法给其他模块的
+		return type;
+	}
+	
+	public void setType(PType type){
+		this.type = type;
 	}
 	
 	public void addQuestion(Question question){
@@ -32,32 +47,19 @@ public class Page {  //一张试卷或问卷
 		}
 	}
 	
-	public List<Question> getQuestionList(){
-		return questionList;
-	}
-	
 	public int getQuestionSize(){
 		return questionList.size();
 	}
 	
-	public String getType(){
-		return type;
-	}
-	
-	public void setType(String type){
-		this.type = type;
-	}
-	
-	public Iterator<Question> iterator(){  //？
+	public Iterator<Question> iteratorQuestion(){  
 		return new IteratorQuestion();
 	}
 	
 	class IteratorQuestion implements Iterator<Question>{
-		int questionIndex;
+		int questionIndex=0;
 
 		@Override
 		public boolean hasNext() {
-			// TODO Auto-generated method stub
 			if(questionList.size() > questionIndex)
 				return true;
 			return false;
@@ -65,11 +67,7 @@ public class Page {  //一张试卷或问卷
 
 		@Override
 		public Question next() {
-			// TODO Auto-generated method stub
 			return questionList.get(questionIndex++);
 		}
-		
-		
 	}
-	
 }

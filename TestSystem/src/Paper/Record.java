@@ -2,27 +2,32 @@ package Paper;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import Anwser.Answer;
 
 public class Record {
+	private List<Answer> answerList = new LinkedList<Answer>();
+	private String personName;
+	private String pageName;
 	
-	List<Answer> answerList = new LinkedList<Answer>();
-	int score;
-	String personName;
-	int index;
+	public Record(String pern,String pagn){
+		personName=pern;
+		pageName=pagn;
+	}
 	
-	public int getScore() {
-		return score;
-	}
-	public void addScore(int score) {
-		this.score += score;
-	}
 	public String getPersonName() {
 		return personName;
 	}
+	
 	public void setPersonName(String personName) {
 		this.personName = personName;
+	}
+	
+	public String getPageName(){
+		return pageName;
+	}
+	
+	public void setPageName(String pn){
+		pageName=pn;
 	}
 	
 	public void addAnwser(Answer answer){  //添加答案
@@ -36,40 +41,29 @@ public class Record {
 		return null;
 	}
 	
-	public Answer getAnswer(){  //？
-		return answerList.get(index++);
+	public int getAnswerSize(){
+		return answerList.size();
 	}
 	
-	public boolean hasNext(){
-		if(index >= answerList.size()){
-			index = 0;
-			return false;
-		}
-		return true;
-	}	
-	
-	public Iterator<Answer> iterator(){
-		return new AnswerIterator();
+	public Iterator<Answer> iteratorAnswer(){
+		return new IteratorAnswer();
 	}
 	
-	class AnswerIterator implements Iterator<Answer>{
+	class IteratorAnswer implements Iterator<Answer>{
 		
 		int answerIndex = 0;
 		
 		@Override
 		public boolean hasNext() {
-			// TODO Auto-generated method stub
 			if(answerIndex < answerList.size()){
 				return true;
 			}
 			return false;
 		}
-
+		
 		@Override
-		public Anwser.Answer next() {
-			// TODO Auto-generated method stub
+		public Answer next() {
 			return answerList.get(answerIndex++);
 		}
-		
 	}
 }

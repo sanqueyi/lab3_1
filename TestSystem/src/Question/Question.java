@@ -4,20 +4,14 @@ import Anwser.Answer;
 
 
 public abstract class Question {
-	String prompt; //题目
-	int score;
-	int type;
+	protected String prompt; //题目
+	protected QType type;
+	protected boolean IsScore=false;
+	protected int score=0;
+	protected Answer answer=null;
 	
-	public Question(int type){
+	public Question(QType type){
 		this.type = type;
-	}
-	
-	public int getType(){
-		return type;
-	}
-	
-	public String getQuestion(){
-		return null;
 	}
 	
 	public String getPrompt(){
@@ -27,17 +21,34 @@ public abstract class Question {
 	public void setPrompt(String prompt){
 		this.prompt = prompt;
 	}
+
+	public QType getType(){
+		return type;
+	}
 	
-	public void setScore(int score){
-		this.score = score;
+	public String getTypeIndex(){
+		return type.getTypeIndex();
 	}
 	
 	public int getScore(){
-		return this.score;
+		return score;
 	}
 	
-	public abstract void setAnswer(String answer); //设置正确答案
+	public void setScore(int score){
+		IsScore=true;
+		this.score=score;
+	}
 	
-	public abstract Answer getAnswer(); //得到正确答案
-	public abstract boolean match(Answer answer); //与正确答案比较
+	public String getAnswer(){
+		if(answer==null){
+			return null;
+		}
+		return answer.getAnswer();
+	}
+	
+	public abstract void setAnswer(String ans); //设置正确答案
+	
+	public boolean match(String ans){  //与正确答案比较
+		return answer.match(ans);
+	}
 }

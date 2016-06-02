@@ -1,32 +1,20 @@
 package Question;
 
-import Anwser.Answer;
+import Anwser.TextAnswer;
 
 public class EssayQuestion extends Question {
-	public EssayQuestion(){
-		super(3);
+		
+	public EssayQuestion() {
+		super(QType.ESSAY);
 	}
 	
 	@Override
-	public String getQuestion(){
-		return "Essay: "+prompt;
+	public void setScore(int score){
+		this.score=score;
 	}
 
 	@Override
-	public void setAnswer(String answer) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Answer getAnswer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean match(Answer answer) {
-		// TODO Auto-generated method stub
-		return false;
+	public void setAnswer(String ans) {
+		answer=new TextAnswer(ans);
 	}
 }
