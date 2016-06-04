@@ -45,4 +45,7 @@ public class Invoker {
 	public Object getFifthInfor(){
 		return icommand.returnFifthInfor();
 	}
+	public Object getsixthInfor(){
+		return icommand.returnsixthInfor();
+	}
 }

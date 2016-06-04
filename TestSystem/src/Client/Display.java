@@ -20,13 +20,13 @@ import invoker.Invoker;
 
 public class Display extends JFrame{
 	
-	public Display(PType ptype,String name){
+	public Display(PType ptype,String name,boolean dis){
 		setLayout(null);
 		Invoker invoke = new Invoker();
 		ArrayList<JRadioButton>  button = new ArrayList();
 		ArrayList<JRadioButton>  buttonr = new ArrayList();
 		IO   io = new IO();
-		if(name==null){
+		if(name==null||dis==false){
 		ShowPageNameCommand spnc = new ShowPageNameCommand(io,ptype);
 		invoke.setInforCommand(spnc);
 		List<String> list =(List<String>) invoke.getFirstInfor();
@@ -39,7 +39,7 @@ public class Display extends JFrame{
 		}
 		JButton submit = new JButton("确认");
 		submit.setBounds(380,450,100,50);
-		
+		if(dis){
 		submit.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
             	for(int i=0;i<button.size();i++){
@@ -51,9 +51,23 @@ public class Display extends JFrame{
         			}
         		}
            }
-      });
+      });}else{
+    	  submit.addActionListener( new ActionListener(){
+              public void actionPerformed(ActionEvent e){                 
+              	for(int i=0;i<button.size();i++){
+          			if(button.get(i).isSelected()){
+          				Take take = new Take(name,ptype);
+          				take.setVisible(true);
+          				setVisible(false);
+          				break;
+          			}
+          		}
+             }
+        });
+      }
 		add(submit);}
 		else{
+			
 			ShowPageNameCommand spnc = new ShowPageNameCommand(io,ptype,name);
 			invoke.setInforCommand(spnc);
 			List<String>[] list=(List<String>[])invoke.getSecondInfor();
@@ -103,7 +117,7 @@ public class Display extends JFrame{
 	           }
 	      });
 			add(submit);
-			
+		
       }
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

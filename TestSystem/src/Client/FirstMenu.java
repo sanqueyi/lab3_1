@@ -79,10 +79,10 @@ public class FirstMenu extends JFrame{
             	int an=JOptionPane.showConfirmDialog(null, "是否要登记查询", "choose one", JOptionPane.YES_NO_OPTION);
             	if(an==0){
             		String str = JOptionPane.showInputDialog("输入你的用户名");
-            		Display display = new Display(PType.TEST,str);
+            		Display display = new Display(PType.TEST,str,true);
             		display.setVisible(true);
             	}else{
-            		Display display = new Display(PType.SURVEY,null);
+            		Display display = new Display(PType.SURVEY,null,true);
             		display.setVisible(true);
             	}
             		
@@ -95,10 +95,10 @@ public class FirstMenu extends JFrame{
             	int an=JOptionPane.showConfirmDialog(null, "是否要登记查询", "choose one", JOptionPane.YES_NO_OPTION);
             	if(an==0){
             		String str = JOptionPane.showInputDialog("输入你的用户名");
-            		Display display = new Display(PType.TEST,str);
+            		Display display = new Display(PType.TEST,str,true);
             		display.setVisible(true);
             	}else{
-            		Display display = new Display(PType.SURVEY,null);
+            		Display display = new Display(PType.SURVEY,null,true);
             		display.setVisible(true);
             	}
                  
@@ -121,15 +121,18 @@ public class FirstMenu extends JFrame{
 		button6.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
             	String str = JOptionPane.showInputDialog("输入你的用户名");
-            	Take take = new Take(str,PType.SURVEY);
+            	//Take take = new Take(str,PType.SURVEY);
+            	Display display = new Display(PType.TEST,str,false);
+        		display.setVisible(true);
                  
            }
       });
 		button7.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
             	String str = JOptionPane.showInputDialog("输入你的用户名");
-            	Take take = new Take(str,PType.TEST);
-                 
+            	//Take take = new Take(str,PType.TEST);
+            	Display display = new Display(PType.TEST,str,false);
+        		display.setVisible(true);
                  
            }
       });
