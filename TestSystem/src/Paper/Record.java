@@ -4,7 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 import Anwser.Answer;
 
-public class Record {
+public class Record implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Answer> answerList = new LinkedList<Answer>();
 	private String personName;
 	private String pageName;

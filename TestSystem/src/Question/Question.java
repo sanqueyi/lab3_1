@@ -3,10 +3,13 @@ package Question;
 import Anwser.Answer;
 
 
-public abstract class Question {
+public abstract class Question implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String prompt; //题目
 	protected QType type;
-	//protected boolean IsScore=false;
 	protected int score=0;
 	protected Answer answer=null;
 	
@@ -35,7 +38,6 @@ public abstract class Question {
 	}
 	
 	public void setScore(int score){
-		//IsScore=true;
 		this.score=score;
 	}
 	

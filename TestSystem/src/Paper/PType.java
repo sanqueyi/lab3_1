@@ -1,6 +1,6 @@
 package Paper;
 
-public enum PType {
+public enum PType implements java.io.Serializable{
 	TEST("test") , SURVEY("survey");
 	private String indexs;
 	private PType(String is){

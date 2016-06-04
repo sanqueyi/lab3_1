@@ -3,6 +3,10 @@ package Paper;
 import Question.Question;
 
 public class Test extends Page {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Test(){
 		type=PType.TEST;
 	}

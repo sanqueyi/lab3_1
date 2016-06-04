@@ -1,13 +1,10 @@
 package Control;
 
-import java.beans.XMLDecoder;
-import java.beans.XMLEncoder;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
 import java.util.List;
 import org.jdom.Document;
@@ -93,40 +90,31 @@ public class IO {
 		return pageName;
 	}
 	
-	//从xml文件中读出对象的方法
-	private static List<Object> objectXMLDecoder(String objSource){  
-		       
-		List<Object> objList = new ArrayList<Object>();
-		File fin = new File(objSource);
+	//
+	private static Object readObject(String filename){
+		Object obj=null;
 		try{
-			FileInputStream fis = new FileInputStream(fin);   
-			XMLDecoder decoder = new XMLDecoder(fis);   
-			Object obj = null;   
-		  
-			while( (obj = decoder.readObject()) != null){   
-				objList.add(obj);   
-		    }  
-			decoder.close();
-			fis.close(); 
+			ObjectInputStream input = new ObjectInputStream(new FileInputStream(filename));
+			obj = input.readObject();   
+			input.close();
 		}
 		catch (Exception e){
 			e.printStackTrace();
 		}
-		        
-		return objList;   
+		return obj;
 	}
 	
 	//根据page的名字和page的类型，读出一个page对象
 	public static Page readPage(String name,PType pt){
-		String filename="xml/"+pt.getTypeIndex()+"/"+name+".xml";
-		List<Object> objList=null;
+		String filename="xml/"+pt.getTypeIndex()+"/"+name+".obj";
+		Object obj=null;
 		try{
-			objList=objectXMLDecoder(filename);
+			obj=readObject(filename);
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		return (Page)objList.get(0);
+		return (Page)obj;
 	}
 	
 	//在page的信息里面加入一个page
@@ -180,13 +168,11 @@ public class IO {
 		if(has==false){
 			addPagetoInfo(page);
 		}
-		String filename="xml/"+page.getTypeIndex()+"/"+page.getPageName()+".xml";
+		String filename="xml/"+page.getTypeIndex()+"/"+page.getPageName()+".obj";
 		try {   
-	        OutputStream out = new FileOutputStream(filename);   
-	        XMLEncoder encoder = new XMLEncoder(out);   
-	        encoder.writeObject(page);   
-	        encoder.close();
-	        out.close();  
+	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)); 
+	        oos.writeObject(page);
+	        oos.close();
 	    }
 		catch (Exception e) {   
 	        e.printStackTrace();   
@@ -217,15 +203,15 @@ public class IO {
 	
 	//根据某个record的名字，读出某个record对象
 	public static Record readRecord(String name,PType pt){
-		String filename="xml/"+pt.getTypeIndex()+"record/"+name+".xml";
-		List<Object> objList=null;
+		String filename="xml/"+pt.getTypeIndex()+"record/"+name+".obj";
+		Object obj=null;
 		try{
-			objList=objectXMLDecoder(filename);
+			obj=readObject(filename);
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
-		return (Record)objList.get(0);
+		return (Record)obj;
 	}
 	
 	//在record信息里面添加一个元素
@@ -282,18 +268,15 @@ public class IO {
 			addRecordtoInfo(re,pt);
 		}
 		
-		String filename="xml/"+pt.getTypeIndex()+"record/"+recnam+".xml";
+		String filename="xml/"+pt.getTypeIndex()+"record/"+recnam+".obj";
 		try {   
-	        OutputStream out = new FileOutputStream(filename);   
-	        XMLEncoder encoder = new XMLEncoder(out);   
-	        encoder.writeObject(re);   
-	        encoder.close();
-	        out.close();
+	        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename)); 
+	        oos.writeObject(re);
+	        oos.close();
 	    }
 		catch (Exception e) {   
 	        e.printStackTrace();   
 	    }   
-
 	}
 	
 	//根据page的名字得到这个page下的所有record的名字列表

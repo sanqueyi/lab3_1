@@ -2,6 +2,10 @@ package Question;
 
 public class RankQuestion extends ItemQuestion {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public RankQuestion() {
 		super(QType.RANK);
 	}
