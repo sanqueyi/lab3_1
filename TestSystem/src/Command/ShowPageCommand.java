@@ -30,7 +30,7 @@ public class ShowPageCommand extends InforCommand{
 		int size=page.getQuestionSize();
 		List<String> result=new LinkedList<String>();		
 		for(int i=0;i<size;i++){
-			result.set(i, page.getQuestion(i).getPrompt());
+			result.add(page.getQuestion(i).getPrompt());
 		}		
 		return result;
 	}
@@ -41,11 +41,11 @@ public class ShowPageCommand extends InforCommand{
 		if(isRecord){
 			Record record=io.readRecord(name, type);
 			for(int i=0;i<size;i++)
-				answer.set(i, record.getAnswer(i).getAnswer());		
+				answer.add(record.getAnswer(i).getAnswer());
 		}
 		else{
 			for(int i=0;i<size;i++)
-				answer.set(i, page.getQuestion(i).getAnswer());
+				answer.add( page.getQuestion(i).getAnswer());
 		}
 		return null;
 	}
@@ -54,7 +54,7 @@ public class ShowPageCommand extends InforCommand{
 		int size=page.getQuestionSize();
 		List<Integer> score=new LinkedList<Integer>();
 		for(int i=0;i<size;i++)
-			score.set(i, page.getQuestion(i).getScore());
+			score.add(page.getQuestion(i).getScore());
 		return score;
 	}
 	@Override
@@ -65,15 +65,16 @@ public class ShowPageCommand extends InforCommand{
 			Question question=page.getQuestion(i);
 			QType qtype=question.getType();
 			if((qtype==QType.CHOICE)||(qtype==QType.RANK))
-				items[0].set(i, ((ItemQuestion)question).getItems());
+				items[0].add(((ItemQuestion)question).getItems());
 			else if (qtype==QType.DECIDE){
 				List<String> item=new LinkedList<String>();
-				item.set(0, "T");
-				item.set(1, "F");
+				item.add("T");
+				item.add("F");
+				items[0].add(item);
 			}
-			else if	(qtype==QType.CHOICE){
-				items[0].set(i, ((MapQuestion)question).getLeftItems());
-				items[1].set(i, ((MapQuestion)question).getRightItems());
+			else if	(qtype==QType.MAP){
+				items[0].add(((MapQuestion)question).getLeftItems());
+				items[1].add(((MapQuestion)question).getRightItems());
 			}
 		}
 		return items;
@@ -93,7 +94,7 @@ public class ShowPageCommand extends InforCommand{
 		List<QType> type=new LinkedList<QType>();
 		int size=page.getQuestionSize();
 		for(int i=0;i<size;i++)
-			type.set(i, page.getQuestion(i).getType());
+			type.add(page.getQuestion(i).getType());
 		return type;
 	}
 

@@ -121,10 +121,17 @@ public class Create extends JFrame{
         public void actionPerformed(ActionEvent e){                 
            Invoker invoke = new Invoker();
            IO io = new IO();
-           SavePageCommand spc = new SavePageCommand(io,paper,time.getText());
-           invoke.setExecuteCommand(spc);
-           invoke.execute();
-           setVisible(false);
+           try{
+   			int time1=Integer.parseInt(time.getText());
+   			SavePageCommand spc = new SavePageCommand(io,paper,time1);
+            invoke.setExecuteCommand(spc);
+            invoke.execute();
+            setVisible(false);
+   		  }
+   		  catch(Exception e1){
+   			JOptionPane.showMessageDialog(null, "时间必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+   		  }
+           
              
        }
   });

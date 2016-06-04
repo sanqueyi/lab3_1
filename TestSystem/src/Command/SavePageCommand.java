@@ -7,15 +7,11 @@ public  class SavePageCommand implements ExecuteCommand{
 	private IO io;
 	private Page page;
 	private int time;
-	public SavePageCommand(IO io,Page page,String time){
+	public SavePageCommand(IO io,Page page,int time){
 		this.io=io;
 		this.page=page;
-		try{
-			this.time=Integer.parseInt(time);
-		}
-		catch(Exception e){
-			this.time=0;
-		}
+		this.time=time;
+		
 	}
 	public SavePageCommand(IO io,Page page){
 		this.io=io;
