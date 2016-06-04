@@ -66,6 +66,11 @@ public class ShowPageCommand implements InforCommand{
 			QType qtype=question.getType();
 			if((qtype==QType.CHOICE)||(qtype==QType.RANK))
 				items[0].set(i, ((ItemQuestion)question).getItems());
+			else if (qtype==QType.DECIDE){
+				List<String> item=new LinkedList<String>();
+				item.set(0, "T");
+				item.set(1, "F");
+			}
 			else if	(qtype==QType.CHOICE){
 				items[0].set(i, ((MapQuestion)question).getLeftItems());
 				items[1].set(i, ((MapQuestion)question).getRightItems());

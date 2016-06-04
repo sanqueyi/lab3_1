@@ -10,14 +10,14 @@ public class DecideQuestionCommand implements QuestionCommand{
 	private String prompt;
 	private int score;
 	private String answer="";
-	DecideQuestionCommand(Page paper,DecideQuestion question,String prompt, int score, String answer){
+	public DecideQuestionCommand(Page paper,DecideQuestion question,String prompt, String score, String answer){
 		this.paper=paper;
 		this.question=question;
 		this.prompt=prompt;
-		this.score=score;
+		this.score=Integer.parseInt(score);
 		this.answer=answer;
 	}
-	DecideQuestionCommand(Page paper,DecideQuestion question,String prompt){
+	public DecideQuestionCommand(Page paper,DecideQuestion question,String prompt){
 		this.paper=paper;
 		this.question=question;
 		this.prompt=prompt;
