@@ -3,6 +3,8 @@ package View;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.JFrame;
+
 import Control.Control;
 
 public class ComandView {
@@ -11,6 +13,7 @@ public class ComandView {
 	int type;
 	
 	public void printFirstMenu(){
+		
 		System.out.println("1) Create a new Survey\n"
 				+ "2) Create a new Test\n"
 				+ "3) Display Survey\n"
