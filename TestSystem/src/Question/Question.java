@@ -45,10 +45,8 @@ public abstract class Question {
 		}
 		return answer.getAnswer();
 	}
-	public String getQuestion(){
-		return null;
-	}
-
+	public abstract String getQuestion();
+		
 	public abstract void setAnswer(String ans); //设置正确答案
 	
 	public boolean match(String ans){  //与正确答案比较

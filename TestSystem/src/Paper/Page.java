@@ -7,7 +7,6 @@ import Question.Question;
 
 public abstract class Page {  //一张试卷或问卷
 	
-	protected String perName;
 	protected String pageName;
 	protected String personName;
 	protected PType type;
@@ -26,11 +25,11 @@ public abstract class Page {  //一张试卷或问卷
 	}
 	
 	public String getPersonName(){
-		return perName;
+		return personName;
 	}
 	
 	public void setPersonName(String pn){
-		perName=pn;
+		personName=pn;
 	}
 	
 	public int getTime(){
@@ -67,25 +66,5 @@ public abstract class Page {  //一张试卷或问卷
 	
 	public int getQuestionSize(){
 		return questionList.size();
-	}
-	
-	public Iterator<Question> iteratorQuestion(){  
-		return new IteratorQuestion();
-	}
-	
-	class IteratorQuestion implements Iterator<Question>{
-		int questionIndex=0;
-
-		@Override
-		public boolean hasNext() {
-			if(questionList.size() > questionIndex)
-				return true;
-			return false;
-		}
-
-		@Override
-		public Question next() {
-			return questionList.get(questionIndex++);
-		}
 	}
 }

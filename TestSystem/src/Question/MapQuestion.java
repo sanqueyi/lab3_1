@@ -3,7 +3,6 @@ package Question;
 import java.util.LinkedList;
 import java.util.List;
 import Anwser.NumAnswer;
-import Paper.Iterator;
 
 public class MapQuestion extends Question {
 	
@@ -76,41 +75,5 @@ public class MapQuestion extends Question {
 			ret += sidel.get(i)+"\t"+sider.get(i)+"\n";
 		}
 		return ret;
-	}
-
-	
-	public int getLeftSize(){
-		return sidel.size();
-	}
-	
-	public int getRightSize(){
-		return sider.size();
-	}
-	
-	public Iterator<String> iteratorLeftItem(){  
-		return new IteratorItem(sidel);
-	}
-	
-	public Iterator<String> iteratorRightItem(){  
-		return new IteratorItem(sider);
-	}
-	
-	class IteratorItem implements Iterator<String>{
-		int itemIndex=0;
-		List<String> items=null;
-		IteratorItem(List<String> side){
-			items=side;
-		}
-		@Override
-		public boolean hasNext() {
-			if(items.size() > itemIndex)
-				return true;
-			return false;
-		}
-
-		@Override
-		public String next() {
-			return items.get(itemIndex++);
-		}
 	}
 }

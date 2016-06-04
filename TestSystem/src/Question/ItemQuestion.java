@@ -3,7 +3,6 @@ package Question;
 import java.util.LinkedList;
 import java.util.List;
 import Anwser.NumAnswer;
-import Paper.Iterator;
 
 public abstract class ItemQuestion extends Question{
 	List<String> items = new LinkedList<String>();//所有的项
@@ -37,10 +36,6 @@ public abstract class ItemQuestion extends Question{
 	public void setAnswer(String ans) {
 		answer=new NumAnswer(ans);
 		
-	}
-	
-	public int getItemSize(){
-		return items.size();
 	}
 	
 	public List<String> getItems(){

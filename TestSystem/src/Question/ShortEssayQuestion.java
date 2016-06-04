@@ -12,4 +12,9 @@ public class ShortEssayQuestion extends Question {
 	public void setAnswer(String ans) {
 		answer=new TextAnswer(ans);
 	}
+
+	@Override
+	public String getQuestion() {
+		return "ShortEssay:"+prompt;
+	}
 }

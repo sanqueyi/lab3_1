@@ -42,34 +42,9 @@ public class Record {
 	}
 	
 	public int getScore(){
-		return this.score;
+		return score;
 	}
 	public void setScore(int score){
 		this.score=score;
-	}
-	public int getAnswerSize(){
-		return answerList.size();
-	}
-	
-	public Iterator<Answer> iteratorAnswer(){
-		return new IteratorAnswer();
-	}
-	
-	class IteratorAnswer implements Iterator<Answer>{
-		
-		int answerIndex = 0;
-		
-		@Override
-		public boolean hasNext() {
-			if(answerIndex < answerList.size()){
-				return true;
-			}
-			return false;
-		}
-		
-		@Override
-		public Answer next() {
-			return answerList.get(answerIndex++);
-		}
 	}
 }
