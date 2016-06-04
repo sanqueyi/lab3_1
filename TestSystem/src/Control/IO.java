@@ -106,8 +106,8 @@ public class IO {
 			while( (obj = decoder.readObject()) != null){   
 				objList.add(obj);   
 		    }  
-			fis.close();   
 			decoder.close();
+			fis.close(); 
 		}
 		catch (Exception e){
 			e.printStackTrace();
@@ -185,7 +185,6 @@ public class IO {
 	        OutputStream out = new FileOutputStream(filename);   
 	        XMLEncoder encoder = new XMLEncoder(out);   
 	        encoder.writeObject(page);   
-	           
 	        encoder.close();
 	        out.close();  
 	    }
@@ -288,8 +287,8 @@ public class IO {
 	        OutputStream out = new FileOutputStream(filename);   
 	        XMLEncoder encoder = new XMLEncoder(out);   
 	        encoder.writeObject(re);   
-	        out.close();   
-	        encoder.close();   
+	        encoder.close();
+	        out.close();
 	    }
 		catch (Exception e) {   
 	        e.printStackTrace();   
