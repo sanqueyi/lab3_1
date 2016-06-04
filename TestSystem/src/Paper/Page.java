@@ -9,16 +9,12 @@ public abstract class Page {  //一张试卷或问卷
 	
 	protected String perName;
 	protected String pageName;
+	protected String personName;
 	protected PType type;
 	protected int time;
 	protected List<Question> questionList = new LinkedList<Question>();  //page中的所有问题
 	
 	public Page(){
-		
-	}
-	
-	public Page(String pn){
-		pageName=pn;
 	}
 	
 	public void setPageName(String pn){
@@ -29,11 +25,11 @@ public abstract class Page {  //一张试卷或问卷
 		return pageName;
 	}
 	
-	public String getPerName(){
+	public String getPersonName(){
 		return perName;
 	}
 	
-	public void setPerName(String pn){
+	public void setPersonName(String pn){
 		perName=pn;
 	}
 	

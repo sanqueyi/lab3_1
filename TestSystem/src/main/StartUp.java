@@ -1,13 +1,10 @@
 package main;
 
-import View.ComandView;
+import View.CommandView;
 
 public class StartUp {
 	public static void main(String[] args){
-		ComandView view = new ComandView();
-		while(true){
-			view.printFirstMenu();
-		}
+		CommandView view = new CommandView();
 		
 		
 		
