@@ -5,6 +5,10 @@ import java.util.List;
 import Anwser.NumAnswer;
 
 public abstract class ItemQuestion extends Question{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	List<String> items = new LinkedList<String>();//所有的项
 	
 	public ItemQuestion(QType type) {

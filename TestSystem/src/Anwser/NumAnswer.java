@@ -1,6 +1,11 @@
 package Anwser;
 
 public class NumAnswer extends Answer{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public NumAnswer(String ans){
 		setAnswer(ans);
 	}

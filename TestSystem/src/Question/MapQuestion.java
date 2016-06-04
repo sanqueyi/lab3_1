@@ -6,6 +6,10 @@ import Anwser.NumAnswer;
 
 public class MapQuestion extends Question {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	List<String> sidel = new LinkedList<String>();
 	List<String> sider = new LinkedList<String>();
 	

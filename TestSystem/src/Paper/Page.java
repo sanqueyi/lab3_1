@@ -2,11 +2,14 @@ package Paper;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import Question.Question;
 
-public abstract class Page {  //一张试卷或问卷
+public abstract class Page implements java.io.Serializable {  //一张试卷或问卷
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String pageName;
 	protected String personName;
 	protected PType type;

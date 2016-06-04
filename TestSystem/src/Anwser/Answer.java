@@ -1,6 +1,10 @@
 package Anwser;
 
-public abstract class Answer {
+public abstract class Answer implements java.io.Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	protected String answer;
 	
 	public String getAnswer(){

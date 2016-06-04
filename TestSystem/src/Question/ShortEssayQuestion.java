@@ -4,6 +4,11 @@ import Anwser.TextAnswer;
 
 public class ShortEssayQuestion extends Question {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ShortEssayQuestion() {
 		super(QType.SHORTESSAY);
 	}

@@ -3,6 +3,10 @@ package Question;
 import Anwser.NumAnswer;
 
 public class DecideQuestion extends Question {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public DecideQuestion() {
 		super(QType.DECIDE);
 	}
