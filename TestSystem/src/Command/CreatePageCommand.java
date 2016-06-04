@@ -48,5 +48,10 @@ public class CreatePageCommand implements InforCommand{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
+	public Object returnsixthInfor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

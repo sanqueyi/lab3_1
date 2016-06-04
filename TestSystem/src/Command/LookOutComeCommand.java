@@ -63,5 +63,10 @@ public class LookOutComeCommand implements InforCommand{
 	@Override
 	public Object returnFifthInfor() {
 		return null;
+	}
+	@Override
+	public Object returnsixthInfor() {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }

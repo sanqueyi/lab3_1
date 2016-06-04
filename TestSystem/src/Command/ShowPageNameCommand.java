@@ -42,5 +42,10 @@ public class ShowPageNameCommand implements InforCommand{
 	public Object returnFifthInfor() {
 		return null;
 	}
+	@Override
+	public Object returnsixthInfor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

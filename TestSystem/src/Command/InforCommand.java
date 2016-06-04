@@ -6,4 +6,5 @@ public interface InforCommand {
 	public Object returnThirdInfor();
 	public Object returnFouthInfor();
 	public Object returnFifthInfor();
+	public Object returnsixthInfor();
 }
