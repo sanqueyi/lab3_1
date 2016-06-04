@@ -8,11 +8,11 @@ import Question.Question;
 public abstract class Page {  //一张试卷或问卷
 	
 	protected String pageName;
+	protected String personName;
 	protected PType type;
 	protected List<Question> questionList = new LinkedList<Question>();  //page中的所有问题
 	
-	public Page(String pn){
-		pageName=pn;
+	public Page(){
 	}
 	
 	public void setPageName(String pn){
@@ -21,6 +21,14 @@ public abstract class Page {  //一张试卷或问卷
 	
 	public String getPageName(){
 		return pageName;
+	}
+	
+	public String getPersonName(){
+		return personName;
+	}
+	
+	public void setPersonName(String name){
+		personName=name;
 	}
 	
 	public String getTypeIndex(){  //只有io要用到
