@@ -70,6 +70,15 @@ public class MapQuestion extends Question {
 		return false;
 	}
 	
+	public String getQuestion(){
+		String ret = "Map: "+prompt+"\n";
+		for(int i=0; i<sidel.size(); i++){
+			ret += sidel.get(i)+"\t"+sider.get(i)+"\n";
+		}
+		return ret;
+	}
+
+	
 	public int getLeftSize(){
 		return sidel.size();
 	}

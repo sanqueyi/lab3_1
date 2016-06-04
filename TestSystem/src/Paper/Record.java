@@ -8,7 +8,7 @@ public class Record {
 	private List<Answer> answerList = new LinkedList<Answer>();
 	private String personName;
 	private String pageName;
-	
+	private int score;
 	public Record(String pern,String pagn){
 		personName=pern;
 		pageName=pagn;
@@ -41,6 +41,12 @@ public class Record {
 		return null;
 	}
 	
+	public int getScore(){
+		return this.score;
+	}
+	public void setScore(int score){
+		this.score=score;
+	}
 	public int getAnswerSize(){
 		return answerList.size();
 	}

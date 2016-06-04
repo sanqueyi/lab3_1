@@ -2,8 +2,7 @@ package Paper;
 
 public class Survey extends Page {
 
-	public Survey(String pn) {
-		super(pn);
+	public Survey() {
 		type=PType.SURVEY;
 	}
 }

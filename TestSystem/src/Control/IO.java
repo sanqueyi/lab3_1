@@ -1,536 +1,390 @@
 package Control;
 
+import java.beans.XMLDecoder;
+import java.beans.XMLEncoder;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-
-import Anwser.Answer;
-import Anwser.ChoiceAnswer;
-import Anwser.DecideAnswer;
-import Anwser.MapAnswer;
-import Anwser.RankAnswer;
-import Anwser.TextAnswer;
-import Paper.Iterator;
+import Paper.PType;
 import Paper.Page;
 import Paper.Record;
-import Paper.Survey;
-import Paper.Test;
-import Question.ChoiceQuestion;
-import Question.DecideQuestion;
-import Question.EssayQuestion;
-import Question.ItemQuestion;
-import Question.MapQuestion;
-import Question.PromptQuestion;
-import Question.Question;
-import Question.RankQuestion;
-import Question.ShortEssayQuestion;
 
 public class IO {
-	SAXBuilder builder = new SAXBuilder();
+	private static SAXBuilder builder = new SAXBuilder();
 	
-	public List<String>[] readInfo(){
-		InputStream file;
-		Element root = null;
+	//清空四个文件
+	public static void clear(){
+		String si="xml/surveyInfo.xml";
+		String ti="xml/testInfo.xml";
+		String sri="xml/surveyRecordInfo.xml";
+		String tri="xml/testRecordInfo.xml";
+		Element rsi=new Element("totalInfo");
+		Element rti=new Element("totalInfo");
+		Element rsri=new Element("totalInfo");
+		Element rtri=new Element("totalInfo");
 		try {
-			file = new FileInputStream("xml/pageInfo.xml");
-			Document document = builder.build(file);//获得文档对象
+			Document doc1=new Document(rsi);
+			FileOutputStream out1=new FileOutputStream(si);
+			XMLOutputter outputter1 = new XMLOutputter();  
+	        Format f1 = Format.getPrettyFormat();  
+	        outputter1.setFormat(f1);  
+	        outputter1.output(doc1, out1);  
+	        out1.close();
+	        
+	        Document doc2=new Document(rti);
+			FileOutputStream out2=new FileOutputStream(ti);
+			XMLOutputter outputter2 = new XMLOutputter();  
+	        Format f2 = Format.getPrettyFormat();  
+	        outputter2.setFormat(f2);  
+	        outputter2.output(doc2, out2);  
+	        out2.close();
+	        
+	        Document doc3=new Document(rsri);
+			FileOutputStream out3=new FileOutputStream(sri);
+			XMLOutputter outputter3 = new XMLOutputter();  
+	        Format f3 = Format.getPrettyFormat();  
+	        outputter3.setFormat(f3);  
+	        outputter3.output(doc3, out3);  
+	        out3.close();
+	        
+	        Document doc4=new Document(rtri);
+			FileOutputStream out4=new FileOutputStream(tri);
+			XMLOutputter outputter4 = new XMLOutputter();  
+	        Format f4 = Format.getPrettyFormat();  
+	        outputter4.setFormat(f4);  
+	        outputter4.output(doc4, out4);  
+	        out4.close();
+	        
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//根据page的类型，得到所有的survey或所有的test的名字的列表
+	public static List<String> readAllPage(PType pt){
+		String filename = "xml/"+pt.getTypeIndex()+"Info.xml";
+		Element root=null;
+		List<String> pageName = new LinkedList<String>();
+		try {
+			InputStream input = new FileInputStream(filename);
+			Document document = builder.build(input);//获得文档对象
 			root = document.getRootElement();//获得根节点
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JDOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			
+			input.close();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		List<Element> pageList = root.getChildren("pageName");
-		List<String>[] pageName = new List[2];
-		pageName[0] = new LinkedList<String>();
-		pageName[1] = new LinkedList<String>();
 		for(int i=0; i<pageList.size(); i++){
-			if(pageList.get(i).getAttributeValue("type").equals("test")){
-				pageName[1].add(pageList.get(i).getText());
-			}else{
-				pageName[0].add(pageList.get(i).getText());
-			}
+			pageName.add(pageList.get(i).getText());
 		}
+		
 		return pageName;
 	}
 	
-	public void writeInfo(List<String>[] pageName){
-		
-		Element root = new Element("totalInfo");
-		for(int i=0; i<pageName[0].size(); i++){
-			Element page = new Element("pageName");
-			page.addContent(pageName[0].get(i));
-			page.setAttribute("type", "survey");
-			root.addContent(page);
+	//从xml文件中读出对象的方法
+	private static List<Object> objectXMLDecoder(String objSource){  
+		       
+		List<Object> objList = new ArrayList<Object>();
+		File fin = new File(objSource);
+		try{
+			FileInputStream fis = new FileInputStream(fin);   
+			XMLDecoder decoder = new XMLDecoder(fis);   
+			Object obj = null;   
+		  
+			while( (obj = decoder.readObject()) != null){   
+				objList.add(obj);   
+		    }  
+			fis.close();   
+			decoder.close();
 		}
-		for(int i=0; i<pageName[1].size(); i++){
-			Element page = new Element("pageName");
-			page.addContent(pageName[1].get(i));
-			page.setAttribute("type", "test");
-			root.addContent(page);
+		catch (Exception e){
+			e.printStackTrace();
 		}
-		Document doc=new Document(root);  
-		 try {
-			FileOutputStream out=new FileOutputStream("xml/pageInfo.xml");
-			XMLOutputter outputter = new XMLOutputter();  
-	        Format f = Format.getPrettyFormat();  
-	        outputter.setFormat(f);  
-	        outputter.output(doc, out);  
-	        out.close();  
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+		        
+		return objList;   
 	}
 	
-	public Page readPage(String pageName){
-		InputStream file;
-		Element root = null;
+	//根据page的名字和page的类型，读出一个page对象
+	public static Page readPage(String name,PType pt){
+		String filename="xml/"+pt.getTypeIndex()+"/"+name+".xml";
+		List<Object> objList=null;
+		try{
+			objList=objectXMLDecoder(filename);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return (Page)objList.get(0);
+	}
+	
+	//在page的信息里面加入一个page
+	private static void addPagetoInfo(Page page){
+		String pernam=page.getPersonName();
+		String pagnam=page.getPageName();
+		String filename="xml/"+page.getTypeIndex()+"Info.xml";
+		
+		Element ele = new Element("pageName");
+		ele.setText(pagnam);
+		ele.setAttribute("personName", pernam);
+		Element root=null;
 		try {
-			file = new FileInputStream("xml/"+pageName+".xml");
-			Document document = builder.build(file);//获得文档对象
+			InputStream input = new FileInputStream(filename);
+			Document document = builder.build(input);//获得文档对象
 			root = document.getRootElement();//获得根节点
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JDOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Page page;
-		if(root.getAttribute("type").getValue().equals("test")){
-			Test test = new Test();
-			test.setTotalScore(Integer.parseInt(root.getChildText("score")));
-			page = test;
-			page.setType("test");
-		}else{
-			page = new Survey();
-			page.setType("survey");
-		}
-		page.setPageName(pageName);
-		System.out.println(page.getPageName());
-		Element questions =  root.getChild("questions");
-		List<Element> questionList = questions.getChildren();
-		for(int i=0; i<questionList.size(); i++){
-			Element question = questionList.get(i);
-			int type = Integer.parseInt(question.getAttributeValue("type"));
-			Question q = null;
-			switch(type){
-			case 0: q = this.readDecideQuestion(question);
-					break;
-			case 1: q = this.readChoiceQuestion(question);
-					break;
-			case 2: q = this.readTextAnswer(question);
-					break;
-			case 3: q = this.readEssayQuestion(question);
-					break;
-			case 4: q = this.readRankQuestion(question);
-					break;
-			case 5: q = this.readMapQuestion(question);
-					break;
-			}
-			page.addQuestion(q);
-		}
-		return page;
-	}
-	
-	public Question readDecideQuestion(Element question){
-		DecideQuestion decide = new DecideQuestion();
-		decide.setPrompt(question.getChildText("prompt"));
-		decide.setScore(Integer.parseInt(question.getChildText("score")));
-		if(question.getAttributeValue("answer").equals("1")){
-			decide.setAnswer(question.getChildText("answer"));
-		}
-		return decide;
-	}
-	
-	public Question readChoiceQuestion(Element question){
-		ChoiceQuestion choice = new ChoiceQuestion();
-		choice.setPrompt(question.getChildText("prompt"));
-		choice.setScore(Integer.parseInt(question.getChildText("score")));
-		List<Element> items = question.getChild("items").getChildren();
-		for(int i=0; i<items.size(); i++){
-			Element item = items.get(i);
-			choice.setItem(item.getText());
-		}
-		if(question.getAttributeValue("answer").equals("1")){
-			choice.setAnswer(question.getChildText("answer"));
-		}
-		return choice;
-	}
-	
-	public Question readTextAnswer(Element question){
-		ShortEssayQuestion text = new ShortEssayQuestion();
-		text.setPrompt(question.getChildText("prompt"));
-		text.setScore(Integer.parseInt(question.getChildText("score")));
-		if(question.getAttributeValue("answer").equals("1")){
-			text.setAnswer(question.getChildText("answer"));
-		}
-		return text;
-	}
-	
-	public Question readEssayQuestion(Element question){
-		EssayQuestion essay = new EssayQuestion();
-		essay.setPrompt(question.getChildText("prompt"));
-		return essay;
-	}
-	
-	public Question readRankQuestion(Element question){
-		RankQuestion rank = new RankQuestion();
-		rank.setPrompt(question.getChildText("prompt"));
-		rank.setScore(Integer.parseInt(question.getChildText("score")));
-		List<Element> items = question.getChild("items").getChildren();
-		for(int i=0; i<items.size(); i++){
-			rank.setItem(items.get(i).getText());
-		}
-		System.out.println(question.getChildText("answer"));
-		if(question.getAttributeValue("answer").equals("1")){
-			rank.setAnswer(question.getChildText("answer"));
-		}
-		return rank;
-	}
-	
-	public Question readMapQuestion(Element question){
-		MapQuestion map = new MapQuestion();
-		map.setPrompt(question.getChildText("prompt"));
-		Element side1 = question.getChild("side1");
-		List<Element> sideList1 = side1.getChildren();
-		map.setSide(1);
-		for(int j=0; j<sideList1.size(); j++){
-			map.setItem(sideList1.get(j).getText());
-		}
-		Element side2 = question.getChild("side2");
-		List<Element> sideList2 = side2.getChildren();
-		map.setSide(2);
-		for(int j=0; j<sideList2.size(); j++){
-			map.setItem(sideList2.get(j).getText());
-		}
-		if(question.getAttributeValue("isScore").equals("1")){
-			map.setScore(Integer.parseInt(question.getChildText("score")));
-		}
-		if(question.getAttributeValue("answer").equals("1")){
-			map.setAnswer(question.getChildText("answer"));						
-		}
-		return map;
-	}
-	
-	public void writePage(Page page){
-		Element root = new Element("Page");
-		root.setAttribute("type", page.getType());
-		root.addContent(new Element("pageName").setText(page.getPageName()));
-		if(page.getType().equals("test")){
-			root.addContent(new Element("score").setText(((Test)page).getTotalScore()+""));
-		}
-		
-		List<Question> questionList = page.getQuestionList();
-		Element questions = new Element("questions");
-		for(int i=0; i<questionList.size(); i++){
-			Question question = questionList.get(i);
-			Element qe = null;
-			switch(question.getType()){
-			case 0: qe = this.savePromptQuestion(question);break;
-			case 1: qe = this.saveItemQuestion(question);break;
-			case 2: qe = this.savePromptQuestion(question);break;
-			case 3: qe = this.saveEssayQuestion(question);break;
-			case 4: qe = this.saveItemQuestion(question);break;
-			case 5: qe = this.savaMapQuestion(question);break;
-			}
-			questions.addContent(qe);			
-		}
-		root.addContent(questions);
-		Document doc=new Document(root);  
-		 try {
-			FileOutputStream out=new FileOutputStream("xml/"+page.getPageName()+".xml");
-			XMLOutputter outputter = new XMLOutputter();  
-	        Format f = Format.getPrettyFormat();  
-	        outputter.setFormat(f);  
-	        outputter.output(doc, out);  
-	        out.close();  
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
-	
-	public Element savePromptQuestion(Question question){
-		PromptQuestion promptQuestion = (PromptQuestion) question;
-		Element ret = new Element("question");
-		ret.setAttribute("type", question.getType()+"");
-		ret.setAttribute("isScore", "1");
-		int anwser = 1;
-		if(promptQuestion.getAnswer() == null)
-			anwser = 0;
-		ret.setAttribute("answer", anwser+"");
-		Element prompt = new Element("prompt");
-		prompt.setText(question.getPrompt());
-		ret.addContent(prompt);
-		if(promptQuestion.getAnswer() != null){
-			Answer an = promptQuestion.getAnswer();
-			Element answerElement = new Element("answer");
-			answerElement.setText(an.writeAnswer());
-			ret.addContent(answerElement);
-		}
-		
-		ret.addContent(new Element("score").setText(question.getScore()+""));
-		return ret;
-	}
-	
-	public Element saveItemQuestion(Question question){
-		ItemQuestion item = (ItemQuestion) question;
-		Element ret = new Element("question");
-		ret.setAttribute("type", question.getType()+"");
-		ret.setAttribute("isScore", "1");
-		int anwser = 1;
-		if(item.getAnswer() == null)
-			anwser = 0;
-		ret.setAttribute("answer", anwser+"");
-		Element prompt = new Element("prompt");
-		prompt.setText(question.getPrompt());
-		ret.addContent(prompt);
-		List<String> items = item.getItem();
-		Element itemElement = new Element("items");
-		for(int j=0; j<items.size(); j++){
-			itemElement.addContent(new Element("item").setText(items.get(j)));
-		}
-		ret.addContent(itemElement);
-		if(item.getAnswer() != null){
-			Answer an = item.getAnswer();
-			Element answerElement = new Element("answer");
-			answerElement.setText(an.writeAnswer());
-			ret.addContent(answerElement);
-		}
-		
-		ret.addContent(new Element("score").setText(question.getScore()+""));
-		return ret;
-	}
-	
-	public Element savaMapQuestion(Question question){
-		MapQuestion map = (MapQuestion)question;
-		Element ret =new Element("question");
-		ret.setAttribute("type", question.getType()+"");
-		ret.setAttribute("isScore", "1");
-		int anwser = 1;
-		if(map.getAnswer() == null)
-			anwser = 0;
-		ret.setAttribute("answer", anwser+"");
-		Element prompt = new Element("prompt");
-		prompt.setText(question.getPrompt());
-		ret.addContent(prompt);
-		
-		map.setSide(1);
-		List<String> side1 = map.getItem();
-		Element item1 = new Element("side1");
-		for(int j=0; j<side1.size(); j++){
-			item1.addContent(new Element("left").setText(side1.get(j)));
-		}
-		ret.addContent(item1);
-		
-		map.setSide(2);
-		List<String> side2 = map.getItem();
-		Element item2 = new Element("side2");
-		for(int j=0; j<side2.size(); j++){
-			item2.addContent(new Element("right").setText(side2.get(j)));
-		}
-		ret.addContent(item2);
-		if(map.getAnswer() != null){
-			Answer an = map.getAnswer();
-			Element answerElement = new Element("answer");
-			answerElement.setText(an.writeAnswer());
-			ret.addContent(answerElement);
-		}
-		
-		ret.addContent(new Element("score").setText(question.getScore()+""));
-		return ret;
-	}
-	
-	public Element saveEssayQuestion(Question question){
-		Element ret =new Element("question");
-		ret.setAttribute("type", question.getType()+"");
-		ret.setAttribute("isScore", "0");
-		ret.setAttribute("answer", "0");
-		Element prompt = new Element("prompt");
-		prompt.setText(question.getPrompt());
-		ret.addContent(prompt);
-		return ret;
-	}
-	
-	public List<String> readRecordInfo(String pageName){
-		InputStream file;
-		Element root = null;
-		try {
-			File recordFile = new File("xml/record/"+pageName+"-recordInfo.xml");
-			if(!recordFile.exists()){
-				return new LinkedList<String>();
-			}
-			file = new FileInputStream("xml/record/"+pageName+"-recordInfo.xml");
+			input.close();
 			
-			Document document = builder.build(file);//获得文档对象
-			root = document.getRootElement();//获得根节点
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JDOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		List<Element> pageList = root.getChildren("record");
-		List<String> records = new LinkedList<String>();
-		for(int i=0; i<pageList.size(); i++){
-			records.add(pageList.get(i).getText()); 
-		}
-		return records;
-	}
-	
-	public void writeReordInfo(String pageName, List<String> recordName){
-		Element root = new Element("Records");
-		for(int i=0; i<recordName.size(); i++){
-			Element record = new Element("record");
-			record.setText(recordName.get(i));
-			root.addContent(record);
-		}
-		
-		Document doc=new Document(root);  
-		 try {
-			FileOutputStream out=new FileOutputStream("xml/record/"+pageName+"-recordInfo.xml");
+			root.addContent(ele);
+			Element newroot=(Element)root.clone();
+			Document doc=new Document(newroot);
+			FileOutputStream out=new FileOutputStream(filename);
 			XMLOutputter outputter = new XMLOutputter();  
 	        Format f = Format.getPrettyFormat();  
 	        outputter.setFormat(f);  
 	        outputter.output(doc, out);  
-	        out.close();  
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-
-	}
-	
-	public void writeRecord(String recordName, Record record){
-		Element root = new Element("Record");
-		Element personName = new Element("PersonName");
-		personName.setText(record.getPersonName());
-		root.addContent(personName);
-		Element score = new Element("score");
-		score.setText(record.getScore()+"");
-		Element answers = new Element("answers");
-		root.addContent(score);
-		Iterator<Answer> iterator = record.iterator();
-		
-		while(iterator.hasNext()){
-			Answer answer = iterator.next();
-			Element answerElement = new Element("answer");
-			answerElement.setAttribute("type", answer.getType()+"");
-			answerElement.setText(answer.writeAnswer());
-			answers.addContent(answerElement);
-		}
-		
-		root.addContent(answers);
-		
-		Document doc=new Document(root);  
-		 try {
-			FileOutputStream out=new FileOutputStream("xml/record/"+recordName+".xml");
-			XMLOutputter outputter = new XMLOutputter();  
-	        Format f = Format.getPrettyFormat();  
-	        outputter.setFormat(f);  
-	        outputter.output(doc, out);  
-	        out.close();  
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
-	}
-	
-	public Record readRecord(String recordName){
-		
-		InputStream file;
-		Element root = null;
-		try {
-			file = new FileInputStream("xml/record/"+recordName+".xml");
-			Document document = builder.build(file);//获得文档对象
-			root = document.getRootElement();//获得根节点
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (JDOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+	        out.close();
+	        
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		Record record = new Record();
-		record.setPersonName(root.getChildText("PersonName"));
-		record.addScore(Integer.parseInt(root.getChildText("score")));
-		Element answers = root.getChild("answers");
-		List<Element> answerList = answers.getChildren();
-		System.out.println(answerList.size());
-		for(int i=0; i<answerList.size(); i++){
-			Element answer = answerList.get(i);
-			int type = Integer.parseInt(answer.getAttributeValue("type"));
-			switch(type){
-			case 0: DecideAnswer decide = new DecideAnswer();
-					decide.setAnswer(answer.getText());
-					record.addAnwser(decide);
-					break;
-			case 1: ChoiceAnswer choice = new ChoiceAnswer();
-					choice.setAnswer(answer.getText());
-					record.addAnwser(choice);
-					break;
-			case 2: TextAnswer text = new TextAnswer();
-					text.setAnswer(answer.getText());
-					record.addAnwser(text);
-					break;
-			case 4: RankAnswer rank = new RankAnswer();
-					rank.setAnswer(answer.getText());
-					record.addAnwser(rank);
-					break;
-			case 5: MapAnswer map = new MapAnswer();
-					map.setAnswer(answer.getText());
-					record.addAnwser(map);
-					break;
+	}
+	
+	//判断是否有重名的page
+	private static boolean hasPage(Page page){
+		String pagnam=page.getPageName();
+		List<String> allpagename=readAllPage(page.getType());
+		boolean result=false;
+		for(int i=0;i<allpagename.size();i++){
+			if(allpagename.get(i).equals(pagnam)){
+				result=true;
+				break;
 			}
 		}
-		return record;
+		return result;
 	}
 	
+	//写入一个page对象，根据该对象之前是否存在，来决定是否需要在page信息里面添加一个元素
+	public static void writePage(Page page){
+		boolean has=hasPage(page);
+		if(has==false){
+			addPagetoInfo(page);
+		}
+		String filename="xml/"+page.getTypeIndex()+"/"+page.getPageName()+".xml";
+		try {   
+	        OutputStream out = new FileOutputStream(filename);   
+	        XMLEncoder encoder = new XMLEncoder(out);   
+	        encoder.writeObject(page);   
+	        out.close();   
+	        encoder.close();   
+	    }
+		catch (Exception e) {   
+	        e.printStackTrace();   
+	    }   
+	}
+	
+	//得到某个page类型下的所有record的名字
+	private static List<String> getAllRecord(PType pt){
+		String filename = "xml/"+pt.getTypeIndex()+"RecordInfo.xml";
+		Element root=null;
+		List<String> recordName = new LinkedList<String>();
+		try {
+			InputStream input = new FileInputStream(filename);
+			Document document = builder.build(input);//获得文档对象
+			root = document.getRootElement();//获得根节点
+			
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		List<Element> recordList = root.getChildren("recordName");
+		for(int i=0; i<recordList.size(); i++){
+			recordName.add(recordList.get(i).getText());
+		}
+		
+		return recordName;
+	}
+	
+	//根据某个record的名字，读出某个record对象
+	public static Record readRecord(String name,PType pt){
+		String filename="xml/"+pt.getTypeIndex()+"record/"+name+".xml";
+		List<Object> objList=null;
+		try{
+			objList=objectXMLDecoder(filename);
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		return (Record)objList.get(0);
+	}
+	
+	//在record信息里面添加一个元素
+	private static void addRecordtoInfo(Record re,PType pt){
+		String pernam=re.getPersonName();
+		String pagnam=re.getPageName();
+		String recnam=pagnam+"-"+pernam;
+		
+		String filename="xml/"+pt.getTypeIndex()+"RecordInfo.xml";
+		
+		Element ele = new Element("recordName");
+		ele.setText(recnam);
+		ele.setAttribute("personName", pernam);
+		ele.setAttribute("pageName", pagnam);
+		Element root=null;
+		try {
+			InputStream input = new FileInputStream(filename);
+			Document document = builder.build(input);//获得文档对象
+			root = document.getRootElement();//获得根节点
+			input.close();
+			
+			root.addContent(ele);
+			Document doc=new Document(root);
+			FileOutputStream out=new FileOutputStream(filename);
+			XMLOutputter outputter = new XMLOutputter();  
+	        Format f = Format.getPrettyFormat();  
+	        outputter.setFormat(f);  
+	        outputter.output(doc, out);  
+	        out.close();
+	        
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//判断是否已经有了重名的record
+	private static boolean hasRecord(String recnam,PType pt){
+		List<String> allrec=getAllRecord(pt);
+		boolean result=false;
+		for(int i=0;i<allrec.size();i++){
+			if(allrec.get(i).equals(recnam)){
+				result=true;
+				break;
+			}
+		}
+		return result;
+	}
+	
+	//写入一个record对象，写入前先判断一下这个对象之前是否存在，如果存在就不需要在record信息里面加入一个元素了
+	public static void writeRecord(Record re,PType pt){
+		String recnam=re.getPageName()+"-"+re.getPersonName();
+		boolean has=hasRecord(recnam,pt);
+		if(has==false){
+			addRecordtoInfo(re,pt);
+		}
+		
+		String filename="xml/"+pt.getTypeIndex()+"record/"+recnam+".xml";
+		try {   
+	        OutputStream out = new FileOutputStream(filename);   
+	        XMLEncoder encoder = new XMLEncoder(out);   
+	        encoder.writeObject(re);   
+	        out.close();   
+	        encoder.close();   
+	    }
+		catch (Exception e) {   
+	        e.printStackTrace();   
+	    }   
+
+	}
+	
+	//根据page的名字得到这个page下的所有record的名字列表
+	private static List<String> getAllRecordbyPagNam(String pagnam,PType pt){
+		String filename = "xml/"+pt.getTypeIndex()+"RecordInfo.xml";
+		Element root=null;
+		List<String> recordName = new LinkedList<String>();
+		try {
+			InputStream input = new FileInputStream(filename);
+			Document document = builder.build(input);//获得文档对象
+			root = document.getRootElement();//获得根节点
+			
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		List<Element> recordList = root.getChildren("recordName");
+		for(int i=0; i<recordList.size(); i++){
+			Element cur=recordList.get(i);
+			String pn=cur.getAttributeValue("pageName");
+			if(pn.equals(pagnam)){
+				recordName.add(cur.getText());
+			}
+		}
+		
+		return recordName;
+	}
+	
+	//得到某个page名字下的所有record对象列表
+	public static List<Record> getAllRecordbyPage(String pagnam,PType pt){
+		List<String> allrecord=getAllRecordbyPagNam(pagnam,pt);
+		List<Record> recordList=new LinkedList<Record>();
+		for(int i=0;i<allrecord.size();i++){
+			Record cur=readRecord(allrecord.get(i),pt);
+			recordList.add(cur);
+		}
+		return recordList;
+	}
+	
+	//根据一个人的名字，得到这个名字下的所有page名字列表
+	public static List<String> getAllPagebyPerNam(String pernam,PType pt){
+		String filename = "xml/"+pt.getTypeIndex()+"Info.xml";
+		Element root=null;
+		List<String> pageName = new LinkedList<String>();
+		try {
+			InputStream input = new FileInputStream(filename);
+			Document document = builder.build(input);//获得文档对象
+			root = document.getRootElement();//获得根节点
+			
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		List<Element> pageList = root.getChildren("pageName");
+		for(int i=0; i<pageList.size(); i++){
+			Element cur=pageList.get(i);
+			String pn=cur.getAttributeValue("personName");
+			if(pn.equals(pernam)){
+				pageName.add(cur.getText());
+			}
+		}
+		
+		return pageName;
+	}
+	
+	//根据一个人的名字，得到这个名字下的所有record的名字列表
+	public static List<String> getAllRecordbyPerNam(String pernam,PType pt){
+		String filename = "xml/"+pt.getTypeIndex()+"RecordInfo.xml";
+		Element root=null;
+		List<String> recordName = new LinkedList<String>();
+		try {
+			InputStream input = new FileInputStream(filename);
+			Document document = builder.build(input);//获得文档对象
+			root = document.getRootElement();//获得根节点
+			
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		List<Element> recordList = root.getChildren("recordName");
+		for(int i=0; i<recordList.size(); i++){
+			Element cur=recordList.get(i);
+			String pn=cur.getAttributeValue("personName");
+			if(pn.equals(pernam)){
+				recordName.add(cur.getText());
+			}
+		}
+		
+		return recordName;
+	}
 }

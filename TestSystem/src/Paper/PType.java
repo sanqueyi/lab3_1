@@ -1,7 +1,7 @@
 package Paper;
 
 public enum PType {
-	TEST("1") , SURVEY("2");
+	TEST("test") , SURVEY("survey");
 	private String indexs;
 	private PType(String is){
 		indexs=is;
