@@ -17,4 +17,7 @@ public class EssayQuestion extends Question {
 	public void setAnswer(String ans) {
 		answer=new TextAnswer(ans);
 	}
+	public String getQuestion(){
+		return "Essay: "+prompt;
+	}
 }

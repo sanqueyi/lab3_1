@@ -5,7 +5,7 @@ import Question.Question;
 public class Test extends Page {
 	
 	public Test(String pn){
-		super(pn);
+		//super(pn);
 		type=PType.TEST;
 	}
 

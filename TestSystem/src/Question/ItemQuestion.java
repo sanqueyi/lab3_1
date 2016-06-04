@@ -43,23 +43,7 @@ public abstract class ItemQuestion extends Question{
 		return items.size();
 	}
 	
-	public Iterator<String> iteratorItem(){  
-		return new IteratorItem();
-	}
-	
-	class IteratorItem implements Iterator<String>{
-		int itemIndex=0;
-
-		@Override
-		public boolean hasNext() {
-			if(items.size() > itemIndex)
-				return true;
-			return false;
-		}
-
-		@Override
-		public String next() {
-			return items.get(itemIndex++);
-		}
+	public List<String> getItems(){
+		return items;
 	}
 }

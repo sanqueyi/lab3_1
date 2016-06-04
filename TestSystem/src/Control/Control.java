@@ -6,11 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import Anwser.Answer;
-import Anwser.ChoiceAnswer;
+/*import Anwser.ChoiceAnswer;
 import Anwser.DecideAnswer;
 import Anwser.MapAnswer;
 import Anwser.RankAnswer;
-import Anwser.TextAnswer;
+import Anwser.TextAnswer;*/
+import Command.ItemQuestionCommand;
 import Paper.Iterator;
 import Paper.Page;
 import Paper.Record;
@@ -42,13 +43,13 @@ public class Control {
 	}
 	
 	public void createPage(int type){  //创建一个page
-		if(type == 0){
+		/*if(type == 0){
 			page = new Survey();
 			page.setType("survey");
 		}else{
 			page = new Test();
 			page.setType("test");
-		}
+		}*/
 	}
 		
 	public void setPageName(String name){
@@ -65,14 +66,14 @@ public class Control {
 	}
 	
 	public void setItem(int side, String item){
-		MapQuestion map = (MapQuestion)question;
+		/*MapQuestion map = (MapQuestion)question;
 		map.setSide(side);
-		map.setItem(item);
+		map.setItem(item);*/
 	}
 	
 	public void setSide(int side){
-		MapQuestion map = (MapQuestion)question;
-		map.setSide(side);
+		/*MapQuestion map = (MapQuestion)question;
+		map.setSide(side);*/
 	}
 	
 	public void setAnswer(String answer){
@@ -93,7 +94,7 @@ public class Control {
 	}
 	
 	public List<String> displayPage(int index, int type){  //包括完整的问题和答案
-		List<String> ret = new LinkedList<String>();
+		/*List<String> ret = new LinkedList<String>();
 		if(pageNameList[type].size() <= index){
 			return ret;
 		}else{
@@ -109,25 +110,26 @@ public class Control {
 				ret.add(q.getQuestion()+answer+"\n");
 			}
 			return ret;
-		}
+		}*/
 	}
 	
 	public void save(){
-		if(page.getType().equals("test")){
+		/*if(page.getType().equals("test")){
 			Test test = (Test)page;
 			test.computeScore();
 		}
 		io.writeInfo(pageNameList);
-		io.writePage(page);
+		io.writePage(page);*/
 	}
 	
 	public int modify(int index){  //得到page中某个下标问题的类型
-		if(index >= page.getQuestionList().size()){
+		/*if(index >= page.getQuestionList().size()){
 			return -1;
 		}else{
 			question = page.getQuestion(index);
 			return question.getType();
-		}
+		}*/
+		return 0;
 	}
 	
 	public void createDecideQuestion(String prompt, int score, String answer){

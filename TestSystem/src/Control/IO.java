@@ -22,6 +22,7 @@ import Anwser.MapAnswer;
 import Anwser.RankAnswer;
 import Anwser.TextAnswer;
 import Paper.Iterator;
+import Paper.PType;
 import Paper.Page;
 import Paper.Record;
 import Paper.Survey;
@@ -104,7 +105,7 @@ public class IO {
 		} 
 	}
 	
-	public Page readPage(String pageName){
+	/*public Page readPage(String pageName){
 		InputStream file;
 		Element root = null;
 		try {
@@ -157,7 +158,7 @@ public class IO {
 			page.addQuestion(q);
 		}
 		return page;
-	}
+	}*/
 	
 	public Question readDecideQuestion(Element question){
 		DecideQuestion decide = new DecideQuestion();
@@ -440,8 +441,8 @@ public class IO {
 
 	}
 	
-	public void writeRecord(String recordName, Record record){
-		Element root = new Element("Record");
+	public void writeRecord( Record record,PType type){
+		/*Element root = new Element("Record");
 		Element personName = new Element("PersonName");
 		personName.setText(record.getPersonName());
 		root.addContent(personName);
@@ -475,12 +476,12 @@ public class IO {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
+		} */
 	}
 	
-	public Record readRecord(String recordName){
+	public Record readRecord(String name,PType type){
 		
-		InputStream file;
+		/*InputStream file;
 		Element root = null;
 		try {
 			file = new FileInputStream("xml/record/"+recordName+".xml");
@@ -530,7 +531,24 @@ public class IO {
 					break;
 			}
 		}
-		return record;
+		return record;*/
 	}
-	
+	public List<String> readAllPage(PType ptype){
+		return null;
+	}
+	public Page readPage(String pageName,PType type){
+		return null;
+	}
+	public List<String> getAllPagebyPerName(String person, PType type){
+		return null;
+	}
+	public List<Record> getAllRecordbyPage(String pagename,PType type){
+		return null;
+	}
+	public void addPageToInfo(Page page){
+		
+	}
+	public List<String> getAllRecordbyPerName(String pername,PType type){
+		return null;
+	}
 }

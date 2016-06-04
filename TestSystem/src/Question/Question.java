@@ -6,7 +6,7 @@ import Anwser.Answer;
 public abstract class Question {
 	protected String prompt; //题目
 	protected QType type;
-	protected boolean IsScore=false;
+	//protected boolean IsScore=false;
 	protected int score=0;
 	protected Answer answer=null;
 	
@@ -35,7 +35,7 @@ public abstract class Question {
 	}
 	
 	public void setScore(int score){
-		IsScore=true;
+		//IsScore=true;
 		this.score=score;
 	}
 	
@@ -45,7 +45,10 @@ public abstract class Question {
 		}
 		return answer.getAnswer();
 	}
-	
+	public String getQuestion(){
+		return null;
+	}
+
 	public abstract void setAnswer(String ans); //设置正确答案
 	
 	public boolean match(String ans){  //与正确答案比较

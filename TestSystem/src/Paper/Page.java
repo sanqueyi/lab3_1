@@ -7,9 +7,15 @@ import Question.Question;
 
 public abstract class Page {  //一张试卷或问卷
 	
+	protected String perName;
 	protected String pageName;
 	protected PType type;
+	protected int time;
 	protected List<Question> questionList = new LinkedList<Question>();  //page中的所有问题
+	
+	public Page(){
+		
+	}
 	
 	public Page(String pn){
 		pageName=pn;
@@ -21,6 +27,22 @@ public abstract class Page {  //一张试卷或问卷
 	
 	public String getPageName(){
 		return pageName;
+	}
+	
+	public String getPerName(){
+		return perName;
+	}
+	
+	public void setPerName(String pn){
+		perName=pn;
+	}
+	
+	public int getTime(){
+		return time;
+	}
+	
+	public void setTime(int tm){
+		time=tm;
 	}
 	
 	public String getTypeIndex(){  //只有io要用到
