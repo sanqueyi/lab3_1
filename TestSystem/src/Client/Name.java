@@ -71,11 +71,7 @@ public class Name extends JFrame{
 		add(name0);
 		add(login0);
 		add(submit);
-	
-	
-
 		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(450,500);
 		setResizable(false);
 		setVisible(false);

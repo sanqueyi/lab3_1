@@ -10,7 +10,7 @@ import Paper.Page;
 import Paper.Record;
 import Question.QType;
 
-public class LookOutComeCommand implements InforCommand{
+public class LookOutComeCommand extends InforCommand{
 	PType type;
 	String pageName;
 	IO io;
@@ -48,25 +48,4 @@ public class LookOutComeCommand implements InforCommand{
 		
 		return result;
 	}
-	@Override
-	public Object returnAnotherInfor() {
-		return null;
-	}
-	@Override
-	public Object returnThirdInfor() {
-		return null;
-	}
-	@Override
-	public Object returnFouthInfor() {
-		return null;
-	}
-	@Override
-	public Object returnFifthInfor() {
-		return null;
-	}
-	@Override
-	public Object returnsixthInfor() {
-		// TODO Auto-generated method stub
-		return null;
-	}	
 }

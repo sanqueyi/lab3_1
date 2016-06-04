@@ -1,6 +1,9 @@
 package Command;
 
+import Control.IO;
+import Paper.PType;
 import Paper.Page;
+import Question.DecideQuestion;
 import Question.MapQuestion;
 
 public class MapQuestionCommand implements QuestionCommand{
@@ -22,11 +25,35 @@ public class MapQuestionCommand implements QuestionCommand{
 		for(int i=0;i<rside.length;i++)
 			this.rside[i]=rside[i];
 	}
-	public MapQuestionCommand(Page paper,MapQuestion question,String prompt,String[] lside, String[] rside,String score,String answer){
+	public MapQuestionCommand(Page paper,MapQuestion question,String prompt,String[] lside, String[] rside,int score,String answer){
 		this.paper=paper;
 		this.question=question;
 		this.prompt=prompt;
-		this.score=Integer.parseInt(score);
+		this.score=score;
+		this.answer=answer;
+		this.lside=new String[lside.length];
+		this.rside=new String[rside.length];
+		for(int i=0;i<lside.length;i++)
+			this.lside[i]=lside[i];
+		for(int i=0;i<rside.length;i++)
+			this.rside[i]=rside[i];
+	}
+	public MapQuestionCommand(IO io,String pageName,PType type,int index,String prompt,String[] lside, String[] rside){
+		this.paper=IO.readPage(pageName, type);
+		this.question=(MapQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+		this.lside=new String[lside.length];
+		this.rside=new String[rside.length];
+		for(int i=0;i<lside.length;i++)
+			this.lside[i]=lside[i];
+		for(int i=0;i<rside.length;i++)
+			this.rside[i]=rside[i];
+	}
+	public MapQuestionCommand(IO io,String pageName,PType type,int index,String prompt,String[] lside, String[] rside,int score,String answer){
+		this.paper=IO.readPage(pageName, type);
+		this.question=(MapQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+		this.score=score;
 		this.answer=answer;
 		this.lside=new String[lside.length];
 		this.rside=new String[rside.length];

@@ -2,7 +2,10 @@ package Command;
 
 import javax.swing.JTextField;
 
+import Control.IO;
+import Paper.PType;
 import Paper.Page;
+import Question.DecideQuestion;
 import Question.EssayQuestion;
 
 public class EssayQuestionCommand implements QuestionCommand{
@@ -16,11 +19,23 @@ public class EssayQuestionCommand implements QuestionCommand{
 		this.question=question;
 		this.prompt=prompt;
 	}
-	public EssayQuestionCommand(Page paper,EssayQuestion question,String prompt,String score,String answer){
+	public EssayQuestionCommand(Page paper,EssayQuestion question,String prompt,int score,String answer){
 		this.paper=paper;
 		this.question=question;
 		this.prompt=prompt;
-		this.score=Integer.parseInt(score);
+		this.score=score;
+		this.answer=answer;
+	}
+	public EssayQuestionCommand(IO io,String pageName,PType type,int index,String prompt){
+		this.paper=IO.readPage(pageName, type);
+		this.question=(EssayQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+	}
+	public EssayQuestionCommand(IO io,String pageName,PType type,int index,String prompt,int score,String answer){
+		this.paper=IO.readPage(pageName, type);
+		this.question=(EssayQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+		this.score=score;
 		this.answer=answer;
 	}
 	public void modifyQuestion(){

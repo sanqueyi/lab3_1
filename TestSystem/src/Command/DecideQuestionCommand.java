@@ -1,5 +1,7 @@
 package Command;
 
+import Control.IO;
+import Paper.PType;
 import Paper.Page;
 import Question.DecideQuestion;
 
@@ -10,16 +12,28 @@ public class DecideQuestionCommand implements QuestionCommand{
 	private String prompt;
 	private int score;
 	private String answer="";
-	public DecideQuestionCommand(Page paper,DecideQuestion question,String prompt, String score, String answer){
+	public DecideQuestionCommand(Page paper,DecideQuestion question,String prompt, int score, String answer){
 		this.paper=paper;
 		this.question=question;
 		this.prompt=prompt;
-		this.score=Integer.parseInt(score);
 		this.answer=answer;
+		this.score=score;
 	}
 	public DecideQuestionCommand(Page paper,DecideQuestion question,String prompt){
 		this.paper=paper;
 		this.question=question;
+		this.prompt=prompt;
+	}
+	public DecideQuestionCommand(IO io,String pageName,PType type,int index,String prompt, int score, String answer){
+		this.paper=IO.readPage(pageName, type);
+		this.question=(DecideQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+		this.answer=answer;
+		this.score=score;
+	}
+	public DecideQuestionCommand(IO io,String pageName,PType type,int index,String prompt){
+		this.paper=IO.readPage(pageName, type);
+		this.question=(DecideQuestion)paper.getQuestion(index);
 		this.prompt=prompt;
 	}
 	public void modifyQuestion(){

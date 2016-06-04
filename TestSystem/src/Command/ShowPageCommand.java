@@ -11,7 +11,7 @@ import Paper.Test;
 import Paper.Record;
 import Question.*;
 
-public class ShowPageCommand implements InforCommand{
+public class ShowPageCommand extends InforCommand{
 	IO io;
 	PType type;
 	String name;
@@ -31,7 +31,7 @@ public class ShowPageCommand implements InforCommand{
 		int size=page.getQuestionSize();
 		List<String> result=new LinkedList<String>();		
 		for(int i=0;i<size;i++){
-			result.set(i, page.getQuestion(i).getPrompt());
+			result.add(page.getQuestion(i).getPrompt());
 		}		
 		return result;
 	}
@@ -43,11 +43,11 @@ public class ShowPageCommand implements InforCommand{
 		if(isRecord){
 			Record record=io.readRecord(name, type);
 			for(int i=0;i<size;i++)
-				answer.set(i, record.getAnswer(i).getAnswer());		
+				answer.add(record.getAnswer(i).getAnswer());
 		}
 		else{
 			for(int i=0;i<size;i++)
-				answer.set(i, page.getQuestion(i).getAnswer());
+				answer.add( page.getQuestion(i).getAnswer());
 		}
 		return null;
 	}
@@ -57,7 +57,7 @@ public class ShowPageCommand implements InforCommand{
 		int size=page.getQuestionSize();
 		List<Integer> score=new LinkedList<Integer>();
 		for(int i=0;i<size;i++)
-			score.set(i, page.getQuestion(i).getScore());
+			score.add(page.getQuestion(i).getScore());
 		return score;
 	}
 	@Override
@@ -65,38 +65,53 @@ public class ShowPageCommand implements InforCommand{
 	public List<List<String>>[] returnFouthInfor() {
 		int size=page.getQuestionSize();
 		List<List<String>>[] items=new List[2];
+		items[0]=new LinkedList<List<String>>();
+		items[1]=new LinkedList<List<String>>();
 		for(int i=0;i<size;i++){
 			Question question=page.getQuestion(i);
 			QType qtype=question.getType();
-			if((qtype==QType.CHOICE)||(qtype==QType.RANK))
-				items[0].set(i, ((ItemQuestion)question).getItems());
+			if((qtype==QType.CHOICE)||(qtype==QType.RANK)){
+				items[0].add(((ItemQuestion)question).getItems());
+				items[1].add(null);
+			}	
 			else if (qtype==QType.DECIDE){
 				List<String> item=new LinkedList<String>();
-				item.set(0, "T");
-				item.set(1, "F");
+				item.add("T");
+				item.add("F");
+				items[0].add(item);
+				items[1].add(null);
 			}
-			else if	(qtype==QType.CHOICE){
-				items[0].set(i, ((MapQuestion)question).getLeftItems());
-				items[1].set(i, ((MapQuestion)question).getRightItems());
+			else if	(qtype==QType.MAP){
+				items[0].add(((MapQuestion)question).getLeftItems());
+				items[1].add(((MapQuestion)question).getRightItems());
+			}
+			else{
+				items[0].add(null);
+				items[1].add(null);
 			}
 		}
 		return items;
 	}
 	@Override
+
 	//获取test的时间、总分以及record的得分
 	public int[] returnFifthInfor() {
-		int[] result=new int[2];
+		int[] result=new int[3];
 		result[0]=page.getTime();
 		result[1]=((Test)page).getTotalScore();
+		if(isRecord){
+			Record record=io.readRecord(name, type);
+			result[2]=record.getScore();
+		}
 		return result;
 	}
-	@Override
 	public List<QType> returnsixthInfor() {
 		List<QType> type=new LinkedList<QType>();
 		int size=page.getQuestionSize();
 		for(int i=0;i<size;i++)
-			type.set(i, page.getQuestion(i).getType());
+			type.add(page.getQuestion(i).getType());
 		return type;
 	}
+
 	
 }

@@ -43,8 +43,13 @@ public class RankingQ extends JFrame{
 	sub.setBounds(100,150,100,50);
 	sub.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){                 
-             int num=Integer.parseInt(number.getText());
-             add(num);
+        	try{
+        		int num=Integer.parseInt(number.getText());
+                add(num);
+    		}
+    		catch(Exception e2){
+    			JOptionPane.showMessageDialog(null, "选项数目必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+    		}
        }
   });
 	
@@ -87,11 +92,18 @@ public void test(){
     			items[i]=list.get(i);
 
     			}
-        	RankQuestion seq = new RankQuestion();
-            ItemQuestionCommand seqc = new ItemQuestionCommand(paper,seq,question.getText(),items,score.getText(),answer.getText());
-            invoke.setQestionCommand(seqc);
-	         invoke.addQuestion();
-             frame.setVisible(false);
+        	try{
+        		int score1=Integer.parseInt(score.getText());
+        		RankQuestion seq = new RankQuestion();
+                ItemQuestionCommand seqc = new ItemQuestionCommand(paper,seq,question.getText(),items,score1,answer.getText());
+                invoke.setQestionCommand(seqc);
+    	         invoke.addQuestion();
+                 frame.setVisible(false);
+    		}
+    		catch(Exception e2){
+    			JOptionPane.showMessageDialog(null, "分数必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+    		}
+        	
        }
   });
 		
@@ -99,7 +111,6 @@ public void test(){
 	frame.add(answer);
 	frame.add(submit);
 	frame.setLocationRelativeTo(null);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setSize(500,800);
 	frame.setResizable(false);
 	frame.setVisible(true);
@@ -124,7 +135,6 @@ public void survey(){
   });
 		frame.add(submit);
 	frame.setLocationRelativeTo(null);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setSize(500,800);
 	frame.setResizable(false);
 	frame.setVisible(true);

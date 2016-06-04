@@ -1,10 +1,23 @@
+
 package Command;
 
-public interface InforCommand {
-	public Object returnInfor();
-	public Object returnAnotherInfor();
-	public Object returnThirdInfor();
-	public Object returnFouthInfor();
-	public Object returnFifthInfor();
-	public Object returnsixthInfor();
+public abstract class InforCommand {
+	public Object returnInfor(){
+		return null;
+	}
+	public Object returnAnotherInfor(){
+		return null;
+	}
+	public Object returnThirdInfor(){
+		return null;
+	}
+	public Object returnFouthInfor(){
+		return null;
+	}
+	public Object returnFifthInfor(){
+		return null;
+	}
+	public Object returnsixthInfor(){
+		return null;
+	}
 }
