@@ -40,8 +40,13 @@ public class ChoiceS extends JFrame{
 		sub.setBounds(420,180,70,30);
 		sub.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
-                 int num=Integer.parseInt(number.getText());
-                 add0(num);
+            	try{
+            		int num=Integer.parseInt(number.getText());
+                    add0(num);
+        		}
+        		catch(Exception e2){
+        			JOptionPane.showMessageDialog(null, "选项数目必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+        		}
            }
       });
 		

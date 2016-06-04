@@ -66,10 +66,17 @@ public class TF extends JFrame {
 	        	 }else{
 	        		 ans=radioButton2.getText();
 	        	 }
-	        	 DecideQuestionCommand dqc = new DecideQuestionCommand(paper,dq,frame.question.getText(),score.getText(),ans);
-	        	 invoke.setQestionCommand(dqc);
-	        	 invoke.addQuestion();
-	             frame.setVisible(false);
+	        	 try{
+	        		 int score1=Integer.parseInt(score.getText());
+	        		 DecideQuestionCommand dqc = new DecideQuestionCommand(paper,dq,frame.question.getText(),score1,ans);
+		        	 invoke.setQestionCommand(dqc);
+		        	 invoke.addQuestion();
+		             frame.setVisible(false);
+	        		}
+	        		catch(Exception e2){
+	        		 JOptionPane.showMessageDialog(null, "分数必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+	        		}
+	        	 
 	             
 	       }
 	  });

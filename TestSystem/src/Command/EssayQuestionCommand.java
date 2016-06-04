@@ -16,11 +16,11 @@ public class EssayQuestionCommand implements QuestionCommand{
 		this.question=question;
 		this.prompt=prompt;
 	}
-	public EssayQuestionCommand(Page paper,EssayQuestion question,String prompt,String score,String answer){
+	public EssayQuestionCommand(Page paper,EssayQuestion question,String prompt,int score,String answer){
 		this.paper=paper;
 		this.question=question;
 		this.prompt=prompt;
-		this.score=Integer.parseInt(score);
+		this.score=score;
 		this.answer=answer;
 	}
 	public void modifyQuestion(){

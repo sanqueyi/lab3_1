@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Command.EssayQuestionCommand;
@@ -48,10 +49,17 @@ public class EssayQ extends JFrame{
  		submit.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	EssayQuestion seq = new EssayQuestion();
-	             EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,question.getText(),score.getText(),answer.getText());
-	             invoke.setQestionCommand(seqc);
-		         invoke.addQuestion();
-	             frame.setVisible(false);
+	        	try{
+	        		 int score1=Integer.parseInt(score.getText());
+	        		 EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,question.getText(),score1,answer.getText());
+		             invoke.setQestionCommand(seqc);
+			         invoke.addQuestion();
+		             frame.setVisible(false);
+        		}
+        		catch(Exception e2){
+        			JOptionPane.showMessageDialog(null, "分数必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+        		}
+	             
 	       }
 	  });
  		frame.add(submit);

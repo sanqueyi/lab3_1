@@ -14,11 +14,11 @@ public class ShortEssayQuestionCommand implements QuestionCommand{
 		this.question=question;
 		this.prompt=prompt;
 	}
-	public ShortEssayQuestionCommand(Page paper,ShortEssayQuestion question,String prompt,String score,String answer){
+	public ShortEssayQuestionCommand(Page paper,ShortEssayQuestion question,String prompt,int score,String answer){
 		this.paper=paper;
 		this.question=question;
 		this.prompt=prompt;
-		this.score=Integer.parseInt(score);
+		this.score=score;
 		this.answer=answer;
 	}
 	public void modifyQuestion(){

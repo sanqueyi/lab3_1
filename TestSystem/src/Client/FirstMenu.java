@@ -6,9 +6,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import Paper.PType;
+import invoker.Invoker;
+
 public class FirstMenu extends JFrame{
 	
 	public FirstMenu(){
+		
 		setLayout(null);
 		JButton button0 =new JButton();
 		ImageIcon icon0 = new ImageIcon("button0.jpg");
@@ -73,10 +77,13 @@ public class FirstMenu extends JFrame{
 		button2.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
             	int an=JOptionPane.showConfirmDialog(null, "是否要登记查询", "choose one", JOptionPane.YES_NO_OPTION);
-            	if(an==1){
-            		
+            	if(an==0){
+            		String str = JOptionPane.showInputDialog("输入你的用户名");
+            		Display display = new Display(PType.TEST,str);
+            		display.setVisible(true);
             	}else{
-            		
+            		Display display = new Display(PType.SURVEY,null);
+            		display.setVisible(true);
             	}
             		
             	
@@ -85,7 +92,15 @@ public class FirstMenu extends JFrame{
       });
 		button3.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
-                 
+            	int an=JOptionPane.showConfirmDialog(null, "是否要登记查询", "choose one", JOptionPane.YES_NO_OPTION);
+            	if(an==0){
+            		String str = JOptionPane.showInputDialog("输入你的用户名");
+            		Display display = new Display(PType.TEST,str);
+            		display.setVisible(true);
+            	}else{
+            		Display display = new Display(PType.SURVEY,null);
+            		display.setVisible(true);
+            	}
                  
            }
       });
@@ -105,15 +120,16 @@ public class FirstMenu extends JFrame{
       });
 		button6.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
-                 Name name = new Name(6);
-                 name.setVisible(true);
+            	String str = JOptionPane.showInputDialog("输入你的用户名");
+            	Take take = new Take(str,PType.SURVEY);
                  
            }
       });
 		button7.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
-                 Name name = new Name(7);
-                 name.setVisible(true);
+            	String str = JOptionPane.showInputDialog("输入你的用户名");
+            	Take take = new Take(str,PType.TEST);
+                 
                  
            }
       });

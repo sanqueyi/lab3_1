@@ -22,11 +22,11 @@ public class MapQuestionCommand implements QuestionCommand{
 		for(int i=0;i<rside.length;i++)
 			this.rside[i]=rside[i];
 	}
-	public MapQuestionCommand(Page paper,MapQuestion question,String prompt,String[] lside, String[] rside,String score,String answer){
+	public MapQuestionCommand(Page paper,MapQuestion question,String prompt,String[] lside, String[] rside,int score,String answer){
 		this.paper=paper;
 		this.question=question;
 		this.prompt=prompt;
-		this.score=Integer.parseInt(score);
+		this.score=score;
 		this.answer=answer;
 		this.lside=new String[lside.length];
 		this.rside=new String[rside.length];

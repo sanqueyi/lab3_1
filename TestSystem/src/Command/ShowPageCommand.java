@@ -11,7 +11,7 @@ import Paper.Test;
 import Paper.Record;
 import Question.*;
 
-public class ShowPageCommand implements InforCommand{
+public class ShowPageCommand extends InforCommand{
 	IO io;
 	PType type;
 	String name;
@@ -79,11 +79,23 @@ public class ShowPageCommand implements InforCommand{
 		return items;
 	}
 	@Override
-	public Object returnFifthInfor() {
-		int[] result=new int[2];
+	public int[] returnFifthInfor() {
+		int[] result=new int[3];
 		result[0]=page.getTime();
 		result[1]=((Test)page).getTotalScore();
-		return null;
+		if(isRecord){
+			Record record=io.readRecord(name, type);
+			result[2]=record.getScore();
+		}
+		return result;
 	}
+	public List<QType> returnsixthInfor() {
+		List<QType> type=new LinkedList<QType>();
+		int size=page.getQuestionSize();
+		for(int i=0;i<size;i++)
+			type.set(i, page.getQuestion(i).getType());
+		return type;
+	}
+
 	
 }

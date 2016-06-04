@@ -7,6 +7,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
@@ -47,12 +48,19 @@ public class ShortQ extends JFrame{
 		JButton submit = new JButton("提交");
  		submit.setBounds(380,400,100,50);
  		submit.addActionListener( new ActionListener(){
-	        public void actionPerformed(ActionEvent e){                 
-	             ShortEssayQuestion seq = new ShortEssayQuestion();
-	             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,question.getText(),score.getText(),answer.getText());
-	             invoke.setQestionCommand(seqc);
-		         invoke.addQuestion();
-	             frame.setVisible(false);
+	        public void actionPerformed(ActionEvent e){ 
+	        	try{
+	        		int score1=Integer.parseInt(score.getText());
+	        		ShortEssayQuestion seq = new ShortEssayQuestion();
+		             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,question.getText(),score1,answer.getText());
+		             invoke.setQestionCommand(seqc);
+			         invoke.addQuestion();
+		             frame.setVisible(false);
+        		}
+        		catch(Exception e2){
+        			JOptionPane.showMessageDialog(null, "分数必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+        		}
+	             
 	       }
 	  });
  		

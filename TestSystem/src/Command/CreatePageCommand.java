@@ -5,7 +5,7 @@ import java.util.List;
 import Control.IO;
 import Paper.Page;
 
-public class CreatePageCommand implements InforCommand{
+public class CreatePageCommand extends InforCommand{
 	Page page;
 	String pageName;
 	String perName;
@@ -27,26 +27,6 @@ public class CreatePageCommand implements InforCommand{
 		page.setPageName(pageName);
 		page.setPersonName(perName);
 		return true;
-	}
-	@Override
-	public Object returnAnotherInfor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Object returnThirdInfor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Object returnFouthInfor() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public Object returnFifthInfor() {
-		// TODO Auto-generated method stub
-		return null;
 	}
 	
 }

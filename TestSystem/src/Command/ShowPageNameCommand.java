@@ -5,7 +5,7 @@ import java.util.List;
 import Control.IO;
 import Paper.PType;
 
-public class ShowPageNameCommand implements InforCommand{
+public class ShowPageNameCommand extends InforCommand{
 	IO io;
 	PType type;
 	String personName;
@@ -29,18 +29,6 @@ public class ShowPageNameCommand implements InforCommand{
 		list[0]=io.getAllPagebyPerNam(personName,type);
 		list[1]=io.getAllRecordbyPerNam(personName, type);
 		return list;
-	}
-	@Override
-	public Object returnThirdInfor() {
-		return null;
-	}
-	@Override
-	public Object returnFouthInfor() {
-		return null;
-	}
-	@Override
-	public Object returnFifthInfor() {
-		return null;
 	}
 	
 }

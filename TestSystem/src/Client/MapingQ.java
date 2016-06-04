@@ -42,8 +42,13 @@ public class MapingQ extends JFrame{
 		sub.setBounds(100,150,100,50);
 		sub.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
-	             int num=Integer.parseInt(number.getText());
-	             add(num);
+	        	try{
+            		int num=Integer.parseInt(number.getText());
+                    add(num);
+        		}
+        		catch(Exception e2){
+        			JOptionPane.showMessageDialog(null, "选项数目必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+        		}
 	       }
 	  });
 		
@@ -98,11 +103,18 @@ String[] items0  = new String[list0.size()];
     			items0[i]=list0.get(i);
 
     			}
-        	MapQuestion seq = new MapQuestion();
-            MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,question.getText(),items,items0,score.getText(),answer.getText());
-            invoke.setQestionCommand(seqc);
-	         invoke.addQuestion(); 
-             frame.setVisible(false);
+        	try{
+        		MapQuestion seq = new MapQuestion();
+        		int score1=Integer.parseInt(score.getText());
+                MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,question.getText(),items,items0,score1,answer.getText());
+                invoke.setQestionCommand(seqc);
+    	        invoke.addQuestion(); 
+                frame.setVisible(false);
+    		}
+    		catch(Exception e2){
+    			JOptionPane.showMessageDialog(null, "分数必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+    		}
+        	
        }
   });
 	frame.add(an);

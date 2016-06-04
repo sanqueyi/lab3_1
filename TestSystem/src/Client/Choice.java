@@ -38,9 +38,15 @@ public class Choice extends JFrame {
 		JButton sub = new JButton("提交");
 		sub.setBounds(100,150,100,50);
 		sub.addActionListener( new ActionListener(){
-            public void actionPerformed(ActionEvent e){                 
-                 int num=Integer.parseInt(number.getText());
-                 add(num);
+            public void actionPerformed(ActionEvent e){ 
+            	try{
+            		int num=Integer.parseInt(number.getText());
+                    add(num);
+        		}
+        		catch(Exception e2){
+        			JOptionPane.showMessageDialog(null, "选项数目必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+        		}
+                 
            }
       });
 		
@@ -89,10 +95,18 @@ public class Choice extends JFrame {
 		button.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	ChoiceQuestion cq = new ChoiceQuestion();
-	            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,question.getText(),items,score.getText(),an);
-	            invoke.setQestionCommand(iqc);
-	            invoke.addQuestion();
-	             setVisible(false);
+	        	try{
+	        		String score1=score.getText();
+		        	int score2=Integer.parseInt(score1);
+		            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,question.getText(),items,score2,an);
+		            invoke.setQestionCommand(iqc);
+		            invoke.addQuestion();
+		             setVisible(false);
+        		}
+        		catch(Exception e1){
+        			JOptionPane.showMessageDialog(null, "分数必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
+        		}
+	        	
 	       }
 	  });
 		panel.add(button);
