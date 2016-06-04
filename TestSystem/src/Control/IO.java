@@ -185,8 +185,9 @@ public class IO {
 	        OutputStream out = new FileOutputStream(filename);   
 	        XMLEncoder encoder = new XMLEncoder(out);   
 	        encoder.writeObject(page);   
-	        out.close();   
-	        encoder.close();   
+	           
+	        encoder.close();
+	        out.close();  
 	    }
 		catch (Exception e) {   
 	        e.printStackTrace();   

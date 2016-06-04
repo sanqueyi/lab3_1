@@ -72,7 +72,14 @@ public class FirstMenu extends JFrame{
       });
 		button2.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
-                
+            	int an=JOptionPane.showConfirmDialog(null, "是否要登记查询", "choose one", JOptionPane.YES_NO_OPTION);
+            	if(an==1){
+            		
+            	}else{
+            		
+            	}
+            		
+            	
                  
            }
       });
@@ -146,9 +153,10 @@ public class FirstMenu extends JFrame{
 	}
 	public static void main(String[] args){
 		FirstMenu frame = new FirstMenu();
-		frame.setLocationRelativeTo(null);
+		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500,800);
+		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
