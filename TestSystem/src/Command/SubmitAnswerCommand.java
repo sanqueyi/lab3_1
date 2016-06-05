@@ -32,23 +32,21 @@ public class SubmitAnswerCommand extends InforCommand{
 		Question question;
 		Record record=new Record(name,pageName);
 		int score=0;
-		if(type==PType.TEST){
-			for(int i=0;i<size;i++){
-				question=page.getQuestion(i);
-				if(question.match(answer.get(i))){
-					if(question.getType()==QType.ESSAY);
-					else score +=question.getScore();
-				}
-				if((question.getType()==QType.ESSAY)||(question.getType()==QType.SHORTESSAY)){
-					TextAnswer ta=new TextAnswer(answer.get(i));
-					record.addAnwser(ta);
-				}
-				else{	
-					NumAnswer na=new NumAnswer(answer.get(i));
-					record.addAnwser(na);
-				}
-			}	
-		}		
+		for(int i=0;i<size;i++){
+			question=page.getQuestion(i);
+			if(question.match(answer.get(i))){
+				if(question.getType()==QType.ESSAY);
+				else score +=question.getScore();
+			}
+			if((question.getType()==QType.ESSAY)||(question.getType()==QType.SHORTESSAY)){
+				TextAnswer ta=new TextAnswer(answer.get(i));
+				record.addAnwser(ta);
+			}
+			else{	
+				NumAnswer na=new NumAnswer(answer.get(i));
+				record.addAnwser(na);
+			}
+		}			
 		record.setScore(score);
 		io.writeRecord(record,type);
 		return score;
