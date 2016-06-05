@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <totalInfo>
   <recordName personName="aaa" pageName="aaa">aaa-aaa</recordName>
+  <recordName personName="sss" pageName="aaa">aaa-sss</recordName>
+  <recordName personName="444" pageName="aaa">aaa-444</recordName>
+  <recordName personName="555" pageName="555555">555555-555</recordName>
 </totalInfo>
 

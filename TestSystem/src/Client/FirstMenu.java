@@ -122,18 +122,20 @@ public class FirstMenu extends JFrame{
             public void actionPerformed(ActionEvent e){                 
             	String str = JOptionPane.showInputDialog("输入你的用户名");
             	//Take take = new Take(str,PType.SURVEY);
+            	if(str!=null){
             	Display display = new Display(PType.SURVEY,str,"take");
         		display.setVisible(true);
-                 
+            	}
            }
       });
 		button7.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
             	String str = JOptionPane.showInputDialog("输入你的用户名");
             	//Take take = new Take(str,PType.TEST);
+            	if(str!=null){
             	Display display = new Display(PType.TEST,str,"take");
         		display.setVisible(true);
-                 
+            	}
            }
       });
 		button8.addActionListener( new ActionListener(){

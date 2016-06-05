@@ -71,7 +71,7 @@ public class Take extends JFrame{
 			        radioButton2.setFont(new   java.awt.Font("Dialog",   1,   18)); 
 			        radioButton2.setBounds(120,height,100,30);
 			        add(radioButton2);// 应用单选按钮
-			       
+			        height+=30;
 			        ButtonGroup group = new ButtonGroup();// 创建单选按钮组
 			        group.add(radioButton1);
 			        group.add(radioButton2);
@@ -99,6 +99,7 @@ public class Take extends JFrame{
 					  box.add(checkbox);
 					  add(checkbox);
 				  }
+				  height+=30;
 				  JButton button = new JButton("提交");
 			        button.setBounds(200,height,100,30);
 			        height+=30;
@@ -123,6 +124,7 @@ public class Take extends JFrame{
 				  JTextField a = new JTextField();
 				  pro.setBounds(20,height,65,30);
 				  a.setBounds(80, height, 150, 30);
+				  height+=30;
 				  JButton button = new JButton();
 			        button.setBounds(400,height,50,30);
 			        height+=30;
@@ -133,6 +135,7 @@ public class Take extends JFrame{
 				        	 answer.add(ans);
 				        	 button.setEnabled(false);
 				        }});
+			        add(button);
 			  }else if(type.get(i)==QType.RANK){
 				  int n = items[0].get(i).size();
 				 
@@ -146,12 +149,13 @@ public class Take extends JFrame{
 				  q.setBounds(20,height,500,30);
 				  add(q);
 				  height+=30;
-				  JLabel pro = new JLabel("答案: ");
+				  JLabel pro = new JLabel("答案:（以空格隔开）");
 				  JTextField a = new JTextField();
-				  pro.setBounds(20,height,65,30);
-				  a.setBounds(80, height, 150, 30);
+				  pro.setBounds(20,height,200,30);
+				  a.setBounds(250, height, 150, 30);
 				  add(pro);
 				  add(a);
+				  height+=30;
 				  JButton button = new JButton("提交");
 			        button.setBounds(400,height,100,30);
 			        height+=30;
@@ -162,6 +166,7 @@ public class Take extends JFrame{
 				        	 answer.add(a.getText());
 				        	 button.setEnabled(false);
 				        }});
+			        add(button);
 			  }else{
 				  int n = items[0].get(i).size();
 				  int nr= items[1].get(i).size();
@@ -181,20 +186,26 @@ public class Take extends JFrame{
 				  JLabel p = new JLabel(st);
 				  p.setBounds(20,height,500,30);
 				  height+=30;
-				  JLabel pro = new JLabel("答案 ");
+				  add(p);
+				  add(q);
+				  JLabel pro = new JLabel("答案：(以空格隔开) ");
 				  JTextField a = new JTextField();
-				  pro.setBounds(20,height,65,30);
-				  a.setBounds(80, height, 150, 30);
+				  pro.setBounds(20,height,200,30);
+				  a.setBounds(250, height, 150, 30);
+				  height+=30;
+				  add(pro);
+				  add(a);
 				  JButton button = new JButton("提交");
 			        button.setBounds(400,height,100,30);
 			        height+=30;
 			        button.addActionListener( new ActionListener(){
 				        public void actionPerformed(ActionEvent e){
 				        	
-				           
+				             
 				        	 answer.add(a.getText());
 				        	 button.setEnabled(false);
 				        }});
+			        add(button);
 			  }
 			 
 			 
@@ -203,6 +214,7 @@ public class Take extends JFrame{
 			  submit.setBounds(400,700,80,30);
 		        submit.addActionListener( new ActionListener(){
 			        public void actionPerformed(ActionEvent e){
+			        	System.out.println(answer);
 			        	SubmitAnswerCommand sac = new SubmitAnswerCommand(io,name,ptype,answer,userN);
 			        	//SubmitAnswerCommand sac = new SubmitAnswerCommand(io,userN,ptype,answer,name);
 			        	invoke.setInforCommand(sac);

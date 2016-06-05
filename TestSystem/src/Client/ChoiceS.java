@@ -44,6 +44,7 @@ public class ChoiceS extends JFrame{
             	try{
             		int num=Integer.parseInt(number.getText());
                     add0(num);
+                    sub.setEnabled(false);
         		}
         		catch(Exception e2){
         			JOptionPane.showMessageDialog(null, "选项数目必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
@@ -85,8 +86,7 @@ public class ChoiceS extends JFrame{
 	        public void actionPerformed(ActionEvent e){                 
 	        	ChoiceQuestion cq = new ChoiceQuestion();
 	            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,question.getText(),items);
-	            invoke.setQestionCommand(iqc);
-	           
+	            invoke.setQestionCommand(iqc);	           
 	            invoke.addQuestion();
 	             setVisible(false);
 	       }

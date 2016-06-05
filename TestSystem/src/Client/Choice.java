@@ -44,6 +44,7 @@ public class Choice extends JFrame {
             	try{
             		int num=Integer.parseInt(number.getText());
                     add(num);
+                    sub.setEnabled(false);
         		}
         		catch(Exception e2){
         			JOptionPane.showMessageDialog(null, "选项数目必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
@@ -81,14 +82,10 @@ public class Choice extends JFrame {
 			checkbox.setBounds(0,200+60*i,100,50);
 			//panel.add(checkbox);
 			add(checkbox);
+			
 		}
 		
-		for(int i = 0; i<list.size(); i++){
-			if(list.get(i).getState()){
-				an+=list.get(i).getLabel()+" ";
-			}
-
-			}
+		
 		
 		JButton button =new JButton("提交");
 		button.setBounds(380,480,100,50);
@@ -97,6 +94,13 @@ public class Choice extends JFrame {
 		button.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	ChoiceQuestion cq = new ChoiceQuestion();
+	        	for(int i = 0; i<list.size(); i++){
+	    			if(list.get(i).getState()){
+	    				an+=list.get(i).getLabel()+" ";
+	    			}
+
+	    			}
+	        	
 	        	try{
 	        		String score1=score.getText();
 		        	int score2=Integer.parseInt(score1);

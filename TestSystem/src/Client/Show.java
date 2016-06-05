@@ -71,7 +71,12 @@ public class Show extends JFrame{
 			  add(si);
 			  height+=30;
 			  if(items[1].get(i)!=null){
-				  JLabel sar = new JLabel(str);
+				  int n1 = items[0].get(i).size();
+				  String str1="";
+				  for(int j=0;j<n1;j++){
+					  str1+=j+1+") "+items[1].get(i).get(j)+"     ";
+				  }
+				  JLabel sar = new JLabel(str1);
 				  sar.setBounds(20,height,300,30);
 				  add(sar);
 				  height+=30;
@@ -80,6 +85,7 @@ public class Show extends JFrame{
 		 }
 		 if(ptype!=PType.SURVEY){
 			 JLabel sa = new JLabel("答案为： "+answer.get(i));
+			 sa.setBounds(20,height,300,30);
 			 add(sa);
 		 }
 		 

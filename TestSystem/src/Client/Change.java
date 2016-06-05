@@ -32,8 +32,11 @@ public class Change extends JFrame {
 		Invoker invoke = new Invoker();
 		setLayout(null);
 		if (qtype == QType.DECIDE) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,100,30);
+			add(jl);
 			JTextField question = new JTextField(string);
-			question.setBounds(20, 20, 200, 30);
+			question.setBounds(100, 20, 200, 30);
 			JRadioButton radioButton1 = new JRadioButton("T");// 创建单选按钮
 			radioButton1.setFont(new java.awt.Font("Dialog", 1, 18));
 			radioButton1.setBounds(20, 60, 100, 30);
@@ -56,7 +59,7 @@ public class Change extends JFrame {
 			JTextField score = new JTextField(integer.toString());
 			score.setBounds(180, 250, 50, 30);
 			JButton submit = new JButton("提交");
-			submit.setBounds(200, 300, 50, 20);
+			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String ans;
@@ -77,30 +80,38 @@ public class Change extends JFrame {
 			add(score);
 		} else if (qtype == QType.CHOICE) {
 			ArrayList<JTextField> list0  = new ArrayList();
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,100,30);
+			add(jl);
 			JTextField question = new JTextField(string);
-			question.setBounds(20, 20, 200, 30);
+			question.setBounds(100, 20, 200, 30);
 			JLabel item = new JLabel("选项为：");
 			item.setFont(new java.awt.Font("Dialog", 1, 18));
 			item.setBounds(20, 60, 60, 30);
+			add(item);
 			for(int i=0;i<list.size();i++){
 				JTextField opt = new JTextField(list.get(i));
-				opt.setBounds(80+35*i, 90, 200, 30);
+				opt.setBounds(80, 90+35*i, 200, 30);
 				add(opt);
 				list0.add(opt);
 			}
-			int height = 80+35*(list.size()+1);
+			int height = 90+35*(list.size()+1);
 			
 			JLabel sco = new JLabel("分数为：");
 			sco.setFont(new java.awt.Font("Dialog", 1, 18));
 			sco.setBounds(20, height, 150, 30);
+			add(sco);
 			
 			JTextField score = new JTextField(integer.toString());
 			score.setBounds(180, height+40, 50, 30);
+			JLabel  jl0= new JLabel("答案：");
+			jl0.setBounds(0,height+80,100,30);
+			add(jl0);
 			JTextField answer = new JTextField(string2);
-			answer.setBounds(20, height+80, 200, 30);
+			answer.setBounds(100, height+80, 200, 30);
 			add(answer);
 			JButton add = new JButton("添加");
-			add.setBounds(200,height+120,50,20);
+			add.setBounds(200,height+120,100,20);
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入选项");
@@ -109,7 +120,7 @@ public class Change extends JFrame {
 				}
 			});
 			JButton delete = new JButton("删除");
-			delete.setBounds(200,height+140,50,20);
+			delete.setBounds(200,height+140,100,20);
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除的序号1~");
@@ -123,9 +134,10 @@ public class Change extends JFrame {
 			for(int i=0;i<number;i++){
 				items[i]=list0.get(i).getText();
 			}
-			submit.setBounds(200, height+180, 50, 20);
+			submit.setBounds(200, height+180, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					
 					ItemQuestionCommand iqc = new ItemQuestionCommand(paper,n,question.getText(),items,Integer.parseInt(score.getText()),answer.getText());
 		            invoke.setQestionCommand(iqc);
 		            invoke.modifyQustion();
@@ -144,17 +156,23 @@ public class Change extends JFrame {
 			
 
 		} else if (qtype == QType.SHORTESSAY) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
+			JLabel  jl0= new JLabel("答案：");
+			jl0.setBounds(0,60,100,30);
+			add(jl0);
 			JTextField answer = new JTextField(string2);
-			answer.setBounds(20, 60, 200, 30);
+			answer.setBounds(100, 60, 200, 30);
 			JLabel sco = new JLabel("分数为：");
 			sco.setFont(new java.awt.Font("Dialog", 1, 18));
 			sco.setBounds(20, 100, 150, 30);
 			JTextField score = new JTextField(integer.toString());
 			score.setBounds(180, 100, 50, 30);
 			JButton submit = new JButton("提交");
-			submit.setBounds(200, 300, 50, 20);
+			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,n,question.getText(),Integer.parseInt(score.getText()), answer.getText());
@@ -170,17 +188,23 @@ public class Change extends JFrame {
 			add(sco);
 			add(score);
 		} else if (qtype == QType.ESSAY) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
+			JLabel  jl0= new JLabel("答案：");
+			jl0.setBounds(0,60,100,30);
+			add(jl0);
 			JTextField answer = new JTextField(string2);
-			answer.setBounds(20, 60, 200, 30);
+			answer.setBounds(100, 60, 200, 30);
 			JLabel sco = new JLabel("分数为：");
 			sco.setFont(new java.awt.Font("Dialog", 1, 18));
 			sco.setBounds(20, 100, 150, 30);
 			JTextField score = new JTextField(integer.toString());
-			score.setBounds(180, 100, 50, 30);
+			score.setBounds(180, 100, 100, 30);
 			JButton submit = new JButton("提交");
-			submit.setBounds(200, 300, 50, 20);
+			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					EssayQuestionCommand seqc = new EssayQuestionCommand(paper,n,question.getText(),Integer.parseInt(score.getText()),answer.getText());
@@ -198,6 +222,9 @@ public class Change extends JFrame {
 			add(score);
 
 		} else if (qtype == QType.RANK) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			ArrayList<JTextField> list0  = new ArrayList();
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
@@ -206,11 +233,11 @@ public class Change extends JFrame {
 			item.setBounds(20, 60, 60, 30);
 			for(int i=0;i<list.size();i++){
 				JTextField opt = new JTextField(list.get(i));
-				opt.setBounds(80+35*i, 90, 200, 30);
+				opt.setBounds(80, 90+35*i, 200, 30);
 				add(opt);
 				list0.add(opt);
 			}
-			int height = 80+35*(list.size()+1);
+			int height = 90+35*(list.size()+1);
 			
 			JLabel sco = new JLabel("分数为：");
 			sco.setFont(new java.awt.Font("Dialog", 1, 18));
@@ -218,11 +245,14 @@ public class Change extends JFrame {
 			
 			JTextField score = new JTextField(integer.toString());
 			score.setBounds(180, height+40, 50, 30);
+			JLabel  jl0= new JLabel("答案：");
+			jl0.setBounds(0,height+80,100,30);
+			add(jl0);
 			JTextField answer = new JTextField(string2);
-			answer.setBounds(20, height+80, 200, 30);
+			answer.setBounds(100, height+80, 200, 30);
 			add(answer);
 			JButton add = new JButton("添加");
-			add.setBounds(200,height+120,50,20);
+			add.setBounds(200,height+120,100,20);
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入选项");
@@ -231,7 +261,7 @@ public class Change extends JFrame {
 				}
 			});
 			JButton delete = new JButton("删除");
-			delete.setBounds(200,height+140,50,20);
+			delete.setBounds(200,height+140,100,20);
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除的序号1~");
@@ -241,7 +271,7 @@ public class Change extends JFrame {
 			});
 			JButton submit = new JButton("提交");
 			
-			submit.setBounds(200, height+180, 50, 20);
+			submit.setBounds(200, height+180, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int number = list0.size();
@@ -269,6 +299,9 @@ public class Change extends JFrame {
 			add(submit);
 
 		} else if (qtype == QType.MAP) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			ArrayList<JTextField> list0  = new ArrayList();
 			ArrayList<JTextField> list3  = new ArrayList();
 			JTextField question = new JTextField(string);
@@ -296,14 +329,17 @@ public class Change extends JFrame {
 			sco.setFont(new java.awt.Font("Dialog", 1, 18));
 			sco.setBounds(20, height, 150, 30);
 			add(sco);
+			JLabel  jl0= new JLabel("答案：");
+			jl0.setBounds(0,height+80,100,30);
+			add(jl0);
 			JTextField score = new JTextField(integer.toString());
 			score.setBounds(180, height+40, 50, 30);
 			add(score);
 			JTextField answer = new JTextField(string2);
-			answer.setBounds(20, height+80, 200, 30);
+			answer.setBounds(100, height+80, 200, 30);
 			add(answer);
 			JButton add = new JButton("添加");
-			add.setBounds(200,height+120,50,20);
+			add.setBounds(200,height+120,100,20);
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入左选项");
@@ -314,7 +350,7 @@ public class Change extends JFrame {
 				}
 			});
 			JButton delete = new JButton("删除");
-			delete.setBounds(200,height+150,50,20);
+			delete.setBounds(200,height+150,100,20);
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除左边的序号1~");
@@ -326,7 +362,7 @@ public class Change extends JFrame {
 			});
 			JButton submit = new JButton("提交");
 			
-			submit.setBounds(200, height+180, 50, 20);
+			submit.setBounds(200, height+180, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int number = list0.size();
@@ -363,6 +399,9 @@ public class Change extends JFrame {
 		setLayout(null);
 		Invoker invoke =new Invoker();
 		if (qtype == QType.DECIDE) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
 			
@@ -379,6 +418,9 @@ public class Change extends JFrame {
 			add(submit);
 			add(question);
 		} else if (qtype == QType.CHOICE) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			ArrayList<JTextField> list0  = new ArrayList();
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
@@ -433,6 +475,9 @@ public class Change extends JFrame {
 			add(submit);
 
 		} else if (qtype == QType.SHORTESSAY) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
 			
@@ -452,6 +497,9 @@ public class Change extends JFrame {
 			
 
 		} else if (qtype == QType.ESSAY) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
 			JButton submit = new JButton("提交");
@@ -470,22 +518,26 @@ public class Change extends JFrame {
 			add(question);
 
 		} else if (qtype == QType.RANK) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			ArrayList<JTextField> list0  = new ArrayList();
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
 			JLabel item = new JLabel("选项为：");
 			item.setFont(new java.awt.Font("Dialog", 1, 18));
 			item.setBounds(20, 60, 60, 30);
+			add(item);
 			for(int i=0;i<list.size();i++){
 				JTextField opt = new JTextField(list.get(i));
-				opt.setBounds(80+35*i, 90, 200, 30);
+				opt.setBounds(80, 90+35*i, 200, 30);
 				add(opt);
 				list0.add(opt);
 			}
-			int height = 80+35*(list.size()+1);
+			int height = 90+35*(list.size()+1);
 			
 			JButton add = new JButton("添加");
-			add.setBounds(200,height+120,50,20);
+			add.setBounds(200,height+120,100,20);
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入选项");
@@ -494,7 +546,7 @@ public class Change extends JFrame {
 				}
 			});
 			JButton delete = new JButton("删除");
-			delete.setBounds(200,height+140,50,20);
+			delete.setBounds(200,height+140,100,20);
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除的序号1~");
@@ -504,7 +556,7 @@ public class Change extends JFrame {
 			});
 			JButton submit = new JButton("提交");
 			
-			submit.setBounds(200, height+180, 50, 20);
+			submit.setBounds(200, height+180, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int number = list0.size();
@@ -528,6 +580,9 @@ public class Change extends JFrame {
 			add(submit);
 
 		} else if (qtype == QType.MAP) {
+			JLabel  jl= new JLabel("问题：");
+			jl.setBounds(0,20,80,30);
+			add(jl);
 			ArrayList<JTextField> list0  = new ArrayList();
 			ArrayList<JTextField> list3  = new ArrayList();
 			JTextField question = new JTextField(string);
@@ -535,6 +590,7 @@ public class Change extends JFrame {
 			JLabel item = new JLabel("选项为：");
 			item.setFont(new java.awt.Font("Dialog", 1, 18));
 			item.setBounds(20, 60, 60, 30);
+			add(item);
 			for(int i=0;i<list.size();i++){
 				JTextField opt = new JTextField(list.get(i));
 				opt.setBounds(80, 90+35*i, 200, 30);
@@ -549,7 +605,7 @@ public class Change extends JFrame {
 			}
 			int height = 90+35*(list.size()+1);
 			JButton add = new JButton("添加");
-			add.setBounds(200,height+120,50,20);
+			add.setBounds(200,height+120,100,20);
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入左选项");
@@ -560,7 +616,7 @@ public class Change extends JFrame {
 				}
 			});
 			JButton delete = new JButton("删除");
-			delete.setBounds(200,height+140,50,20);
+			delete.setBounds(200,height+140,100,20);
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除左边的序号1~");
@@ -572,7 +628,7 @@ public class Change extends JFrame {
 			});
 			JButton submit = new JButton("提交");
 			
-			submit.setBounds(200, height+180, 50, 20);
+			submit.setBounds(200, height+180, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int number = list0.size();

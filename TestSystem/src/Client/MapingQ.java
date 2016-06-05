@@ -46,6 +46,7 @@ public class MapingQ extends JFrame{
 	        	try{
             		int num=Integer.parseInt(number.getText());
                     add(num);
+                    sub.setEnabled(false);
         		}
         		catch(Exception e2){
         			JOptionPane.showMessageDialog(null, "选项数目必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
@@ -68,19 +69,25 @@ public void add(int num){
 			
 			String str = JOptionPane.showInputDialog("输入左侧内容");
 			list.add(str);
+			JLabel jl  = new JLabel(str);
+		     jl.setBounds(20,280+30*i,150,30);
+		     add(jl);
 		}
-	
+	   
 for(int i=0;i<num;i++){
 			
 			String str = JOptionPane.showInputDialog("输入右侧内容");
 			list0.add(str);
+			JLabel jl  = new JLabel(str);
+		     jl.setBounds(20,280+30*(i+num),150,30);
+		     add(jl);
 		}
 		
 	}
 public void test(){
 	MapingQ frame = new MapingQ(paper,isc);
-	JLabel an = new JLabel("答案为：");
-	an.setFont(new   java.awt.Font("Dialog",   1,   18)); 
+	JLabel an = new JLabel("答案为：(以空格隔开)");
+	an.setFont(new   java.awt.Font("Dialog",   1,   10)); 
 	an.setBounds(20,200,150,30);		
 	JTextField answer = new JTextField();
 	answer.setBounds(170,200,200,30);
@@ -95,13 +102,13 @@ public void test(){
         	String[] items  = new String[frame.list.size()];
         	
         	for(int i = 0; i<frame.list.size(); i++){
-    			items[i]=list.get(i);
+    			items[i]=frame.list.get(i);
 
     			}
 String[] items0  = new String[frame.list0.size()];
         	
         	for(int i = 0; i<frame.list0.size(); i++){
-    			items0[i]=list0.get(i);
+    			items0[i]=frame.list0.get(i);
 
     			}
         	try{

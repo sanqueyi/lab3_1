@@ -45,7 +45,7 @@ public Modify(String name,PType ptype,Page paper){
 	  
 	  for(int i=0;i<size;i++){
 
-		  System.out.println(question.get(i));
+		  
 		  JLabel no = new JLabel((i+1)+"、");
 		  no.setBounds(0,height,20,30);
 		  add(no);
@@ -70,7 +70,12 @@ public Modify(String name,PType ptype,Page paper){
 			  add(si);
 			  height+=30;
 			  if(items[1].get(i)!=null){
-				  JLabel sar = new JLabel(str);
+				  int n1 = items[0].get(i).size();
+				  String str1="";
+				  for(int j=0;j<n1;j++){
+					  str1+=j+1+") "+items[1].get(i).get(j)+"     ";
+				  }
+				  JLabel sar = new JLabel(str1);
 				  sar.setBounds(20,height,300,30);
 				  add(sar);
 				  height+=30;

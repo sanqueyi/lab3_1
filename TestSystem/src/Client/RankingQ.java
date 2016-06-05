@@ -48,6 +48,7 @@ public class RankingQ extends JFrame{
         	try{
         		int num=Integer.parseInt(number.getText());
                 add(num);
+                sub.setEnabled(false);
     		}
     		catch(Exception e2){
     			JOptionPane.showMessageDialog(null, "选项数目必须是数字！", "错误",JOptionPane.ERROR_MESSAGE); 
@@ -70,14 +71,17 @@ public void add(int num){
 		
 		String str = JOptionPane.showInputDialog("输入内容");
 	     list.add(str);
+	     JLabel jl  = new JLabel(str);
+	     jl.setBounds(20,280+30*i,150,30);
+	     add(jl);
 	}
 
 
 }
 public void test(){
 	RankingQ frame = new RankingQ(paper,isc);
-	JLabel an = new JLabel("答案为：");
-	an.setFont(new   java.awt.Font("Dialog",   1,   18)); 
+	JLabel an = new JLabel("答案为：(以空格隔开)");
+	an.setFont(new   java.awt.Font("Dialog",   1,   10)); 
 	an.setBounds(20,200,150,30);		
 	JTextField answer = new JTextField();
 	answer.setBounds(170,200,200,30);
@@ -86,7 +90,7 @@ public void test(){
 	JTextField score = new JTextField();
 	score.setBounds(170, 240, 60, 30);
 	JButton submit = new JButton("提交");
-		submit.setBounds(380,500,100,50);
+		submit.setBounds(380,600,100,50);
 		submit.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){ 
         	String[] items  = new String[frame.list.size()];
