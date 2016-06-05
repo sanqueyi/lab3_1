@@ -83,12 +83,6 @@ public class Choice extends JFrame {
 			add(checkbox);
 		}
 		
-		for(int i = 0; i<list.size(); i++){
-			if(list.get(i).getState()){
-				an+=list.get(i).getLabel()+" ";
-			}
-
-			}
 		
 		JButton button =new JButton("提交");
 		button.setBounds(380,480,100,50);
@@ -97,6 +91,12 @@ public class Choice extends JFrame {
 		button.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	ChoiceQuestion cq = new ChoiceQuestion();
+	        	for(int i = 0; i<list.size(); i++){
+	    			if(list.get(i).getState()){
+	    				an+=list.get(i).getLabel()+" ";
+	    			}
+
+	    			}
 	        	try{
 	        		String score1=score.getText();
 		        	int score2=Integer.parseInt(score1);

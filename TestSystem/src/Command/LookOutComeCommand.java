@@ -39,9 +39,9 @@ public class LookOutComeCommand extends InforCommand{
 					}
 					else map.put(key, 1);	
 			    }			
-				result +=(i+1)+"、"+page.getQuestion(i).getQuestion()+"\n";
+				result +="\n"+(i+1)+"、"+page.getQuestion(i).getQuestion()+"\n";
 				for(String key: map.keySet()){
-					result +="Answer: " + key+"\t"+map.get(key)+"\n";
+					result +="Answer: " + key+"\tTotal:"+map.get(key)+"\n";
 				}
 			}
 		}
