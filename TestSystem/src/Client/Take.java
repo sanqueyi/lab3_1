@@ -27,7 +27,7 @@ public class Take extends JFrame{
 		setLayout(null);
 		IO io = new IO();
 		  Invoker invoke = new Invoker();
-		  ShowPageCommand spc = new ShowPageCommand(io,ptype,name,false);
+		  ShowPageCommand spc = new ShowPageCommand(io,ptype,name,"",false);
 		  invoke.setInforCommand(spc);
 		  List<String> question = (List<String>)invoke.getFirstInfor();
 		  List<Integer> score=new LinkedList<Integer>();

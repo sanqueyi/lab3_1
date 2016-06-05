@@ -22,6 +22,6 @@ public class EssayQuestion extends Question {
 		answer=new TextAnswer(ans);
 	}
 	public String getQuestion(){
-		return "Essay: "+prompt;
+		return "Essay: "+prompt+"\n";
 	}
 }

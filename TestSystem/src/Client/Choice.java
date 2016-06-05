@@ -85,8 +85,7 @@ public class Choice extends JFrame {
 			
 		}
 		
-		
-		
+
 		JButton button =new JButton("提交");
 		button.setBounds(380,480,100,50);
 		//ImageIcon icon = new ImageIcon("submit.jpg");
@@ -100,11 +99,11 @@ public class Choice extends JFrame {
 	    			}
 
 	    			}
-	        	
+
 	        	try{
 	        		String score1=score.getText();
 		        	int score2=Integer.parseInt(score1);
-		            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,question.getText(),items,score2,an);
+		            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,-1,question.getText(),items,score2,an);
 		            invoke.setQestionCommand(iqc);
 		            
 		            invoke.addQuestion();

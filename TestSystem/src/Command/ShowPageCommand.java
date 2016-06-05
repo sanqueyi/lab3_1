@@ -14,17 +14,18 @@ import Question.*;
 public class ShowPageCommand extends InforCommand{
 	IO io;
 	PType type;
-	String name;
+	String pageName;
 	Page page;
+	String recordName;
 	boolean isRecord;
 	
-	public ShowPageCommand(IO io,PType type,String name,boolean isRecord){
+	public ShowPageCommand(IO io,PType type,String pageName,String personName,boolean isRecord){
 		this.io=io;
 		this.type=type;
-		this.name=name;
-		this.page=io.readPage(name, type);
+		this.pageName=pageName;
 		this.isRecord=isRecord;
-		
+		this.page=io.readPage(pageName, type);	
+		this.recordName=pageName+"-"+personName;
 	}
 	//获取所有问题的提示
 	public List<String> returnInfor(){
@@ -41,7 +42,7 @@ public class ShowPageCommand extends InforCommand{
 		int size=page.getQuestionSize();
 		List<String> answer=new LinkedList<String>();
 		if(isRecord){
-			Record record=io.readRecord(name, type);
+			Record record=io.readRecord(recordName, type);
 			for(int i=0;i<size;i++)
 				answer.add(record.getAnswer(i).getAnswer());
 		}
@@ -101,7 +102,7 @@ public class ShowPageCommand extends InforCommand{
 		result[0]=page.getTime();
 		result[1]=((Test)page).getTotalScore();
 		if(isRecord){
-			Record record=io.readRecord(name, type);
+			Record record=io.readRecord(recordName, type);
 			result[2]=record.getScore();
 		}
 		return result;
@@ -114,7 +115,7 @@ public class ShowPageCommand extends InforCommand{
 		return type;
 	}
 	public Page returnseventhInfor() {
-		return io.readPage(name, type);
+		return io.readPage(pageName, type);
 	}
 
 	

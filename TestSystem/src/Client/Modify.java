@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import Command.SavePageCommand;
 import Command.ShowPageCommand;
 import Control.IO;
 import Paper.PType;
@@ -21,7 +22,7 @@ public Modify(String name,PType ptype,Page paper){
 	  IO io = new IO();
 	  
 	  Invoker invoke = new Invoker();
-	  ShowPageCommand spc = new ShowPageCommand(io,ptype,name,false);
+	  ShowPageCommand spc = new ShowPageCommand(io,ptype,name,"",false);
 	  invoke.setInforCommand(spc);
 	  List<String> question = (List<String>)invoke.getFirstInfor();
 	  List<String> answer =(List<String>)invoke.getSecondInfor();
@@ -122,10 +123,14 @@ public Modify(String name,PType ptype,Page paper){
 	        	
 	        	
 	        }});
-	  JButton button = new JButton("关闭");
+	  JButton button = new JButton("提交");
 	  button.setBounds(380,650,100,50);
 	  button.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){
+	        	IO io=new IO();
+	        	SavePageCommand spc=new SavePageCommand(io,paper);
+	        	invoke.setExecuteCommand(spc);
+	        	invoke.execute();
 	        	setVisible(false);
 	        }});
 	  add(add);

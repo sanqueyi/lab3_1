@@ -85,7 +85,7 @@ public class ChoiceS extends JFrame{
 		submit.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	ChoiceQuestion cq = new ChoiceQuestion();
-	            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,question.getText(),items);
+	            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,-1,question.getText(),items);
 	            invoke.setQestionCommand(iqc);	           
 	            invoke.addQuestion();
 	             setVisible(false);

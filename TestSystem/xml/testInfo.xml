@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <totalInfo>
-  <pageName personName="123">7777</pageName>
-  <pageName personName="555">555</pageName>
-  <pageName personName="45">78</pageName>
-  <pageName personName="45">222</pageName>
-  <pageName personName="aaa">aaa</pageName>
-  <pageName personName="44">22</pageName>
+  <pageName personName="aaa">aaa</pageName><pageName personName="44">22</pageName>
   <pageName personName="4">5</pageName>
   <pageName personName="444">7</pageName>
-  <pageName personName="444">555555</pageName>
-</totalInfo>
+  <pageName personName="444">555555</pageName></totalInfo>
 

@@ -16,12 +16,12 @@ import Paper.PType;
 import invoker.Invoker;
 
 public class Show extends JFrame{
-  public Show(PType ptype,String name,boolean is){
+  public Show(PType ptype,String name,String full,boolean is){
 	  setLayout(null);
 	  IO io = new IO();
 	  
 	  Invoker invoke = new Invoker();
-	  ShowPageCommand spc = new ShowPageCommand(io,ptype,name,is);
+	  ShowPageCommand spc = new ShowPageCommand(io,ptype,name,full,is);
 	  invoke.setInforCommand(spc);
 	  List<String> question = (List<String>)invoke.getFirstInfor();
 	  List<String> answer =(List<String>)invoke.getSecondInfor();
@@ -33,13 +33,13 @@ public class Show extends JFrame{
 	  int[] time =(int[])invoke.getFifthInfor();
 	  JLabel stime = new JLabel("时间为：   "+time[0]+"  分钟");
 	  stime.setBounds(20,20,200,30);
-	  JLabel sall = new JLabel("总分为：   "+time[2]+"  分");
+	  JLabel sall = new JLabel("总分为：   "+time[1]+"  分");
 	  sall.setBounds(20,60,200,30);
 	  add(stime);
 	  add(sall);
 	  height =100;
 	  if(is){
-		  JLabel sd = new JLabel("得分：   "+time[1]+"  分");
+		  JLabel sd = new JLabel("得分：   "+time[2]+"  分");
 		  stime.setBounds(20,90,200,30);
 		  height = 140;
 	  }

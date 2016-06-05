@@ -114,7 +114,7 @@ String[] items0  = new String[frame.list0.size()];
         	try{
         		MapQuestion seq = new MapQuestion();
         		int score1=Integer.parseInt(score.getText());
-                MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,frame.question.getText(),items,items0,score1,answer.getText());
+                MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,-1,frame.question.getText(),items,items0,score1,answer.getText());
                 invoke.setQestionCommand(seqc);
                
     	        invoke.addQuestion();
@@ -156,7 +156,7 @@ String[] items0  = new String[frame.list0.size()];
 
 			}
     	MapQuestion seq = new MapQuestion();
-        MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,frame.question.getText(),items,items0);
+        MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,-1,frame.question.getText(),items,items0);
         invoke.setQestionCommand(seqc);
         
          invoke.addQuestion(); 

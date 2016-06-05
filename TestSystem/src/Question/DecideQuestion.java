@@ -17,7 +17,7 @@ public class DecideQuestion extends Question {
 		
 	}
 	public String getQuestion(){
-		String ret = "T/F: "+prompt+"\n"+"1) T\n2) F";
+		String ret = "T/F: "+prompt+"\n"+"1) T\n2) F\n";
 		return ret;
 	}
 	//1.right 2.false

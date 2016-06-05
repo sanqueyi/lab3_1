@@ -54,7 +54,7 @@ public class ShortQ extends JFrame{
 	        	try{
 	        		int score1=Integer.parseInt(score.getText());
 	        		ShortEssayQuestion seq = new ShortEssayQuestion();
-		             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,frame.question.getText(),score1,answer.getText());
+		             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,-1,frame.question.getText(),score1,answer.getText());
 		             invoke.setQestionCommand(seqc);
 		            
 			         invoke.addQuestion();
@@ -86,7 +86,7 @@ public class ShortQ extends JFrame{
  		submit.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	             ShortEssayQuestion seq = new ShortEssayQuestion();
-	             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,frame.question.getText());
+	             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,-1,frame.question.getText());
 	             invoke.setQestionCommand(seqc);
 	             
 		         invoke.addQuestion();

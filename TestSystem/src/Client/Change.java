@@ -17,12 +17,18 @@ import Command.DecideQuestionCommand;
 import Command.EssayQuestionCommand;
 import Command.ItemQuestionCommand;
 import Command.MapQuestionCommand;
+import Command.SavePageCommand;
 import Command.ShortEssayQuestionCommand;
+import Control.IO;
 import Paper.PType;
 import Paper.Page;
 import Question.ChoiceQuestion;
 import Question.DecideQuestion;
+import Question.EssayQuestion;
+import Question.MapQuestion;
 import Question.QType;
+import Question.RankQuestion;
+import Question.ShortEssayQuestion;
 import invoker.Invoker;
 
 public class Change extends JFrame {
@@ -68,7 +74,8 @@ public class Change extends JFrame {
 					} else {
 						ans = radioButton2.getText();
 					}
-					DecideQuestionCommand dqc = new DecideQuestionCommand(paper,n,question.getText(),Integer.parseInt(score.getText()),ans);
+					DecideQuestion newquestion=new DecideQuestion();
+					DecideQuestionCommand dqc = new DecideQuestionCommand(paper,newquestion,n,question.getText(),Integer.parseInt(score.getText()),ans);
 		        	invoke.setQestionCommand(dqc);
 		        	invoke.modifyQustion();
 		        	 setVisible(false);
@@ -137,8 +144,8 @@ public class Change extends JFrame {
 			submit.setBounds(200, height+180, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-					ItemQuestionCommand iqc = new ItemQuestionCommand(paper,n,question.getText(),items,Integer.parseInt(score.getText()),answer.getText());
+					ChoiceQuestion newQuestion=new ChoiceQuestion();
+					ItemQuestionCommand iqc = new ItemQuestionCommand(paper,newQuestion,n,question.getText(),items,Integer.parseInt(score.getText()),answer.getText());
 		            invoke.setQestionCommand(iqc);
 		            invoke.modifyQustion();
 		            setVisible(false);
@@ -175,7 +182,8 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,n,question.getText(),Integer.parseInt(score.getText()), answer.getText());
+					ShortEssayQuestion newquestion=new ShortEssayQuestion();
+					ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,newquestion,n,question.getText(),Integer.parseInt(score.getText()), answer.getText());
 		             invoke.setQestionCommand(seqc);
 		             invoke.modifyQustion();
 			         setVisible(false);
@@ -207,7 +215,8 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					EssayQuestionCommand seqc = new EssayQuestionCommand(paper,n,question.getText(),Integer.parseInt(score.getText()),answer.getText());
+					EssayQuestion newQuestion=new EssayQuestion();
+					EssayQuestionCommand seqc = new EssayQuestionCommand(paper,newQuestion,n,question.getText(),Integer.parseInt(score.getText()),answer.getText());
 		             invoke.setQestionCommand(seqc);
 		      
 			        	 invoke.modifyQustion();
@@ -279,7 +288,8 @@ public class Change extends JFrame {
 					for(int i=0;i<number;i++){
 						items[i]=list0.get(i).getText();
 					}
-					ItemQuestionCommand seqc = new ItemQuestionCommand(paper,n,question.getText(),items,Integer.parseInt(score.getText()),answer.getText());
+					RankQuestion newQuestion=new RankQuestion();
+					ItemQuestionCommand seqc = new ItemQuestionCommand(paper,newQuestion,n,question.getText(),items,Integer.parseInt(score.getText()),answer.getText());
 	                invoke.setQestionCommand(seqc);
 	              
 	    	        
@@ -372,7 +382,8 @@ public class Change extends JFrame {
 						items[i]=list0.get(i).getText();
 						items0[i]=list3.get(i).getText();
 					}
-					MapQuestionCommand seqc = new MapQuestionCommand(paper,n,question.getText(),items,items0,Integer.parseInt(score.getText()),answer.getText());
+					MapQuestion newQuestion=new MapQuestion();
+					MapQuestionCommand seqc = new MapQuestionCommand(paper,newQuestion,n,question.getText(),items,items0,Integer.parseInt(score.getText()),answer.getText());
 	                invoke.setQestionCommand(seqc);
 	               
 	    	        
@@ -409,7 +420,8 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					DecideQuestionCommand dqc = new DecideQuestionCommand(paper,m,question.getText());
+					DecideQuestion newQuestion=new DecideQuestion();
+					DecideQuestionCommand dqc = new DecideQuestionCommand(paper,newQuestion,m,question.getText());
 		        	invoke.setQestionCommand(dqc);
 		        	invoke.modifyQustion();
 		        	 setVisible(false);
@@ -464,7 +476,8 @@ public class Change extends JFrame {
 			submit.setBounds(200, height+180, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					ItemQuestionCommand iqc = new ItemQuestionCommand(paper,m,question.getText(),items);
+					ChoiceQuestion newQuestion=new ChoiceQuestion();
+					ItemQuestionCommand iqc = new ItemQuestionCommand(paper,newQuestion,m,question.getText(),items);
 		            invoke.setQestionCommand(iqc);
 		            invoke.modifyQustion();
                     setVisible(false);
@@ -485,7 +498,8 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,m,question.getText());
+					ShortEssayQuestion newQuestion=new ShortEssayQuestion();
+					ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,newQuestion,m,question.getText());
 		             invoke.setQestionCommand(seqc);
 		             invoke.modifyQustion();
 			         setVisible(false);
@@ -506,7 +520,8 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					EssayQuestionCommand seqc = new EssayQuestionCommand(paper,m,question.getText());
+					EssayQuestion newQuestion=new EssayQuestion();
+					EssayQuestionCommand seqc = new EssayQuestionCommand(paper,newQuestion,m,question.getText());
 		             invoke.setQestionCommand(seqc);
 		      
 			        	 invoke.modifyQustion();
@@ -564,7 +579,8 @@ public class Change extends JFrame {
 					for(int i=0;i<number;i++){
 						items[i]=list0.get(i).getText();
 					}
-					ItemQuestionCommand seqc = new ItemQuestionCommand(paper,m,question.getText(),items);
+					RankQuestion newQuestion=new RankQuestion();
+					ItemQuestionCommand seqc = new ItemQuestionCommand(paper,newQuestion,m,question.getText(),items);
 	                invoke.setQestionCommand(seqc);
 	              
 	    	        
@@ -638,7 +654,8 @@ public class Change extends JFrame {
 						items[i]=list0.get(i).getText();
 						items0[i]=list3.get(i).getText();
 					}
-					MapQuestionCommand seqc = new MapQuestionCommand(paper,m,question.getText(),items,items0);
+					MapQuestion newQuestion=new MapQuestion();
+					MapQuestionCommand seqc = new MapQuestionCommand(paper,newQuestion,m,question.getText(),items,items0);
 	                invoke.setQestionCommand(seqc);
 	               
 	    	        

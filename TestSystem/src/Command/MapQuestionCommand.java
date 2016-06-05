@@ -11,9 +11,11 @@ public class MapQuestionCommand implements QuestionCommand{
 	private String[] rside;
 	private int score;
 	private String answer="";
-	public MapQuestionCommand(Page paper,MapQuestion question,String prompt,String[] lside, String[] rside){
+	public MapQuestionCommand(Page paper,MapQuestion question,int index,String prompt,String[] lside, String[] rside){
 		this.paper=paper;
 		this.question=question;
+		if(index>=0)
+			paper.setQuestion(index, question);
 		this.prompt=prompt;
 		this.lside=new String[lside.length];
 		this.rside=new String[rside.length];
@@ -22,33 +24,11 @@ public class MapQuestionCommand implements QuestionCommand{
 		for(int i=0;i<rside.length;i++)
 			this.rside[i]=rside[i];
 	}
-	public MapQuestionCommand(Page paper,MapQuestion question,String prompt,String[] lside, String[] rside,int score,String answer){
+	public MapQuestionCommand(Page paper,MapQuestion question,int index,String prompt,String[] lside, String[] rside,int score,String answer){
 		this.paper=paper;
 		this.question=question;
-		this.prompt=prompt;
-		this.score=score;
-		this.answer=answer;
-		this.lside=new String[lside.length];
-		this.rside=new String[rside.length];
-		for(int i=0;i<lside.length;i++)
-			this.lside[i]=lside[i];
-		for(int i=0;i<rside.length;i++)
-			this.rside[i]=rside[i];
-	}
-	public MapQuestionCommand(Page paper,int index,String prompt,String[] lside, String[] rside){
-		this.paper=paper;
-		this.question=(MapQuestion)paper.getQuestion(index);
-		this.prompt=prompt;
-		this.lside=new String[lside.length];
-		this.rside=new String[rside.length];
-		for(int i=0;i<lside.length;i++)
-			this.lside[i]=lside[i];
-		for(int i=0;i<rside.length;i++)
-			this.rside[i]=rside[i];
-	}
-	public MapQuestionCommand(Page paper,int index,String prompt,String[] lside, String[] rside,int score,String answer){
-		this.paper=paper;
-		this.question=(MapQuestion)paper.getQuestion(index);
+		if(index>=0)
+			paper.setQuestion(index, question);
 		this.prompt=prompt;
 		this.score=score;
 		this.answer=answer;

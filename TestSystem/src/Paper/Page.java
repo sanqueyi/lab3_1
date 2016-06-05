@@ -66,7 +66,11 @@ public abstract class Page implements java.io.Serializable {  //一张试卷或�
 			return questionList.get(index);
 		}
 	}
-	
+	public void setQuestion(int index, Question question){
+		if(index >= questionList.size());
+		else
+		   questionList.set(index, question);
+	}
 	public int getQuestionSize(){
 		return questionList.size();
 	}

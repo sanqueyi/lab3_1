@@ -68,7 +68,7 @@ public class TF extends JFrame {
 				}
 				try {
 					int score1 = Integer.parseInt(score.getText());
-					DecideQuestionCommand dqc = new DecideQuestionCommand(paper, dq, frame.question.getText(), score1,
+					DecideQuestionCommand dqc = new DecideQuestionCommand(paper, dq,-1, frame.question.getText(), score1,
 							ans);
 					invoke.setQestionCommand(dqc);
 
@@ -99,7 +99,7 @@ public class TF extends JFrame {
 		submit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				DecideQuestion dq = new DecideQuestion();
-				DecideQuestionCommand dqc = new DecideQuestionCommand(paper, dq, frame.question.getText());
+				DecideQuestionCommand dqc = new DecideQuestionCommand(paper, dq,-1, frame.question.getText());
 				invoke.setQestionCommand(dqc);
 
 				invoke.addQuestion();

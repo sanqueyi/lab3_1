@@ -101,7 +101,7 @@ public void test(){
         	try{
         		int score1=Integer.parseInt(score.getText());
         		RankQuestion seq = new RankQuestion();
-                ItemQuestionCommand seqc = new ItemQuestionCommand(paper,seq,frame.question.getText(),items,score1,answer.getText());
+                ItemQuestionCommand seqc = new ItemQuestionCommand(paper,seq,-1,frame.question.getText(),items,score1,answer.getText());
                 invoke.setQestionCommand(seqc);
                 
     	        invoke.addQuestion();
@@ -136,7 +136,7 @@ public void survey(){
 
     			}
         	RankQuestion seq = new RankQuestion();
-            ItemQuestionCommand seqc = new ItemQuestionCommand(paper,seq,frame.question.getText(),items);
+            ItemQuestionCommand seqc = new ItemQuestionCommand(paper,seq,-1,frame.question.getText(),items);
             invoke.setQestionCommand(seqc);
             
 	         invoke.addQuestion();

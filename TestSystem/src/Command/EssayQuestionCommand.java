@@ -12,26 +12,18 @@ public class EssayQuestionCommand implements QuestionCommand{
 	private String prompt;
 	private String answer;
 	private int score;
-	public EssayQuestionCommand(Page paper,EssayQuestion question,String prompt){
+	public EssayQuestionCommand(Page paper,EssayQuestion question,int index,String prompt){
 		this.paper=paper;
 		this.question=question;
+		if(index>=0)
+			paper.setQuestion(index, question);
 		this.prompt=prompt;
 	}
-	public EssayQuestionCommand(Page paper,EssayQuestion question,String prompt,int score,String answer){
+	public EssayQuestionCommand(Page paper,EssayQuestion question,int index,String prompt,int score,String answer){
 		this.paper=paper;
 		this.question=question;
-		this.prompt=prompt;
-		this.score=score;
-		this.answer=answer;
-	}
-	public EssayQuestionCommand(Page paper,int index,String prompt){
-		this.paper=paper;
-		this.question=(EssayQuestion)paper.getQuestion(index);
-		this.prompt=prompt;
-	}
-	public EssayQuestionCommand(Page paper,int index,String prompt,int score,String answer){
-		this.paper=paper;
-		this.question=(EssayQuestion)paper.getQuestion(index);
+		if(index>=0)
+			paper.setQuestion(index, question);
 		this.prompt=prompt;
 		this.score=score;
 		this.answer=answer;

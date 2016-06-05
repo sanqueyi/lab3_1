@@ -8,9 +8,11 @@ public class ItemQuestionCommand implements QuestionCommand{
 	private String[] items;
 	private int score;
 	private String answer="";
-	public ItemQuestionCommand(Page paper,ItemQuestion question,String prompt, String[] items, int score, String answer){
+	public ItemQuestionCommand(Page paper,ItemQuestion question,int index,String prompt, String[] items, int score, String answer){
 		this.paper=paper;
 		this.question=question;
+		if(index>=0)
+			paper.setQuestion(index, question);
 		this.prompt=prompt;
 		this.score=score;
 		this.answer=answer;
@@ -19,29 +21,11 @@ public class ItemQuestionCommand implements QuestionCommand{
 			this.items[i]=items[i];
 		}
 	}
-	public ItemQuestionCommand(Page paper,ItemQuestion question,String prompt, String[] items){
+	public ItemQuestionCommand(Page paper,ItemQuestion question,int index,String prompt, String[] items){
 		this.paper=paper;
 		this.question=question;
-		this.prompt=prompt;
-		this.items=new String[items.length];
-		for(int i=0; i<items.length; i++){
-			this.items[i]=items[i];
-		}
-	}
-	public ItemQuestionCommand(Page paper,int index,String prompt, String[] items, int score, String answer){
-		this.paper=paper;
-		this.question=(ItemQuestion)paper.getQuestion(index);
-		this.prompt=prompt;
-		this.score=score;
-		this.answer=answer;
-		this.items=new String[items.length];
-		for(int i=0; i<items.length; i++){
-			this.items[i]=items[i];
-		}
-	}
-	public ItemQuestionCommand(Page paper,int index,String prompt, String[] items){
-		this.paper=paper;
-		this.question=(ItemQuestion)paper.getQuestion(index);
+		if(index>=0)
+			paper.setQuestion(index, question);
 		this.prompt=prompt;
 		this.items=new String[items.length];
 		for(int i=0; i<items.length; i++){

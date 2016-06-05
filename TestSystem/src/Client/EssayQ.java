@@ -53,7 +53,7 @@ public class EssayQ extends JFrame{
 	        	EssayQuestion seq = new EssayQuestion();
 	        	try{
 	        		 int score1=Integer.parseInt(score.getText());
-	        		 EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,frame.question.getText(),score1,answer.getText());
+	        		 EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,-1,frame.question.getText(),score1,answer.getText());
 		             invoke.setQestionCommand(seqc);
 		            
 			         invoke.addQuestion();
@@ -82,7 +82,7 @@ public class EssayQ extends JFrame{
  		submit.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	EssayQuestion seq = new EssayQuestion();
-	            EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,frame.question.getText());
+	            EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,-1,frame.question.getText());
 	             invoke.setQestionCommand(seqc);
 	            
 		         invoke.addQuestion();

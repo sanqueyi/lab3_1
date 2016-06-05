@@ -20,6 +20,6 @@ public class ShortEssayQuestion extends Question {
 
 	@Override
 	public String getQuestion() {
-		return "ShortEssay:"+prompt;
+		return "ShortEssay:"+prompt+"\n";
 	}
 }

@@ -365,7 +365,8 @@ public class IO {
 			Element cur=recordList.get(i);
 			String pn=cur.getAttributeValue("personName");
 			if(pn.equals(pernam)){
-				recordName.add(cur.getText());
+				String[] tmp= cur.getText().split("-");
+				recordName.add(tmp[0]);
 			}
 		}
 		
