@@ -40,7 +40,7 @@ public class Invoker {
 		return icommand.returnThirdInfor();
 	}
 	public Object getFouthInfor(){
-		return icommand.returnThirdInfor();
+		return icommand.returnFouthInfor();
 	}
 	public Object getFifthInfor(){
 		return icommand.returnFifthInfor();

@@ -49,9 +49,9 @@ public class TF extends JFrame {
         group.add(radioButton2);
         JLabel sco = new JLabel("分数为：");
         sco.setFont(new   java.awt.Font("Dialog",   1,   18));
-        sco.setBounds(20,160,150,30);
+        sco.setBounds(20,250,150,30);
         JTextField score = new JTextField();
-        score.setBounds(180, 160, 50, 30);
+        score.setBounds(180, 250, 50, 30);
         JButton submit = new JButton();
         submit.setBounds(420, 300, 50, 50);
 		ImageIcon icon = new ImageIcon("submit.jpg");
@@ -84,9 +84,9 @@ public class TF extends JFrame {
 		frame.add(score);
 		frame.add(submit);
         
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		frame.setSize(500,500);
+		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
@@ -107,9 +107,8 @@ public class TF extends JFrame {
 	       }
 	  });
 		frame.add(submit);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500,500);
+		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}

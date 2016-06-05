@@ -28,7 +28,7 @@ public class ShortQ extends JFrame{
     	 pro.setFont(new   java.awt.Font("Dialog",   1,   18)); 
     	 pro.setBounds(20,50,150,30);
  		 question = new JTextField();
- 		question.setBounds(170,90,200,30);
+ 		  question.setBounds(170,90,200,30);
  		
  		add(pro);
  		add(question);
@@ -52,7 +52,7 @@ public class ShortQ extends JFrame{
 	        	try{
 	        		int score1=Integer.parseInt(score.getText());
 	        		ShortEssayQuestion seq = new ShortEssayQuestion();
-		             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,question.getText(),score1,answer.getText());
+		             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,frame.question.getText(),score1,answer.getText());
 		             invoke.setQestionCommand(seqc);
 			         invoke.addQuestion();
 		             frame.setVisible(false);
@@ -69,9 +69,8 @@ public class ShortQ extends JFrame{
  		frame.add(answer);
  		frame.add(sco);
  		frame.add(score);
- 		frame.setLocationRelativeTo(null);
- 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  		frame.setSize(500,800);
+ 		frame.setLocationRelativeTo(null);
  		frame.setResizable(false);
  		frame.setVisible(true);
  	}
@@ -82,7 +81,7 @@ public class ShortQ extends JFrame{
  		submit.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	             ShortEssayQuestion seq = new ShortEssayQuestion();
-	             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,question.getText());
+	             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,frame.question.getText());
 	             invoke.setQestionCommand(seqc);
 		         invoke.addQuestion();
 	             frame.setVisible(false);
@@ -90,9 +89,8 @@ public class ShortQ extends JFrame{
 	  });
  		
  		frame.add(submit);
- 		frame.setLocationRelativeTo(null);
- 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
  		frame.setSize(500,800);
+ 		frame.setLocationRelativeTo(null);
  		frame.setResizable(false);
  		frame.setVisible(true);
  	}

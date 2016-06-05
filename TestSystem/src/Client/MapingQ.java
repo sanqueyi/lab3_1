@@ -33,13 +33,13 @@ public class MapingQ extends JFrame{
 		 pro.setFont(new   java.awt.Font("Dialog",   1,   18)); 
 		 pro.setBounds(20,50,150,30);
 		 question = new JTextField();
-		question.setBounds(170,90,200,30);
+		question.setBounds(170,50,200,30);
 		JLabel item = new JLabel("排序数目：");
-		item.setBounds(20,120,100,30);
+		item.setBounds(20,100,150,30);
 		JTextField number = new JTextField();
-		number.setBounds(130, 120, 100, 30);
+		number.setBounds(170, 100, 60, 30);
 		JButton sub = new JButton("提交");
-		sub.setBounds(100,150,100,50);
+		sub.setBounds(250,100,100,50);
 		sub.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	try{
@@ -84,11 +84,11 @@ public void test(){
 	JTextField answer = new JTextField();
 	answer.setBounds(170,200,200,30);
 	JLabel sco = new JLabel("问题分数:");
-	sco.setBounds(20,240,100,30);
+	sco.setBounds(20,240,150,30);
 	JTextField score = new JTextField();
-	score.setBounds(130, 240, 200, 30);
+	score.setBounds(170, 240, 60, 30);
 	JButton submit = new JButton("提交");
-		submit.setBounds(380,400,100,50);
+		submit.setBounds(380,500,100,50);
 		submit.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){                 
         	String[] items  = new String[list.size()];
@@ -106,7 +106,7 @@ String[] items0  = new String[list0.size()];
         	try{
         		MapQuestion seq = new MapQuestion();
         		int score1=Integer.parseInt(score.getText());
-                MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,question.getText(),items,items0,score1,answer.getText());
+                MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,frame.question.getText(),items,items0,score1,answer.getText());
                 invoke.setQestionCommand(seqc);
     	        invoke.addQuestion(); 
                 frame.setVisible(false);
@@ -117,12 +117,13 @@ String[] items0  = new String[list0.size()];
         	
        }
   });
+		frame.add(sco);
+		frame.add(score);
 	frame.add(an);
 	frame.add(answer);
 	frame.add(submit);
-	frame.setLocationRelativeTo(null);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setSize(500,800);
+	frame.setLocationRelativeTo(null);
 	frame.setResizable(false);
 	frame.setVisible(true);
 }
@@ -145,16 +146,15 @@ String[] items0  = new String[list0.size()];
 
 			}
     	MapQuestion seq = new MapQuestion();
-        MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,question.getText(),items,items0);
+        MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,frame.question.getText(),items,items0);
         invoke.setQestionCommand(seqc);
          invoke.addQuestion(); 
          frame.setVisible(false);
    }
 });
 	frame.add(submit);
-	frame.setLocationRelativeTo(null);
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setSize(500,800);
+	frame.setLocationRelativeTo(null);
 	frame.setResizable(false);
 	frame.setVisible(true);
 }

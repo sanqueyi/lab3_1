@@ -13,23 +13,26 @@ import Question.Question;
 
 public class SubmitAnswerCommand extends InforCommand{
 	IO io;
-	Page page;
+	String pageName;
+	PType type;
 	List<String> answer;
 	String name;
-	public SubmitAnswerCommand(IO io,Page page,List<String> answer,String name){
+	Page page;
+	public SubmitAnswerCommand(IO io,String pageName,PType type,List<String> answer,String name){
 		this.io=io;
-		this.page=page;
+		this.pageName=pageName;
+		this.type=type;
 		this.answer=answer;
 		this.name=name;
+		page=io.readPage(name, type);
 	}
 	@Override
 	public Integer returnInfor() {
 		int size=page.getQuestionSize();
 		Question question;
-		String pageName=page.getPageName();
 		Record record=new Record(name,pageName);
 		int score=0;
-		if(page.getType()==PType.TEST){
+		if(type==PType.TEST){
 			for(int i=0;i<size;i++){
 				question=page.getQuestion(i);
 				if(question.match(answer.get(i))){
@@ -47,7 +50,7 @@ public class SubmitAnswerCommand extends InforCommand{
 			}	
 		}		
 		record.setScore(score);
-		io.writeRecord(record,page.getType());
+		io.writeRecord(record,type);
 		return score;
 	}
 }

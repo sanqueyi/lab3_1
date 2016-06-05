@@ -20,13 +20,13 @@ import invoker.Invoker;
 
 public class Display extends JFrame{
 	
-	public Display(PType ptype,String name,boolean dis){
+	public Display(PType ptype,String name,String dis){
 		setLayout(null);
 		Invoker invoke = new Invoker();
 		ArrayList<JRadioButton>  button = new ArrayList();
 		ArrayList<JRadioButton>  buttonr = new ArrayList();
 		IO   io = new IO();
-		if(name==null||dis==false){
+		if(name==null||dis.equals("take")||dis.equals("outcome")||dis.equals("modify")){
 		ShowPageNameCommand spnc = new ShowPageNameCommand(io,ptype);
 		invoke.setInforCommand(spnc);
 		List<String> list =(List<String>) invoke.getFirstInfor();
@@ -39,7 +39,7 @@ public class Display extends JFrame{
 		}
 		JButton submit = new JButton("确认");
 		submit.setBounds(380,450,100,50);
-		if(dis){
+		if(dis==null){
 		submit.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
             	for(int i=0;i<button.size();i++){
@@ -51,13 +51,29 @@ public class Display extends JFrame{
         			}
         		}
            }
-      });}else{
+      });}else if(dis.equals("take")){
     	  submit.addActionListener( new ActionListener(){
               public void actionPerformed(ActionEvent e){                 
               	for(int i=0;i<button.size();i++){
           			if(button.get(i).isSelected()){
-          				Take take = new Take(name,ptype);
+          				System.out.println(button.get(i).getText());
+          				Take take = new Take(button.get(i).getText(),ptype,name);
           				take.setVisible(true);
+          				setVisible(false);
+          				break;
+          			}
+          		}
+             }
+        });
+      }else if(dis.equals("outcome")){
+    	  
+      }else if(dis.equals("modify")){
+    	  submit.addActionListener( new ActionListener(){
+              public void actionPerformed(ActionEvent e){                 
+              	for(int i=0;i<button.size();i++){
+          			if(button.get(i).isSelected()){
+          				Modify modify = new Modify(button.get(i).getText(),ptype);
+          				modify.setVisible(true);
           				setVisible(false);
           				break;
           			}
@@ -120,7 +136,7 @@ public class Display extends JFrame{
 		
       }
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setSize(500,800);
 		setLocationRelativeTo(null);
 		setResizable(false);

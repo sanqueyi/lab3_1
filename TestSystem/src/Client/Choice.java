@@ -57,16 +57,16 @@ public class Choice extends JFrame {
 		add(item);
 		add(number);
 		add(sub);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		setSize(500,800);
-	  setResizable(false);
+		setLocationRelativeTo(null);
+	    setResizable(false);
 		setVisible(false);
 	}
 	public void add(int num){
 		
-		JPanel  panel = new JPanel();
-		JLabel pro = new JLabel("the answer");
+		//JPanel  panel = new JPanel();
+		//JLabel pro = new JLabel("the answer");
 		String[] items = new String[num];
 		ArrayList<Checkbox> list = new ArrayList();
 
@@ -76,9 +76,9 @@ public class Choice extends JFrame {
 			items[i]=  str;
 			Checkbox checkbox = new Checkbox(items[i]);
 			list.add(checkbox);
-			checkbox.setBounds(0,10+60*i,100,50);
-			panel.add(checkbox);
-			
+			checkbox.setBounds(0,200+60*i,100,50);
+			//panel.add(checkbox);
+			add(checkbox);
 		}
 		
 		for(int i = 0; i<list.size(); i++){
@@ -88,10 +88,10 @@ public class Choice extends JFrame {
 
 			}
 		
-		JButton button =new JButton();
-		button.setBounds(200,350,50,50);
-		ImageIcon icon = new ImageIcon("submit.jpg");
-		button.setIcon(icon);
+		JButton button =new JButton("提交");
+		button.setBounds(380,480,100,50);
+		//ImageIcon icon = new ImageIcon("submit.jpg");
+		//button.setIcon(icon);
 		button.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	ChoiceQuestion cq = new ChoiceQuestion();
@@ -109,10 +109,11 @@ public class Choice extends JFrame {
 	        	
 	       }
 	  });
-		panel.add(button);
-
-		panel.setBounds(0,200,500,600);
-		this.add(panel);
+		add(button);  
+		//panel.add(button);
+        
+		//panel.setBounds(0,200,500,600);
+		//this.add(panel);
 	
 	}
 	

@@ -79,10 +79,10 @@ public class FirstMenu extends JFrame{
             	int an=JOptionPane.showConfirmDialog(null, "是否要登记查询", "choose one", JOptionPane.YES_NO_OPTION);
             	if(an==0){
             		String str = JOptionPane.showInputDialog("输入你的用户名");
-            		Display display = new Display(PType.TEST,str,true);
+            		Display display = new Display(PType.SURVEY,str,null);
             		display.setVisible(true);
             	}else{
-            		Display display = new Display(PType.SURVEY,null,true);
+            		Display display = new Display(PType.SURVEY,null,null);
             		display.setVisible(true);
             	}
             		
@@ -95,10 +95,10 @@ public class FirstMenu extends JFrame{
             	int an=JOptionPane.showConfirmDialog(null, "是否要登记查询", "choose one", JOptionPane.YES_NO_OPTION);
             	if(an==0){
             		String str = JOptionPane.showInputDialog("输入你的用户名");
-            		Display display = new Display(PType.TEST,str,true);
+            		Display display = new Display(PType.TEST,str,null);
             		display.setVisible(true);
             	}else{
-            		Display display = new Display(PType.SURVEY,null,true);
+            		Display display = new Display(PType.TEST,null,null);
             		display.setVisible(true);
             	}
                  
@@ -106,15 +106,15 @@ public class FirstMenu extends JFrame{
       });
 		button4.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
-                 Name name = new Name(4);
-                 name.setVisible(true);
+            	Display display = new Display(PType.SURVEY,null,"modify");
+        		display.setVisible(true);
                  
            }
       });
 		button5.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
-                 Name name = new Name(5);
-                 name.setVisible(true);
+            	Display display = new Display(PType.TEST,null,"modify");
+            	display.setVisible(true);
                  
            }
       });
@@ -122,7 +122,7 @@ public class FirstMenu extends JFrame{
             public void actionPerformed(ActionEvent e){                 
             	String str = JOptionPane.showInputDialog("输入你的用户名");
             	//Take take = new Take(str,PType.SURVEY);
-            	Display display = new Display(PType.TEST,str,false);
+            	Display display = new Display(PType.SURVEY,str,"take");
         		display.setVisible(true);
                  
            }
@@ -131,7 +131,7 @@ public class FirstMenu extends JFrame{
             public void actionPerformed(ActionEvent e){                 
             	String str = JOptionPane.showInputDialog("输入你的用户名");
             	//Take take = new Take(str,PType.TEST);
-            	Display display = new Display(PType.TEST,str,false);
+            	Display display = new Display(PType.TEST,str,"take");
         		display.setVisible(true);
                  
            }

@@ -51,7 +51,7 @@ public class EssayQ extends JFrame{
 	        	EssayQuestion seq = new EssayQuestion();
 	        	try{
 	        		 int score1=Integer.parseInt(score.getText());
-	        		 EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,question.getText(),score1,answer.getText());
+	        		 EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,frame.question.getText(),score1,answer.getText());
 		             invoke.setQestionCommand(seqc);
 			         invoke.addQuestion();
 		             frame.setVisible(false);
@@ -62,12 +62,13 @@ public class EssayQ extends JFrame{
 	             
 	       }
 	  });
+ 		frame.add(sco);
+ 		frame.add(score);
  		frame.add(submit);
 		frame.add(an);
 		frame.add(answer);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(500,800);
+ 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}
@@ -78,16 +79,15 @@ public class EssayQ extends JFrame{
  		submit.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){                 
 	        	EssayQuestion seq = new EssayQuestion();
-	            EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,question.getText());
+	            EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,frame.question.getText());
 	             invoke.setQestionCommand(seqc);
 		         invoke.addQuestion();
 		         frame.setVisible(false);
 	       }
 	  });
  		frame.add(submit);
-		frame.setLocationRelativeTo(null);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(500,800);
+ 		frame.setSize(500,800);
+ 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
 	}

@@ -55,9 +55,9 @@ public class ChoiceS extends JFrame{
 		add(item);
 		add(number);
 		add(sub);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 		setSize(500,800);
+		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(false);
 	}

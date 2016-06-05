@@ -47,7 +47,7 @@ public class ShowPageCommand extends InforCommand{
 			for(int i=0;i<size;i++)
 				answer.add( page.getQuestion(i).getAnswer());
 		}
-		return null;
+		return answer;
 	}
 	@Override
 	public List<Integer> returnThirdInfor() {
@@ -61,24 +61,34 @@ public class ShowPageCommand extends InforCommand{
 	public List<List<String>>[] returnFouthInfor() {
 		int size=page.getQuestionSize();
 		List<List<String>>[] items=new List[2];
+		items[0]=new LinkedList<List<String>>();
+		items[1]=new LinkedList<List<String>>();
 		for(int i=0;i<size;i++){
 			Question question=page.getQuestion(i);
 			QType qtype=question.getType();
-			if((qtype==QType.CHOICE)||(qtype==QType.RANK))
+			if((qtype==QType.CHOICE)||(qtype==QType.RANK)){
 				items[0].add(((ItemQuestion)question).getItems());
+				items[1].add(null);
+			}	
 			else if (qtype==QType.DECIDE){
 				List<String> item=new LinkedList<String>();
 				item.add("T");
 				item.add("F");
 				items[0].add(item);
+				items[1].add(null);
 			}
 			else if	(qtype==QType.MAP){
 				items[0].add(((MapQuestion)question).getLeftItems());
 				items[1].add(((MapQuestion)question).getRightItems());
 			}
+			else{
+				items[0].add(null);
+				items[1].add(null);
+			}
 		}
 		return items;
 	}
+
 	@Override
 	public int[] returnFifthInfor() {
 		int[] result=new int[3];
