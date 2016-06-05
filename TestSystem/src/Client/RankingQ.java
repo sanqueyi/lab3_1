@@ -27,8 +27,10 @@ public class RankingQ extends JFrame{
 	Invoker invoke = new Invoker();
 	ArrayList<String> list=new ArrayList();
 	JTextField question;
-	public RankingQ(Page paper){
+	boolean isc;
+	public RankingQ(Page paper,boolean isc){
 		this.paper = paper;
+		this.isc=isc;
 	setLayout(null);
 	JLabel pro = new JLabel("问题题目：");
 	 pro.setFont(new   java.awt.Font("Dialog",   1,   18)); 
@@ -73,7 +75,7 @@ public void add(int num){
 
 }
 public void test(){
-	RankingQ frame = new RankingQ(paper);
+	RankingQ frame = new RankingQ(paper,isc);
 	JLabel an = new JLabel("答案为：");
 	an.setFont(new   java.awt.Font("Dialog",   1,   18)); 
 	an.setBounds(20,200,150,30);		
@@ -87,18 +89,18 @@ public void test(){
 		submit.setBounds(380,500,100,50);
 		submit.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){ 
-        	String[] items  = new String[list.size()];
-        	for(int i = 0; i<list.size(); i++){
-    			items[i]=list.get(i);
+        	String[] items  = new String[frame.list.size()];
+        	for(int i = 0; i<frame.list.size(); i++){
+    			items[i]=frame.list.get(i);
 
     			}
         	try{
         		int score1=Integer.parseInt(score.getText());
         		RankQuestion seq = new RankQuestion();
-        		System.out.println(items[0]);
                 ItemQuestionCommand seqc = new ItemQuestionCommand(paper,seq,frame.question.getText(),items,score1,answer.getText());
                 invoke.setQestionCommand(seqc);
-    	         invoke.addQuestion();
+                
+    	        invoke.addQuestion();
                  frame.setVisible(false);
     		}
     		catch(Exception e2){
@@ -119,25 +121,26 @@ public void test(){
 	frame.setVisible(true);
 }
 public void survey(){
-	RankingQ frame = new RankingQ(paper);
+	RankingQ frame = new RankingQ(paper,isc);
 	JButton submit = new JButton("提交");
 		submit.setBounds(380,500,100,50);
 		submit.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){ 
-        	String[] items  = new String[list.size()];
-        	for(int i = 0; i<list.size(); i++){
-    			items[i]=list.get(i);
+        	String[] items  = new String[frame.list.size()];
+        	for(int i = 0; i<frame.list.size(); i++){
+    			items[i]=frame.list.get(i);
 
     			}
         	RankQuestion seq = new RankQuestion();
             ItemQuestionCommand seqc = new ItemQuestionCommand(paper,seq,frame.question.getText(),items);
             invoke.setQestionCommand(seqc);
+            
 	         invoke.addQuestion();
              frame.setVisible(false);
        }
   });
 		frame.add(submit);
-	
+
 	frame.setSize(500,800);
 	frame.setLocationRelativeTo(null);
 	frame.setResizable(false);

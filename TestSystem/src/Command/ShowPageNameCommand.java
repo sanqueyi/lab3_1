@@ -30,5 +30,10 @@ public class ShowPageNameCommand extends InforCommand{
 		list[1]=io.getAllRecordbyPerNam(personName, type);
 		return list;
 	}
+	@Override
+	public Object returnsixthInfor() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 }

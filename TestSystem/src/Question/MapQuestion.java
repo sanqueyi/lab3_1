@@ -76,7 +76,7 @@ public class MapQuestion extends Question {
 	public String getQuestion(){
 		String ret = "Map: "+prompt+"\n";
 		for(int i=0; i<sidel.size(); i++){
-			ret += sidel.get(i)+"\t"+sider.get(i)+"\n";
+			ret += i+1+")"+sidel.get(i)+"\t"+i+1+")"+sider.get(i)+"\n";
 		}
 		return ret;
 	}

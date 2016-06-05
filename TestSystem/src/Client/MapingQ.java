@@ -26,7 +26,8 @@ public class MapingQ extends JFrame{
 	ArrayList<String> list=new ArrayList();
 	ArrayList<String> list0=new ArrayList();
 	JTextField question;
-	public MapingQ(Page paper){
+	boolean isc; 
+	public MapingQ(Page paper,boolean isc){
 		this.paper = paper;
 		setLayout(null);
 		JLabel pro = new JLabel("问题题目：");
@@ -77,7 +78,7 @@ for(int i=0;i<num;i++){
 		
 	}
 public void test(){
-	MapingQ frame = new MapingQ(paper);
+	MapingQ frame = new MapingQ(paper,isc);
 	JLabel an = new JLabel("答案为：");
 	an.setFont(new   java.awt.Font("Dialog",   1,   18)); 
 	an.setBounds(20,200,150,30);		
@@ -91,15 +92,15 @@ public void test(){
 		submit.setBounds(380,500,100,50);
 		submit.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){                 
-        	String[] items  = new String[list.size()];
+        	String[] items  = new String[frame.list.size()];
         	
-        	for(int i = 0; i<list.size(); i++){
+        	for(int i = 0; i<frame.list.size(); i++){
     			items[i]=list.get(i);
 
     			}
-String[] items0  = new String[list0.size()];
+String[] items0  = new String[frame.list0.size()];
         	
-        	for(int i = 0; i<list0.size(); i++){
+        	for(int i = 0; i<frame.list0.size(); i++){
     			items0[i]=list0.get(i);
 
     			}
@@ -108,7 +109,8 @@ String[] items0  = new String[list0.size()];
         		int score1=Integer.parseInt(score.getText());
                 MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,frame.question.getText(),items,items0,score1,answer.getText());
                 invoke.setQestionCommand(seqc);
-    	        invoke.addQuestion(); 
+               
+    	        invoke.addQuestion();
                 frame.setVisible(false);
     		}
     		catch(Exception e2){
@@ -122,37 +124,40 @@ String[] items0  = new String[list0.size()];
 	frame.add(an);
 	frame.add(answer);
 	frame.add(submit);
+
 	frame.setSize(500,800);
 	frame.setLocationRelativeTo(null);
 	frame.setResizable(false);
 	frame.setVisible(true);
 }
 public void survey(){
-	MapingQ frame = new MapingQ(paper);
+	MapingQ frame = new MapingQ(paper,isc);
 	JButton submit = new JButton("提交");
 	submit.setBounds(380,300,100,50);
 	submit.addActionListener( new ActionListener(){
     public void actionPerformed(ActionEvent e){                 
-    	String[] items  = new String[list.size()];
+    	String[] items  = new String[frame.list.size()];
     	
-    	for(int i = 0; i<list.size(); i++){
-			items[i]=list.get(i);
+    	for(int i = 0; i<frame.list.size(); i++){
+			items[i]=frame.list.get(i);
 
 			}
-String[] items0  = new String[list0.size()];
+String[] items0  = new String[frame.list0.size()];
     	
-    	for(int i = 0; i<list0.size(); i++){
-			items0[i]=list0.get(i);
+    	for(int i = 0; i<frame.list0.size(); i++){
+			items0[i]=frame.list0.get(i);
 
 			}
     	MapQuestion seq = new MapQuestion();
         MapQuestionCommand seqc = new MapQuestionCommand(paper,seq,frame.question.getText(),items,items0);
         invoke.setQestionCommand(seqc);
+        
          invoke.addQuestion(); 
          frame.setVisible(false);
    }
 });
 	frame.add(submit);
+
 	frame.setSize(500,800);
 	frame.setLocationRelativeTo(null);
 	frame.setResizable(false);

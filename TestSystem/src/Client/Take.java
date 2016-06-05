@@ -52,7 +52,7 @@ public class Take extends JFrame{
 				  
 			  }
 			  for(int i=0;i<numb;i++){
-			  JLabel sq = new JLabel(i+1+"、 "+question.get(i));
+			  JLabel sq = new JLabel(i+1+"、 "+type.get(i).toString()+"    "+question.get(i));
 			  
 			  sq.setBounds(20,height,150,30);
 			  add(sq);
@@ -75,8 +75,8 @@ public class Take extends JFrame{
 			        ButtonGroup group = new ButtonGroup();// 创建单选按钮组
 			        group.add(radioButton1);
 			        group.add(radioButton2);
-			        JButton button = new JButton();
-			        button.setBounds(250,height,50,30);
+			        JButton button = new JButton("提交");
+			        button.setBounds(250,height,100,30);
 			        height+=30;
 			        button.addActionListener( new ActionListener(){
 				        public void actionPerformed(ActionEvent e){
@@ -99,8 +99,8 @@ public class Take extends JFrame{
 					  box.add(checkbox);
 					  add(checkbox);
 				  }
-				  JButton button = new JButton();
-			        button.setBounds(200,height,50,30);
+				  JButton button = new JButton("提交");
+			        button.setBounds(200,height,100,30);
 			        height+=30;
 			        button.addActionListener( new ActionListener(){
 				        public void actionPerformed(ActionEvent e){
@@ -142,14 +142,18 @@ public class Take extends JFrame{
 					  
 				  }
 				  JLabel q = new JLabel(str);
+
 				  q.setBounds(20,height,500,30);
+				  add(q);
 				  height+=30;
-				  JLabel pro = new JLabel("答案 ");
+				  JLabel pro = new JLabel("答案: ");
 				  JTextField a = new JTextField();
 				  pro.setBounds(20,height,65,30);
 				  a.setBounds(80, height, 150, 30);
-				  JButton button = new JButton();
-			        button.setBounds(400,height,50,30);
+				  add(pro);
+				  add(a);
+				  JButton button = new JButton("提交");
+			        button.setBounds(400,height,100,30);
 			        height+=30;
 			        button.addActionListener( new ActionListener(){
 				        public void actionPerformed(ActionEvent e){
@@ -181,8 +185,8 @@ public class Take extends JFrame{
 				  JTextField a = new JTextField();
 				  pro.setBounds(20,height,65,30);
 				  a.setBounds(80, height, 150, 30);
-				  JButton button = new JButton();
-			        button.setBounds(400,height,50,30);
+				  JButton button = new JButton("提交");
+			        button.setBounds(400,height,100,30);
 			        height+=30;
 			        button.addActionListener( new ActionListener(){
 				        public void actionPerformed(ActionEvent e){
@@ -193,20 +197,18 @@ public class Take extends JFrame{
 				        }});
 			  }
 			 
-			 if(ptype!=PType.SURVEY){
-				 JLabel sa = new JLabel(answer.get(i));
-				 add(sa);
-			 }
+			 
 		  }
 			  JButton submit  = new JButton("提交");
 			  submit.setBounds(400,700,80,30);
 		        submit.addActionListener( new ActionListener(){
 			        public void actionPerformed(ActionEvent e){
-			        	//SubmitAnswerCommand sac = new SubmitAnswerCommand(io,name,ptype,answer,userN);
-			        	SubmitAnswerCommand sac = new SubmitAnswerCommand(io,userN,ptype,answer,name);
+			        	SubmitAnswerCommand sac = new SubmitAnswerCommand(io,name,ptype,answer,userN);
+			        	//SubmitAnswerCommand sac = new SubmitAnswerCommand(io,userN,ptype,answer,name);
 			        	invoke.setInforCommand(sac);
-			        	if(ptype==PType.TEST){
 			        	int grade = (int)invoke.getFirstInfor();
+			        	if(ptype==PType.TEST){
+			        	
 			        	JOptionPane.showMessageDialog(null, "你的分数为："+grade, "成绩",JOptionPane.PLAIN_MESSAGE);}
 			        	setVisible(false);
 

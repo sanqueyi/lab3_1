@@ -12,7 +12,7 @@ public class ChoiceQuestion extends ItemQuestion {
 	public String getQuestion(){
 		String ret = "ChoiceQuestion: "+prompt+"\n";
 		for(int i=0; i<items.size(); i++){
-			ret += items.get(i)+"\n";
+			ret +=(i+1)+") "+ items.get(i)+"\n";
 		}
 		return ret;
 	}

@@ -1,3 +1,4 @@
+
 package Command;
 
 public abstract class InforCommand {
@@ -17,6 +18,9 @@ public abstract class InforCommand {
 		return null;
 	}
 	public Object returnsixthInfor(){
+		return null;
+	}
+	public Object returnseventhInfor(){
 		return null;
 	}
 }

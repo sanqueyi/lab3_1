@@ -12,7 +12,7 @@ import invoker.Invoker;
 
 public class Create extends JFrame{
 	Page paper;
-	public Create(int i,Page paper){
+	public Create(int i,Page paper,boolean  isc){
 		this.paper=paper;
 	setLayout(null);
 	
@@ -48,7 +48,7 @@ public class Create extends JFrame{
 	button5.setBounds(150,320,200,50);
 	button0.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){ 
-        	TF tf = new TF(paper);
+        	TF tf = new TF(paper,isc);
              if(i==0){
             	 
             	 tf.survey();
@@ -62,11 +62,11 @@ public class Create extends JFrame{
 	button1.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){                 
              if(i==0){
-            	 ChoiceS choices = new ChoiceS(paper);
+            	 ChoiceS choices = new ChoiceS(paper,isc);
             	 choices.setVisible(true);
             	 
              }else{
-            	 Choice choice = new Choice(paper);
+            	 Choice choice = new Choice(paper,isc);
             	 choice.setVisible(true);
             	 
              }
@@ -75,7 +75,7 @@ public class Create extends JFrame{
   });
 	button2.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){   
-        	ShortQ sho = new ShortQ(paper);
+        	ShortQ sho = new ShortQ(paper,isc);
              if(i==0){
             	 sho.survey();
              }else{
@@ -86,7 +86,7 @@ public class Create extends JFrame{
   });
 	button3.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){ 
-        	EssayQ essay = new EssayQ(paper);
+        	EssayQ essay = new EssayQ(paper,isc);
         	if(i==0){
            	 essay.survey();
             }else{
@@ -97,7 +97,7 @@ public class Create extends JFrame{
   });
 	button4.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){                 
-             RankingQ ranking = new RankingQ(paper);
+             RankingQ ranking = new RankingQ(paper,isc);
              if(i==0){
             	 ranking.survey();
              }else{
@@ -108,7 +108,7 @@ public class Create extends JFrame{
   });
 	button5.addActionListener( new ActionListener(){
         public void actionPerformed(ActionEvent e){                 
-            MapingQ map = new MapingQ(paper);
+            MapingQ map = new MapingQ(paper,isc);
             if(i==0){
             	map.survey();
             }else{

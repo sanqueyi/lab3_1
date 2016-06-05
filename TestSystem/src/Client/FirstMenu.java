@@ -138,14 +138,14 @@ public class FirstMenu extends JFrame{
       });
 		button8.addActionListener( new ActionListener(){
             public void actionPerformed(ActionEvent e){                 
-                 Name name = new Name(8);
-                 name.setVisible(true);
+            	Display display = new Display(PType.SURVEY,null,"outcome");
+        		display.setVisible(true);
                  
            }
       });button9.addActionListener( new ActionListener(){
           public void actionPerformed(ActionEvent e){                 
-              Name name = new Name(9);
-              name.setVisible(true);
+        	  Display display = new Display(PType.TEST,null,"outcome");
+      		display.setVisible(true);
               
         }
    });

@@ -20,8 +20,10 @@ public class Choice extends JFrame {
 	JTextField question;
 	JTextField score;
 	String an="";
-	public Choice(Page paper){
+	boolean isc;
+	public Choice(Page paper,boolean isc){
 		this.paper = paper;
+		this.isc = isc;
 		setLayout(null);
 		JLabel pro = new JLabel("问题题目：");
 		pro.setBounds(20,20,100,30);
@@ -100,7 +102,10 @@ public class Choice extends JFrame {
 		        	int score2=Integer.parseInt(score1);
 		            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,question.getText(),items,score2,an);
 		            invoke.setQestionCommand(iqc);
+		            
 		            invoke.addQuestion();
+		            	
+		            
 		             setVisible(false);
         		}
         		catch(Exception e1){

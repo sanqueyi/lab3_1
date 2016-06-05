@@ -26,6 +26,7 @@ public class ShowPageCommand extends InforCommand{
 		this.isRecord=isRecord;
 		
 	}
+	//获取所有问题的提示
 	public List<String> returnInfor(){
 		int size=page.getQuestionSize();
 		List<String> result=new LinkedList<String>();		
@@ -35,6 +36,7 @@ public class ShowPageCommand extends InforCommand{
 		return result;
 	}
 	@Override
+	//获取所有问题的答案（正确答案或者答题人填写的答案）
 	public List<String> returnAnotherInfor() {
 		int size=page.getQuestionSize();
 		List<String> answer=new LinkedList<String>();
@@ -50,6 +52,7 @@ public class ShowPageCommand extends InforCommand{
 		return answer;
 	}
 	@Override
+	//获取所有问题的分数列表
 	public List<Integer> returnThirdInfor() {
 		int size=page.getQuestionSize();
 		List<Integer> score=new LinkedList<Integer>();
@@ -58,6 +61,7 @@ public class ShowPageCommand extends InforCommand{
 		return score;
 	}
 	@Override
+	//获取所有问题的items链表数组，均存在list[0]中，若是map question，则list[0]为左列表，list[1]为右列表
 	public List<List<String>>[] returnFouthInfor() {
 		int size=page.getQuestionSize();
 		List<List<String>>[] items=new List[2];
@@ -90,6 +94,8 @@ public class ShowPageCommand extends InforCommand{
 	}
 
 	@Override
+
+	//获取test的时间、总分以及record的得分
 	public int[] returnFifthInfor() {
 		int[] result=new int[3];
 		result[0]=page.getTime();
@@ -106,6 +112,9 @@ public class ShowPageCommand extends InforCommand{
 		for(int i=0;i<size;i++)
 			type.add(page.getQuestion(i).getType());
 		return type;
+	}
+	public Page returnseventhInfor() {
+		return io.readPage(name, type);
 	}
 
 	

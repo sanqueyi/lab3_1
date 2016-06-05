@@ -16,6 +16,7 @@ import Command.ShowPageCommand;
 import Command.ShowPageNameCommand;
 import Control.IO;
 import Paper.PType;
+import Paper.Page;
 import invoker.Invoker;
 
 public class Display extends JFrame{
@@ -56,7 +57,7 @@ public class Display extends JFrame{
               public void actionPerformed(ActionEvent e){                 
               	for(int i=0;i<button.size();i++){
           			if(button.get(i).isSelected()){
-          				System.out.println(button.get(i).getText());
+          				
           				Take take = new Take(button.get(i).getText(),ptype,name);
           				take.setVisible(true);
           				setVisible(false);
@@ -66,13 +67,31 @@ public class Display extends JFrame{
              }
         });
       }else if(dis.equals("outcome")){
-    	  
-      }else if(dis.equals("modify")){
     	  submit.addActionListener( new ActionListener(){
               public void actionPerformed(ActionEvent e){                 
               	for(int i=0;i<button.size();i++){
           			if(button.get(i).isSelected()){
-          				Modify modify = new Modify(button.get(i).getText(),ptype);
+          				Outcome outcome = new Outcome(ptype,button.get(i).getText());       
+          				outcome.setVisible(true);
+          				setVisible(false);
+          				break;
+          			}
+          		}
+             }
+        });
+    	  
+    	  
+      }else if(dis.equals("modify")){
+    	  submit.addActionListener( new ActionListener(){
+              public void actionPerformed(ActionEvent e){ 
+            	  
+              	for(int i=0;i<button.size();i++){
+          			if(button.get(i).isSelected()){
+          				Invoker invoke = new Invoker();
+                  	  ShowPageCommand spc = new ShowPageCommand(io,ptype,button.get(i).getText(),false);
+                  	  invoke.setInforCommand(spc);
+                  	  Page paper = (Page) invoke.getseventhInfor();
+          				Modify modify = new Modify(button.get(i).getText(),ptype,paper);
           				modify.setVisible(true);
           				setVisible(false);
           				break;
@@ -135,8 +154,9 @@ public class Display extends JFrame{
 			add(submit);
 		
       }
+
 		
-		
+
 		setSize(500,800);
 		setLocationRelativeTo(null);
 		setResizable(false);

@@ -35,6 +35,30 @@ public class MapQuestionCommand implements QuestionCommand{
 		for(int i=0;i<rside.length;i++)
 			this.rside[i]=rside[i];
 	}
+	public MapQuestionCommand(Page paper,int index,String prompt,String[] lside, String[] rside){
+		this.paper=paper;
+		this.question=(MapQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+		this.lside=new String[lside.length];
+		this.rside=new String[rside.length];
+		for(int i=0;i<lside.length;i++)
+			this.lside[i]=lside[i];
+		for(int i=0;i<rside.length;i++)
+			this.rside[i]=rside[i];
+	}
+	public MapQuestionCommand(Page paper,int index,String prompt,String[] lside, String[] rside,int score,String answer){
+		this.paper=paper;
+		this.question=(MapQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+		this.score=score;
+		this.answer=answer;
+		this.lside=new String[lside.length];
+		this.rside=new String[rside.length];
+		for(int i=0;i<lside.length;i++)
+			this.lside[i]=lside[i];
+		for(int i=0;i<rside.length;i++)
+			this.rside[i]=rside[i];
+	}
 	public void modifyQuestion(){
 		question.setPrompt(prompt);
 		for(int i=0;i<lside.length;i++)

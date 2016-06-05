@@ -21,8 +21,10 @@ public class ShortQ extends JFrame{
 	Page paper;
 	Invoker invoke =new Invoker();
 	JTextField question;
-	public ShortQ(Page paper){
+	boolean isc;
+	public ShortQ(Page paper,boolean isc){
 		this.paper = paper;
+		this.isc=isc;
     	 setLayout(null);
     	 JLabel pro = new JLabel("问题题目：");
     	 pro.setFont(new   java.awt.Font("Dialog",   1,   18)); 
@@ -35,7 +37,7 @@ public class ShortQ extends JFrame{
  		
      }
      public void test(){
- 		ShortQ frame = new ShortQ(paper);
+ 		ShortQ frame = new ShortQ(paper,isc);
  		JLabel an = new JLabel("答案为：");
  		an.setFont(new   java.awt.Font("Dialog",   1,   18)); 
    	    an.setBounds(20,150,150,30);
@@ -54,7 +56,9 @@ public class ShortQ extends JFrame{
 	        		ShortEssayQuestion seq = new ShortEssayQuestion();
 		             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,frame.question.getText(),score1,answer.getText());
 		             invoke.setQestionCommand(seqc);
+		            
 			         invoke.addQuestion();
+			        
 		             frame.setVisible(false);
         		}
         		catch(Exception e2){
@@ -69,13 +73,14 @@ public class ShortQ extends JFrame{
  		frame.add(answer);
  		frame.add(sco);
  		frame.add(score);
+
  		frame.setSize(500,800);
  		frame.setLocationRelativeTo(null);
  		frame.setResizable(false);
  		frame.setVisible(true);
  	}
  	public void survey(){
- 		ShortQ frame = new ShortQ(paper);
+ 		ShortQ frame = new ShortQ(paper,isc);
  		JButton submit = new JButton("提交");
  		submit.setBounds(380,400,100,50);
  		submit.addActionListener( new ActionListener(){
@@ -83,12 +88,14 @@ public class ShortQ extends JFrame{
 	             ShortEssayQuestion seq = new ShortEssayQuestion();
 	             ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,seq,frame.question.getText());
 	             invoke.setQestionCommand(seqc);
+	             
 		         invoke.addQuestion();
 	             frame.setVisible(false);
 	       }
 	  });
  		
  		frame.add(submit);
+
  		frame.setSize(500,800);
  		frame.setLocationRelativeTo(null);
  		frame.setResizable(false);

@@ -20,8 +20,10 @@ public class EssayQ extends JFrame{
 	Page paper;
 	Invoker invoke = new Invoker();
 	JTextField question;
-	public EssayQ(Page paper){
+	boolean isc;
+	public EssayQ(Page paper,boolean isc){
 		this.paper = paper;
+		this.isc = isc;
 		 setLayout(null);
     	 JLabel pro = new JLabel("问题题目：");
     	 pro.setFont(new   java.awt.Font("Dialog",   1,   18)); 
@@ -34,7 +36,7 @@ public class EssayQ extends JFrame{
  		
     }
     public void test(){
-    	EssayQ  frame = new EssayQ(paper);
+    	EssayQ  frame = new EssayQ(paper,isc);
     	JLabel an = new JLabel("答案为：");
  		an.setFont(new   java.awt.Font("Dialog",   1,   18)); 
    	    an.setBounds(20,150,150,30);
@@ -53,6 +55,7 @@ public class EssayQ extends JFrame{
 	        		 int score1=Integer.parseInt(score.getText());
 	        		 EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,frame.question.getText(),score1,answer.getText());
 		             invoke.setQestionCommand(seqc);
+		            
 			         invoke.addQuestion();
 		             frame.setVisible(false);
         		}
@@ -73,7 +76,7 @@ public class EssayQ extends JFrame{
 		frame.setVisible(true);
 	}
 	public void survey(){
-		EssayQ frame = new EssayQ (paper);
+		EssayQ frame = new EssayQ (paper,isc);
 		JButton submit = new JButton("提交");
  		submit.setBounds(380,400,100,50);
  		submit.addActionListener( new ActionListener(){
@@ -81,11 +84,13 @@ public class EssayQ extends JFrame{
 	        	EssayQuestion seq = new EssayQuestion();
 	            EssayQuestionCommand seqc = new EssayQuestionCommand(paper,seq,frame.question.getText());
 	             invoke.setQestionCommand(seqc);
+	            
 		         invoke.addQuestion();
 		         frame.setVisible(false);
 	       }
 	  });
  		frame.add(submit);
+
  		frame.setSize(500,800);
  		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);

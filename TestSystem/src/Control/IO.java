@@ -234,7 +234,8 @@ public class IO {
 			input.close();
 			
 			root.addContent(ele);
-			Document doc=new Document(root);
+			Element newroot=(Element)root.clone();
+			Document doc=new Document(newroot);
 			FileOutputStream out=new FileOutputStream(filename);
 			XMLOutputter outputter = new XMLOutputter();  
 	        Format f = Format.getPrettyFormat();  

@@ -21,6 +21,18 @@ public class ShortEssayQuestionCommand implements QuestionCommand{
 		this.score=score;
 		this.answer=answer;
 	}
+	public ShortEssayQuestionCommand(Page paper,int index,String prompt){
+		this.paper=paper;
+		this.question=(ShortEssayQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+	}
+	public ShortEssayQuestionCommand(Page paper,int index,String prompt,int score,String answer){
+		this.paper=paper;
+		this.question=(ShortEssayQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+		this.score=score;
+		this.answer=answer;
+	}
 	public void modifyQuestion(){
 		question.setPrompt(prompt);
 		question.setScore(score);

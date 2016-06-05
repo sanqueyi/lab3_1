@@ -22,9 +22,10 @@ public class ChoiceS extends JFrame{
 	Page paper;
 	Invoker invoke = new Invoker();
 	JTextField question;
-	public ChoiceS(Page paper){
+	boolean isc;
+	public ChoiceS(Page paper,boolean isc){
 		this.paper = paper;
-		
+		this.isc = isc;
 		setLayout(null);
 		JLabel pro = new JLabel("问题题目：");
 		pro.setFont(new   java.awt.Font("Dialog",   1,   18)); 
@@ -55,7 +56,6 @@ public class ChoiceS extends JFrame{
 		add(item);
 		add(number);
 		add(sub);
-		
 		setSize(500,800);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -86,6 +86,7 @@ public class ChoiceS extends JFrame{
 	        	ChoiceQuestion cq = new ChoiceQuestion();
 	            ItemQuestionCommand iqc = new ItemQuestionCommand(paper,cq,question.getText(),items);
 	            invoke.setQestionCommand(iqc);
+	           
 	            invoke.addQuestion();
 	             setVisible(false);
 	       }

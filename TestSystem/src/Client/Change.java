@@ -14,14 +14,22 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
 import Command.DecideQuestionCommand;
+import Command.EssayQuestionCommand;
+import Command.ItemQuestionCommand;
+import Command.MapQuestionCommand;
+import Command.ShortEssayQuestionCommand;
 import Paper.PType;
+import Paper.Page;
+import Question.ChoiceQuestion;
 import Question.DecideQuestion;
 import Question.QType;
+import invoker.Invoker;
 
 public class Change extends JFrame {
 
 	public Change(PType ptype, QType qtype, int n, String string, List<String> list, List<String> list2, String string2,
-			Integer integer) {
+			Integer integer,Page paper) {
+		Invoker invoke = new Invoker();
 		setLayout(null);
 		if (qtype == QType.DECIDE) {
 			JTextField question = new JTextField(string);
@@ -57,7 +65,10 @@ public class Change extends JFrame {
 					} else {
 						ans = radioButton2.getText();
 					}
-
+					DecideQuestionCommand dqc = new DecideQuestionCommand(paper,n,question.getText(),Integer.parseInt(score.getText()),ans);
+		        	invoke.setQestionCommand(dqc);
+		        	invoke.modifyQustion();
+		        	 setVisible(false);
 				}
 			});
 			add(submit);
@@ -93,7 +104,7 @@ public class Change extends JFrame {
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入选项");
-					list.add(str);
+					list0.add(new JTextField(str));
 
 				}
 			});
@@ -102,17 +113,23 @@ public class Change extends JFrame {
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除的序号1~");
-					list.remove(Integer.parseInt(str)-1);
+					list0.remove(Integer.parseInt(str)-1);
 
 				}
 			});
 			JButton submit = new JButton("提交");
-			
+			int number = list0.size();
+			String[] items = new String[number];
+			for(int i=0;i<number;i++){
+				items[i]=list0.get(i).getText();
+			}
 			submit.setBounds(200, height+180, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-
+					ItemQuestionCommand iqc = new ItemQuestionCommand(paper,n,question.getText(),items,Integer.parseInt(score.getText()),answer.getText());
+		            invoke.setQestionCommand(iqc);
+		            invoke.modifyQustion();
+		            setVisible(false);
 				}
 			});
 			add(add);
@@ -140,7 +157,10 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,n,question.getText(),Integer.parseInt(score.getText()), answer.getText());
+		             invoke.setQestionCommand(seqc);
+		             invoke.modifyQustion();
+			         setVisible(false);
 
 				}
 			});
@@ -163,7 +183,11 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					EssayQuestionCommand seqc = new EssayQuestionCommand(paper,n,question.getText(),Integer.parseInt(score.getText()),answer.getText());
+		             invoke.setQestionCommand(seqc);
+		      
+			        	 invoke.modifyQustion();
+			        	 setVisible(false);
 
 				}
 			});
@@ -202,7 +226,7 @@ public class Change extends JFrame {
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入选项");
-					list.add(str);
+					list0.add(new JTextField(str));
 
 				}
 			});
@@ -211,7 +235,7 @@ public class Change extends JFrame {
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除的序号1~");
-					list.remove(Integer.parseInt(str)-1);
+					list0.remove(Integer.parseInt(str)-1);
 
 				}
 			});
@@ -220,9 +244,21 @@ public class Change extends JFrame {
 			submit.setBounds(200, height+180, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					int number = list0.size();
+					String[] items = new String[number];
+					for(int i=0;i<number;i++){
+						items[i]=list0.get(i).getText();
+					}
+					ItemQuestionCommand seqc = new ItemQuestionCommand(paper,n,question.getText(),items,Integer.parseInt(score.getText()),answer.getText());
+	                invoke.setQestionCommand(seqc);
+	              
+	    	        
+	    	        	invoke.modifyQustion();
+	    	        
+	               setVisible(false);
+	    		}
 
-				}
+				
 			});
 			add(question);
 			add(item);
@@ -271,10 +307,10 @@ public class Change extends JFrame {
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入左选项");
-					list.add(str);
+					list0.add(new JTextField(str));
 					String str1 = JOptionPane.showInputDialog("输入右选项");
-					list2.add(str1);
-
+					list3.add(new JTextField(str1));
+                    
 				}
 			});
 			JButton delete = new JButton("删除");
@@ -282,9 +318,9 @@ public class Change extends JFrame {
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除左边的序号1~");
-					list.remove(Integer.parseInt(str)-1);
+					list0.remove(Integer.parseInt(str)-1);
 					String str2 = JOptionPane.showInputDialog("输入想要删除右边的序号1~");
-					list2.remove(Integer.parseInt(str2)-1);
+					list3.remove(Integer.parseInt(str2)-1);
 
 				}
 			});
@@ -293,7 +329,20 @@ public class Change extends JFrame {
 			submit.setBounds(200, height+180, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					int number = list0.size();
+					String[] items = new String[number];
+					String[] items0 = new String[number];
+					for(int i=0;i<number;i++){
+						items[i]=list0.get(i).getText();
+						items0[i]=list3.get(i).getText();
+					}
+					MapQuestionCommand seqc = new MapQuestionCommand(paper,n,question.getText(),items,items0,Integer.parseInt(score.getText()),answer.getText());
+	                invoke.setQestionCommand(seqc);
+	               
+	    	        
+	    	        	invoke.modifyQustion();
+	    	        
+	               setVisible(false);
 
 				}
 			});
@@ -309,9 +358,10 @@ public class Change extends JFrame {
 		setVisible(false);
 	}
 
-	public Change(PType ptype, QType qtype, int m, String string, List<String> list, List<String> list2) {
+	public Change(PType ptype, QType qtype, int m, String string, List<String> list, List<String> list2,Page paper) {
 		// TODO Auto-generated constructor stub
 		setLayout(null);
+		Invoker invoke =new Invoker();
 		if (qtype == QType.DECIDE) {
 			JTextField question = new JTextField(string);
 			question.setBounds(20, 20, 200, 30);
@@ -320,8 +370,10 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-
+					DecideQuestionCommand dqc = new DecideQuestionCommand(paper,m,question.getText());
+		        	invoke.setQestionCommand(dqc);
+		        	invoke.modifyQustion();
+		        	 setVisible(false);
 				}
 			});
 			add(submit);
@@ -348,7 +400,7 @@ public class Change extends JFrame {
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入选项");
-					list.add(str);
+					list0.add(new JTextField(str));
 
 				}
 			});
@@ -357,17 +409,23 @@ public class Change extends JFrame {
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除的序号1~");
-					list.remove(Integer.parseInt(str)-1);
+					list0.remove(Integer.parseInt(str)-1);
 
 				}
 			});
 			JButton submit = new JButton("提交");
-			
+			int number = list0.size();
+			String[] items = new String[number];
+			for(int i=0;i<number;i++){
+				items[i]=list0.get(i).getText();
+			}
 			submit.setBounds(200, height+180, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
-
+					ItemQuestionCommand iqc = new ItemQuestionCommand(paper,m,question.getText(),items);
+		            invoke.setQestionCommand(iqc);
+		            invoke.modifyQustion();
+                    setVisible(false);
 				}
 			});
 			add(add);
@@ -382,7 +440,10 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					ShortEssayQuestionCommand seqc = new ShortEssayQuestionCommand(paper,m,question.getText());
+		             invoke.setQestionCommand(seqc);
+		             invoke.modifyQustion();
+			         setVisible(false);
 
 				}
 			});
@@ -397,7 +458,11 @@ public class Change extends JFrame {
 			submit.setBounds(200, 300, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					EssayQuestionCommand seqc = new EssayQuestionCommand(paper,m,question.getText());
+		             invoke.setQestionCommand(seqc);
+		      
+			        	 invoke.modifyQustion();
+			        	 setVisible(false);
 
 				}
 			});
@@ -424,7 +489,7 @@ public class Change extends JFrame {
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入选项");
-					list.add(str);
+					list0.add(new JTextField(str));
 
 				}
 			});
@@ -433,7 +498,7 @@ public class Change extends JFrame {
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除的序号1~");
-					list.remove(Integer.parseInt(str)-1);
+					list0.remove(Integer.parseInt(str)-1);
 
 				}
 			});
@@ -442,7 +507,18 @@ public class Change extends JFrame {
 			submit.setBounds(200, height+180, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					int number = list0.size();
+					String[] items = new String[number];
+					for(int i=0;i<number;i++){
+						items[i]=list0.get(i).getText();
+					}
+					ItemQuestionCommand seqc = new ItemQuestionCommand(paper,m,question.getText(),items);
+	                invoke.setQestionCommand(seqc);
+	              
+	    	        
+	    	        	invoke.modifyQustion();
+	    	        
+	               setVisible(false);
 
 				}
 			});
@@ -477,9 +553,9 @@ public class Change extends JFrame {
 			add.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入左选项");
-					list.add(str);
+					list0.add(new JTextField(str));
 					String str1 = JOptionPane.showInputDialog("输入右选项");
-					list2.add(str1);
+					list3.add(new JTextField(str1));
 
 				}
 			});
@@ -488,9 +564,9 @@ public class Change extends JFrame {
 			delete.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					String str = JOptionPane.showInputDialog("输入想要删除左边的序号1~");
-					list.remove(Integer.parseInt(str)-1);
+					list0.remove(Integer.parseInt(str)-1);
 					String str2 = JOptionPane.showInputDialog("输入想要删除右边的序号1~");
-					list2.remove(Integer.parseInt(str2)-1);
+					list3.remove(Integer.parseInt(str2)-1);
 
 				}
 			});
@@ -499,7 +575,20 @@ public class Change extends JFrame {
 			submit.setBounds(200, height+180, 50, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					
+					int number = list0.size();
+					String[] items = new String[number];
+					String[] items0 = new String[number];
+					for(int i=0;i<number;i++){
+						items[i]=list0.get(i).getText();
+						items0[i]=list3.get(i).getText();
+					}
+					MapQuestionCommand seqc = new MapQuestionCommand(paper,m,question.getText(),items,items0);
+	                invoke.setQestionCommand(seqc);
+	               
+	    	        
+	    	        	invoke.modifyQustion();
+	    	        
+	               setVisible(false);
 
 				}
 			});

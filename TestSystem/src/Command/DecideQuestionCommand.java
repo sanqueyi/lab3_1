@@ -22,6 +22,18 @@ public class DecideQuestionCommand implements QuestionCommand{
 		this.question=question;
 		this.prompt=prompt;
 	}
+	public DecideQuestionCommand(Page paper,int index,String prompt, int score, String answer){
+		this.paper=paper;
+		this.question=(DecideQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+		this.answer=answer;
+		this.score=score;
+	}
+	public DecideQuestionCommand(Page paper,int index,String prompt){
+		this.paper=paper;
+		this.question=(DecideQuestion)paper.getQuestion(index);
+		this.prompt=prompt;
+	}
 	public void modifyQuestion(){
 		question.setPrompt(prompt);
 		question.setAnswer(answer);

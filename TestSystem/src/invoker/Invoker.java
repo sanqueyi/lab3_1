@@ -48,4 +48,7 @@ public class Invoker {
 	public Object getsixthInfor(){
 		return icommand.returnsixthInfor();
 	}
+	public Object getseventhInfor(){
+		return icommand.returnseventhInfor();
+	}
 }

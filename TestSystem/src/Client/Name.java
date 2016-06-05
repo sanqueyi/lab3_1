@@ -42,7 +42,7 @@ public class Name extends JFrame{
                 	 CreatePageCommand cpc = new CreatePageCommand(io,page,login0.getText(),login.getText());
                 	 invoke.setInforCommand(cpc);
                 	 if((boolean)invoke.getFirstInfor()){
-                	 Create create = new Create(0,page);
+                	 Create create = new Create(0,page,true);
                 	 setVisible(false);
                 	 create.setVisible(true);}else{
                 		 JOptionPane.showMessageDialog(null, "该名字已存在，请重命名！");
@@ -53,7 +53,7 @@ public class Name extends JFrame{
                 	 CreatePageCommand cpc0 = new CreatePageCommand(io,test,login0.getText(),login.getText());
                 	 invoke.setInforCommand(cpc0);
                 	 if((boolean)invoke.getFirstInfor()){
-                	 Create create0 = new Create(1,test);
+                	 Create create0 = new Create(1,test,true);
                 	 setVisible(false);
                 	 create0.setVisible(true);}else{
                 		 JOptionPane.showMessageDialog(null, "该名字已存在，请重命名！");
@@ -71,10 +71,7 @@ public class Name extends JFrame{
 		add(name0);
 		add(login0);
 		add(submit);
-	
-	
 
-		
 		setSize(450,500);
 		setLocationRelativeTo(null);
 		setResizable(false);

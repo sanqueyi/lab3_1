@@ -11,11 +11,12 @@ import javax.swing.JLabel;
 import Command.ShowPageCommand;
 import Control.IO;
 import Paper.PType;
+import Paper.Page;
 import Question.QType;
 import invoker.Invoker;
 
 public class Modify extends JFrame{
-public Modify(String name,PType ptype){
+public Modify(String name,PType ptype,Page paper){
 	setLayout(null);
 	  IO io = new IO();
 	  
@@ -91,9 +92,9 @@ public Modify(String name,PType ptype){
 		        public void actionPerformed(ActionEvent e){
 		        	int m=Integer.parseInt(inf.getText());
 		        	if(ptype==PType.TEST){
-		        	Change change = new Change(ptype,type.get(m),m,question.get(m),items[0].get(m),items[1].get(m),answer.get(m),score.get(m));
+		        	Change change = new Change(ptype,type.get(m),m,question.get(m),items[0].get(m),items[1].get(m),answer.get(m),score.get(m),paper);
 		        	change.setVisible(true);}else{
-		        		Change change = new Change(ptype,type.get(m),m,question.get(m),items[0].get(m),items[1].get(m));
+		        		Change change = new Change(ptype,type.get(m),m,question.get(m),items[0].get(m),items[1].get(m),paper);
 			        	change.setVisible(true);
 		        	}
 		        	
@@ -106,9 +107,11 @@ public Modify(String name,PType ptype){
 	  add.addActionListener( new ActionListener(){
 	        public void actionPerformed(ActionEvent e){
 	        	if(ptype==PType.SURVEY){
-	        		
+	        		Create create = new Create(0,paper,false);
+	        		create.setVisible(true);
 	        	}else{
-	        		
+	        		Create create = new Create(1,paper,false);
+	        		create.setVisible(true);
 	        	}
 	        	
 	        	

@@ -24,7 +24,7 @@ public class SubmitAnswerCommand extends InforCommand{
 		this.type=type;
 		this.answer=answer;
 		this.name=name;
-		page=io.readPage(name, type);
+		page=io.readPage(pageName, type);
 	}
 	@Override
 	public Integer returnInfor() {
