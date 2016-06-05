@@ -414,10 +414,10 @@ public class Change extends JFrame {
 			jl.setBounds(0,20,80,30);
 			add(jl);
 			JTextField question = new JTextField(string);
-			question.setBounds(20, 20, 200, 30);
+			question.setBounds(100, 20, 200, 30);
 			
 			JButton submit = new JButton("提交");
-			submit.setBounds(200, 300, 100, 20);
+			submit.setBounds(200, 60, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					DecideQuestion newQuestion=new DecideQuestion();
@@ -435,7 +435,7 @@ public class Change extends JFrame {
 			add(jl);
 			ArrayList<JTextField> list0  = new ArrayList();
 			JTextField question = new JTextField(string);
-			question.setBounds(20, 20, 200, 30);
+			question.setBounds(100, 20, 200, 30);
 			add(question);
 			JLabel item = new JLabel("选项为：");
 			item.setFont(new java.awt.Font("Dialog", 1, 18));
@@ -492,10 +492,10 @@ public class Change extends JFrame {
 			jl.setBounds(0,20,80,30);
 			add(jl);
 			JTextField question = new JTextField(string);
-			question.setBounds(20, 20, 200, 30);
+			question.setBounds(100, 20, 300, 30);
 			
 			JButton submit = new JButton("提交");
-			submit.setBounds(200, 300, 50, 20);
+			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					ShortEssayQuestion newQuestion=new ShortEssayQuestion();
@@ -515,9 +515,9 @@ public class Change extends JFrame {
 			jl.setBounds(0,20,80,30);
 			add(jl);
 			JTextField question = new JTextField(string);
-			question.setBounds(20, 20, 200, 30);
+			question.setBounds(100, 20, 200, 30);
 			JButton submit = new JButton("提交");
-			submit.setBounds(200, 300, 50, 20);
+			submit.setBounds(200, 300, 100, 20);
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					EssayQuestion newQuestion=new EssayQuestion();
@@ -538,7 +538,7 @@ public class Change extends JFrame {
 			add(jl);
 			ArrayList<JTextField> list0  = new ArrayList();
 			JTextField question = new JTextField(string);
-			question.setBounds(20, 20, 200, 30);
+			question.setBounds(100, 20, 200, 30);
 			JLabel item = new JLabel("选项为：");
 			item.setFont(new java.awt.Font("Dialog", 1, 18));
 			item.setBounds(20, 60, 60, 30);
@@ -602,7 +602,7 @@ public class Change extends JFrame {
 			ArrayList<JTextField> list0  = new ArrayList();
 			ArrayList<JTextField> list3  = new ArrayList();
 			JTextField question = new JTextField(string);
-			question.setBounds(20, 20, 200, 30);
+			question.setBounds(100, 20, 200, 30);
 			JLabel item = new JLabel("选项为：");
 			item.setFont(new java.awt.Font("Dialog", 1, 18));
 			item.setBounds(20, 60, 60, 30);
