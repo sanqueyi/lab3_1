@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <totalInfo>
-<<<<<<< HEAD
-=======
-  <pageName personName="wu">1p</pageName>
->>>>>>> refs/remotes/origin/master
+  <pageName personName="123">23</pageName>
+  <pageName personName="221">888</pageName>
 </totalInfo>
 
