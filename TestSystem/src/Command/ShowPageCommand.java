@@ -49,7 +49,7 @@ public class ShowPageCommand extends InforCommand{
 			for(int i=0;i<size;i++)
 				answer.add( page.getQuestion(i).getAnswer());
 		}
-		return null;
+		return answer;
 	}
 	@Override
 	//获取所有问题的分数列表
